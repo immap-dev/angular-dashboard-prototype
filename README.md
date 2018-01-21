@@ -1,4 +1,6 @@
+<p align="center">
 <img src="toolbox-z1.png">
+</p>
 
 # angular-dashboard-prototype
 Configurable Angular Dashboard Prototype
