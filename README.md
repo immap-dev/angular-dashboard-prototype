@@ -37,11 +37,18 @@ const appRoutes: Routes = [
   ```
 - Configure simple dashboards, as next: starting plain card with picture and title that routes to dashboard, that has title, followed by stats component, followed by form component, followed map component. Form has drop down with three locations to choose, input text field as facility name, input field to enter number gt 0, and a submit button. On submit stats components shows number(default 0) with subtitle _cases_, map shows chosen place and name, title has default name plus facility name and place name.
 - Use compodoc for generating documentation
+<p align="center">
+<img src="chrome_2018-01-21_21-53-23.png">
+</p>
+ 
+
 
 **Second Batch**
 
 - Add global navigation components
-- Dashboard navigation component
+- Dashboard navigation components
+- List and table components
+- Return back component
 - Other components
 - Try to use materializeCSS
 - _TO ADD MORE_
