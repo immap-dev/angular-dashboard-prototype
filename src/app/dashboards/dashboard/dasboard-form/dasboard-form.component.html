@@ -1,0 +1,18 @@
+
+  <mat-card class="form-card">
+    <form >
+      <mat-form-field>
+        <mat-select placeholder="Select">
+         <mat-option *ngFor="let location of locations" [value]="location">{{location}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Facility Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Number">
+      </mat-form-field>
+      <button mat-raised-button type="button" color="primary">Save</button>
+    </form>
+    
+  </mat-card>

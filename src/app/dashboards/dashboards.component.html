@@ -1,0 +1,26 @@
+<!-- <div class="board-list" fxFlex="0 0 auto" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>  
+  <a *ngFor="let board of boards"  routerLink="/dashboard/{{board.id}}/{{board.uri}}">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{board.title.name}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="pic" alt="Not Showing Picture">
+    </mat-card>
+  </a>
+</div> -->
+
+<!-- using material grid list -->
+
+<mat-grid-list cols="6" rowHeight="1:2" gutterSize="20px">
+  <mat-grid-tile *ngFor="let board of boards">
+    <a  routerLink="/dashboard/{{board.id}}/{{board.uri}}">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{board.title.name}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image [src]="pic" alt="Not Showing Picture">
+      </mat-card>
+    </a>
+  </mat-grid-tile>  
+</mat-grid-list>
+
