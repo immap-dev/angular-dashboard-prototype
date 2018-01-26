@@ -48,7 +48,7 @@ export class DashboardService {
     }
 
     // getLayout(): Observable<any> {
-    //     return this.http.get('../fake-db/layout.json')
+    //     return this.http.get('api / layouts')
     //         .map((response) => {
     //             const data = response.json();
     //             return data;
@@ -59,6 +59,10 @@ export class DashboardService {
     // getOnLayout() {
     //     return this.http.get('./data/layout.json');
     // }
+
+    getOnLayout() {
+        return this.http.get('api/layouts');
+    }
 
 
 }

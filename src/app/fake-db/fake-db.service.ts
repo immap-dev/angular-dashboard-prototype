@@ -3,7 +3,7 @@ import {DashboardFakeDB} from './dashboard-fake-db';
 export class FakeDBService implements InMemoryDbService {
     createDb() {
         return{
-            'dashboard-cards': DashboardFakeDB.cards
+            'layouts': DashboardFakeDB.layouts
         };
     }
 

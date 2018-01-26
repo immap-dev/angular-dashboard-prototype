@@ -18,6 +18,7 @@ import { DasboardTitleComponent } from './dashboards/dashboard/dasboard-title/da
 import { DasboardStatComponent } from './dashboards/dashboard/dasboard-stat/dasboard-stat.component';
 import { DasboardFormComponent } from './dashboards/dashboard/dasboard-form/dasboard-form.component';
 import { DasboardMapComponent } from './dashboards/dashboard/dasboard-map/dasboard-map.component';
+// import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: '', component: DashboardsComponent},
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
     InMemoryWebApiModule.forRoot(FakeDBService),
     LeafletModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    // ReactiveFormsModule,
     SharedModule
   ],
   providers: [DashboardService],
