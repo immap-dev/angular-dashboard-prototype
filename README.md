@@ -68,6 +68,14 @@ const appRoutes: Routes = [
 * [Angular](https://angular.io/) - The frontend framework used
 * [Angular Material](https://material.angular.io/)
 
+## Installation 
+```
+npm install
+```
+## How to run
+```
+ng serve
+```
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.

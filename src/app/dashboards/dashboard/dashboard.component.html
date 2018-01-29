@@ -1,70 +1,20 @@
-<!-- <div class=" dashboard" fxLayout="column" fxLayoutAlign="center center" >
-  
-  <div class="block">
-    <app-dasboard-title [title]="board.title"></app-dasboard-title>
-  </div>
-  <div class="block">
-    <app-dasboard-stat [stats]="board.case"></app-dasboard-stat>
-  </div>
-  
-  <div class="block">
-    <app-dasboard-form [locations]="board.locations"></app-dasboard-form>
-  </div>
-  <div class="block">
-    <app-dasboard-map [map]="board.maplocation"></app-dasboard-map>
-  </div>
-  
-</div> -->
+<mat-grid-list [cols]="layout.gridlist.cols" rowHeight="100px">
 
-<!-- <div class=" dashboard" >
+  <mat-grid-tile *ngFor="let item of layout.widget" [colspan]="item.style.gridtile.cols" [rowspan]="item.style.gridtile.rows">
+    <!-- title -->
+    <app-dasboard-title *ngIf="item.type==='title'" [title]="board.title"></app-dasboard-title>
+    <!-- stats -->
+    <app-dasboard-stat *ngIf="item.type==='stat'" [stats]="board.case">
+    </app-dasboard-stat>
+    <!-- form -->
+    <app-dasboard-form *ngIf="item.type==='form'" [locations]="board.locations">
+    </app-dasboard-form>
+    <!-- map -->
+    <app-dasboard-map *ngIf="item.type==='map'" [map]="board.maplocation">
+    </app-dasboard-map>
+  </mat-grid-tile>
 
-  <div class="block">
-    <app-dasboard-title [title]="board.title"></app-dasboard-title>
-  </div>
-  <div class="block">
-    <app-dasboard-stat [stats]="board.case"></app-dasboard-stat>
-  </div>
-
-  <div class="block">
-    <app-dasboard-form [locations]="board.locations"></app-dasboard-form>
-  </div>
-  <div class="block">
-    <app-dasboard-map [map]="board.maplocation"></app-dasboard-map>
-  </div>
-
-</div> -->
-
-<mat-grid-list [cols]="layout.gridlist.cols" rowHeight="100px" *ngFor="let item of layout.widget">
-  
-    <mat-grid-tile [colspan]="item.style.gridtile.cols" [rowspan]="item.style.gridtile.rows" *ngIf="item.type==='title'" >
-      <app-dasboard-title [title]="board.title"></app-dasboard-title>
-    </mat-grid-tile>    
-
-    <mat-grid-tile [colspan]="item.style.gridtile.cols" [rowspan]="item.style.gridtile.rows" *ngIf="item.type==='stat'">
-      <app-dasboard-stat [stats]="board.case">
-      </app-dasboard-stat>
-    </mat-grid-tile>
-    
-    <mat-grid-tile [colspan]="item.style.gridtile.cols" [rowspan]="item.style.gridtile.rows" *ngIf="item.type==='form'">
-      <app-dasboard-form [locations]="board.locations">
-      </app-dasboard-form>
-    </mat-grid-tile>
-    
-    <mat-grid-tile [colspan]="item.style.gridtile.cols" [rowspan]="item.style.gridtile.rows" *ngIf="item.type==='map'">
-      <app-dasboard-map [map]="board.maplocation">
-      </app-dasboard-map>
-    </mat-grid-tile>
-    
 </mat-grid-list>
 
-<!-- <div *ngFor="let item of dashboardlayout.widget  ">
-  <div >
-    <p>{{item.type}}</p>
-    <p>{{item.style.gridtile.cols}},{{item.style.gridtile.rows}}</p>
-  </div>
- 
-  
 
-</div> -->
-<!-- <p>{{layout.gridlist.cols}}</p> -->
 
