@@ -1,0 +1,15 @@
+.form-card{
+ width:1000px;
+ border-left: 3px solid #673ab7;
+}
+
+.dynamic-form{
+  min-width: 150px;
+
+  
+  width: 100%;
+  display: flex;
+  
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

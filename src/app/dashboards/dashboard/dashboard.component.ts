@@ -14,6 +14,42 @@ export class DashboardComponent implements OnInit {
   id: number;
   layout: any = {} ;
 
+  // dummy data config
+  // config = [
+  //   {
+  //     type: 'input',
+  //     label: 'Full name',
+  //     name: 'name',
+  //     placeholder: 'Enter your name',
+  //   },
+  //   {
+  //     type: 'input',
+  //     label: 'Your Hobby',
+  //     name: 'hobby',
+  //     placeholder: 'Enter your Hobby',
+  //   },
+  //   {
+  //     type: 'select',
+  //     label: 'Favourite food',
+  //     name: 'food',
+  //     options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+  //     placeholder: 'Select an option',
+  //   },
+  //   {
+  //     type: 'textarea',
+  //     label: 'Tell me About You',
+  //     name: 'description',
+  //     cols: 20,
+  //     rows: 5
+
+  //   },
+  //   {
+  //     label: 'Submit',
+  //     name: 'submit',
+  //     type: 'button',
+  //   },
+  // ];
+
   constructor(
     private route: ActivatedRoute,
     private dashboardService: DashboardService,
@@ -39,6 +75,8 @@ export class DashboardComponent implements OnInit {
       (error) => console.log(error));
 
   }
-
+  formSubmitted(value) {
+    console.log(value);
+  }
 
 }

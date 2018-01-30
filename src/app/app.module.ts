@@ -12,6 +12,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import * as L from 'leaflet';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import {DynamicFormModule} from './core/dynamic-form/dynamic-form.module';
 import { DashboardsComponent } from './dashboards/dashboards.component';
 import { DashboardComponent } from './dashboards/dashboard/dashboard.component';
 import { DasboardTitleComponent } from './dashboards/dashboard/dasboard-title/dasboard-title.component';
@@ -39,11 +40,11 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    DynamicFormModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(FakeDBService),
     LeafletModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    // ReactiveFormsModule,
     SharedModule
   ],
   providers: [DashboardService],

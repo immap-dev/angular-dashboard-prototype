@@ -1,8 +1,9 @@
-mat-card {
+.title-card {
   /* width: calc(100% );
   height: calc(100% ); */
   /* width: 750px; */
   width:1000px;
+  border-left: 3px solid #673ab7;
   
 
 }
