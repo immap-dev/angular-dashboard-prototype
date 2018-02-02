@@ -1,0 +1,22 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mat-sidenav-container{
+background-color: #ffffffff;
+
+}
+.mat-sidenav{
+min-width: 300px;
+background-color: 
+#adadad;
+color:#673ab7;
+}
+.sidenav{
+  background-color: 
+#673ab7;
+}

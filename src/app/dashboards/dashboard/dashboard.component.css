@@ -7,3 +7,13 @@
 .block{
     margin: 10px;
 }
+
+mat-card {
+  width: calc(100% - 70px);
+  height: calc(100% - 70px);
+  border-top: 5px solid #673ab7;
+}
+
+mat-grid-list{
+    margin:50px 100px 0 100px;
+}

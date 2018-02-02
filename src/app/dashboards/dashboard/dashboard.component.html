@@ -1,7 +1,7 @@
-<mat-grid-list [cols]="layout.gridlist.cols" rowHeight="100px" *ngFor="let item of layout.widget">
+<mat-grid-list [cols]="gridcols" rowHeight="100px" >
   
-  <mat-grid-tile [colspan]="item.style.gridtile.cols" [rowspan]="item.style.gridtile.rows">
-    
+  <mat-grid-tile *ngFor="let item of layout.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
+    <mat-card>
     <!-- title -->
     <app-dasboard-title *ngIf="item.type==='title'" [title]="board.title"></app-dasboard-title>
 
@@ -19,10 +19,42 @@
     <!-- map -->
     <app-dasboard-map *ngIf="item.type==='map'" [map]="board.maplocation">
     </app-dasboard-map>
-  </mat-grid-tile>
+    
+    <!-- table -->
+    <app-dashboard-table *ngIf="item.type==='table'" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
+
+    <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
+    </mat-card>
+  </mat-grid-tile> 
 
 </mat-grid-list>
+
 <!-- <dynamic-form [config]="config" (submitted)="formSubmitted($event)"></dynamic-form> experiment using dummy data config-->
+<!-- <app-dashboard-list></app-dashboard-list> -->
+<!-- <mat-grid-list cols="4" rowHeight="100px">
+   <mat-grid-tile colspan="2" rowspan="2">
+     <mat-card>
+    <app-dasboard-title  [title]="board.title"></app-dasboard-title>
+     </mat-card>
+   </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="2">
+    <mat-card>
+      <app-dasboard-stat [stats]="board.case">
+      </app-dasboard-stat>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="2">
+    <mat-card>
+      <mat-card-title>alkjsdflka</mat-card-title>
+      <mat-card-subtitle>alkdsjf;akljsd</mat-card-subtitle>
+      <mat-card-subtitle>alkjsd;flkjsa;dlka</mat-card-subtitle>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list> -->
+
+    
+
 
 
 

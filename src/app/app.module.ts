@@ -19,7 +19,11 @@ import { DasboardTitleComponent } from './dashboards/dashboard/dasboard-title/da
 import { DasboardStatComponent } from './dashboards/dashboard/dasboard-stat/dasboard-stat.component';
 import { DasboardFormComponent } from './dashboards/dashboard/dasboard-form/dasboard-form.component';
 import { DasboardMapComponent } from './dashboards/dashboard/dasboard-map/dasboard-map.component';
-// import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { DashboardTableComponent } from './dashboards/dashboard/dashboard-table/dashboard-table.component';
+import { DashboardListComponent } from './dashboards/dashboard/dashboard-list/dashboard-list.component';
+
+
 
 const appRoutes: Routes = [
   {path: '', component: DashboardsComponent},
@@ -35,7 +39,10 @@ const appRoutes: Routes = [
     DasboardTitleComponent,
     DasboardStatComponent,
     DasboardFormComponent,
-    DasboardMapComponent
+    DasboardMapComponent,
+    HeaderComponent,
+    DashboardTableComponent,
+    DashboardListComponent,
   ],
   imports: [
     BrowserModule,

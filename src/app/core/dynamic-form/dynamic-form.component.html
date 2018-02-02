@@ -1,4 +1,4 @@
-<mat-card class="form-card">
+<!-- <mat-card class="form-card">
 
     <mat-card-title>Forms</mat-card-title>
     
@@ -6,4 +6,13 @@
         <ng-container *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
         </ng-container>
     </form>
-</mat-card>
+</mat-card> -->
+
+<!-- coba -->
+
+<mat-card-title>Forms</mat-card-title>
+
+<form class="dynamic-form" [formGroup]="form" (ngSubmit)="submitted.emit(form.value)">
+    <ng-container *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
+    </ng-container>
+</form>

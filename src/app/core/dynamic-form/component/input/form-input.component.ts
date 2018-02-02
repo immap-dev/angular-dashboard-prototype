@@ -9,7 +9,7 @@ import { Component, ViewContainerRef } from '@angular/core';
     template:
     `<div [formGroup]="group">
         <mat-form-field class="full-width">
-          <input matInput placeholder="{{config.placeholder}}" [formControlName]="config.name" value="" >
+          <input matInput placeholder="{{config.placeholder}}" [formControlName]="config.name"  >
         </mat-form-field>
     </div>`
 })
