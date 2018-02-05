@@ -43,18 +43,21 @@ export class DashboardFakeDB {
                             name: 'location',
                             options: ['City A', 'City B', ' City C', 'My City'],
                             placeholder: 'Select location',
+                            value: 'City A'
                         },
                         {
                             type: 'input',
                             label: 'facility',
                             name: 'facility',
                             placeholder: 'Facility Name',
+                            value: 'hospital'
                         },
                         {
                             type: 'input',
                             label: 'number',
                             name: 'number',
                             placeholder: 'Enter Number',
+                            value: 4
                         },
                         {
                             label: 'Save',

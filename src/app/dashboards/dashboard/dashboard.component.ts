@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DashboardService } from '../dashboards.service';
 import {Response } from '@angular/http';
+import { DynamicFormComponent } from './../../core/dynamic-form/dynamic-form.component';
 
 export interface Element {
   name: string;
@@ -20,7 +21,8 @@ export interface Element {
 
 
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
+  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
   board: any;
   id: number;
   layout: any = {} ;
@@ -118,6 +120,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getBoard();
    this.onLayout();
+    // this.dashboardService.updateLayout();
+  }
+
+  ngAfterViewInit() {
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
 
   }
 
@@ -129,7 +137,8 @@ export class DashboardComponent implements OnInit {
 
   onLayout() {
     this.dashboardService.getOnLayout().subscribe((response: Response) => {
-      this.layout = response.json();
+      // this.layout = response.json(); // http
+      this.layout = response; // httpclient
       this.gridcols = this.layout.gridlist.cols;
       console.log(this.layout.gridlist.cols);
     },
@@ -137,8 +146,16 @@ export class DashboardComponent implements OnInit {
 
   }
 
+
+
+
   formSubmitted(value) {
     console.log(value);
+    
+
+
   }
+
+
 
 }

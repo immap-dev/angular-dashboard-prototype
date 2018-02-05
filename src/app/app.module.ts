@@ -49,6 +49,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     DynamicFormModule,
     HttpModule,
+    HttpClientModule,
     InMemoryWebApiModule.forRoot(FakeDBService),
     LeafletModule.forRoot(),
     RouterModule.forRoot(appRoutes),

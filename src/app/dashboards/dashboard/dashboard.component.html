@@ -14,8 +14,8 @@
     </app-dasboard-form> -->
 
     <!-- form dynamic-->
-    <dynamic-form *ngIf="item.type==='form'" [config]="item.config" (submitted)="formSubmitted($event)"></dynamic-form>
-
+    <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm" (submitted)="formSubmitted($event)"></dynamic-form>
+    
     <!-- map -->
     <app-dasboard-map *ngIf="item.type==='map'" [map]="board.maplocation">
     </app-dasboard-map>

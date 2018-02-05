@@ -33,7 +33,7 @@ export class DashboardTableComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.displaytable);
     // this.displayedColumns = this.displayheader;
-    console.log('data:' + this.displaytable);
+    // console.log('data:' + this.displaytable);
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Observable} from 'rxjs/Observable';
+
 
 @Injectable()
 export class DashboardService {
@@ -41,28 +43,30 @@ export class DashboardService {
         }
     ];
 
-    constructor(private http: Http) { }
+    // constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     getBoard(id: number) {
         return this.dummy.find(dummy => dummy.id === id);
     }
 
-    // getLayout(): Observable<any> {
-    //     return this.http.get('api / layouts')
-    //         .map((response) => {
-    //             const data = response.json();
-    //             return data;
-    //             })
-    //         ;
-    // }
-
-    // getOnLayout() {
-    //     return this.http.get('./data/layout.json');
-    // }
 
     getOnLayout() {
         return this.http.get('api/layouts');
     }
+
+    updateLayout() {
+        return this.http.put('api/layouts', {
+            widget: [{
+                type: 'input',
+                label: 'number',
+                name: 'number',
+                placeholder: 'Enter Number',
+                value: 3
+            }, ] }
+        );
+    }
+
 
 
 }
