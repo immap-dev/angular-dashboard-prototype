@@ -1,0 +1,9 @@
+<mat-nav-list *ngFor="let link of links">
+  <mat-list-item routerLink="/{{link}}" >
+    <a matLine  routerLinkActive="active">{{ link | uppercase }}</a>
+    <button mat-icon-button > 
+      <mat-icon color="primary">{{link}}</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-nav-list>

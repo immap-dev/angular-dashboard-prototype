@@ -2,7 +2,8 @@
         /* width:1000px;
         height: 700px;  */
         width:100%;
-        height: 80%; 
+        height: 80%;
+        z-index: 2; 
 }
 .custom .leaflet-popup{
         margin-bottom: 200px;

@@ -22,13 +22,17 @@ import { DasboardMapComponent } from './dashboards/dashboard/dasboard-map/dasboa
 import { HeaderComponent } from './header/header.component';
 import { DashboardTableComponent } from './dashboards/dashboard/dashboard-table/dashboard-table.component';
 import { DashboardListComponent } from './dashboards/dashboard/dashboard-list/dashboard-list.component';
+import { HomeComponent } from './home/home.component';
+import { NavListComponent } from './core/nav-list/nav-list.component';
 
 
 
 const appRoutes: Routes = [
-  {path: '', component: DashboardsComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  { path: 'dashboard/:id/:uri', component: DashboardComponent }
+  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
+  {path: 'dashboard', component: DashboardsComponent},
+  { path: 'dashboard/:id/:uri', component: DashboardComponent },
+  // { path: '**', component: DashboardsComponent}
 ];
 
 @NgModule({
@@ -43,6 +47,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     DashboardTableComponent,
     DashboardListComponent,
+    HomeComponent,
+    NavListComponent,
   ],
   imports: [
     BrowserModule,

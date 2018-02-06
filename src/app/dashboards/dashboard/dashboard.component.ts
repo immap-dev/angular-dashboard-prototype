@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   id: number;
   layout: any = {} ;
   gridcols = 1;
+
   // ELEMENT_DATA: Element[] = [
   //   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
   //   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
@@ -51,40 +52,40 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   // ];
 
   // dummy data config
-  // config = [
-  //   {
-  //     type: 'input',
-  //     label: 'Full name',
-  //     name: 'name',
-  //     placeholder: 'Enter your name',
-  //   },
-  //   {
-  //     type: 'input',
-  //     label: 'Your Hobby',
-  //     name: 'hobby',
-  //     placeholder: 'Enter your Hobby',
-  //   },
-  //   {
-  //     type: 'select',
-  //     label: 'Favourite food',
-  //     name: 'food',
-  //     options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
-  //     placeholder: 'Select an option',
-  //   },
-  //   {
-  //     type: 'textarea',
-  //     label: 'Tell me About You',
-  //     name: 'description',
-  //     cols: 20,
-  //     rows: 5
+  config = [
+    {
+      type: 'input',
+      label: 'Full name',
+      name: 'name',
+      placeholder: 'Enter your name',
+    },
+    {
+      type: 'input',
+      label: 'Your Hobby',
+      name: 'hobby',
+      placeholder: 'Enter your Hobby',
+    },
+    {
+      type: 'select',
+      label: 'Favourite food',
+      name: 'food',
+      options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+      placeholder: 'Select an option',
+    },
+    {
+      type: 'textarea',
+      label: 'Tell me About You',
+      name: 'description',
+      cols: 20,
+      rows: 5
 
-  //   },
-  //   {
-  //     label: 'Submit',
-  //     name: 'submit',
-  //     type: 'button',
-  //   },
-  // ];
+    },
+    {
+      label: 'Submit',
+      name: 'submit',
+      type: 'button',
+    },
+  ];
 
   folders = [
     {
@@ -148,12 +149,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
 
 
-
-  formSubmitted(value) {
+  submit(value: { [name: string]: any }) {
     console.log(value);
-    
-
-
   }
 
 

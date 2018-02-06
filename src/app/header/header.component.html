@@ -3,8 +3,10 @@
     <!-- <span>
       <img src="assets/proto.png" class="angular-logo"> Angular NavBar + Login Example #01
     </span> -->
-    <a mat-button routerLink="">Home 
-        
+    <button type="button" mat-icon-button (click)="sidenav.toggle()" title="Open sidenav">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-button routerLink="">Home       
     </a>
   </mat-toolbar-row>
 </mat-toolbar>

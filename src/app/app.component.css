@@ -11,12 +11,45 @@ background-color: #ffffffff;
 
 }
 .mat-sidenav{
-min-width: 400px;
+min-width: 300px;
+max-width: 400px;
 background-color: 
-#adadad;
+#f5f5f5;
 color:#673ab7;
+border-top: 64px solid #673ab7;
 }
+
 .sidenav{
-  background-color: 
-#673ab7;
+  background-color: #673ab7;
+}
+
+.mat-toolbar{
+  position: fixed;
+  z-index: 10;
+}
+
+.content{
+  margin-top: 100px;
+}
+a.mat-line{
+  color: #673ab7;
+}
+.mat-divider{
+  border-top-color: 
+#adadad;
+}
+
+.mat-nav-list{
+  padding-top: 0px;
+}
+/* .active {
+  background-color: #d291f8;
+  
+}
+
+.active a.mat-line{
+  color: #ffffff;
+} */
+.logo-image{
+  height: 50px;
 }

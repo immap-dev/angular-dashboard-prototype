@@ -14,13 +14,15 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class DynamicFormComponent implements OnInit, OnChanges {
 
     @Input() config: FieldConfig[] = [];
-    @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
+    // @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
+    @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
     form: FormGroup;
 
 
     get controls() { return this.config.filter(({type}) => type !== 'button'); }
-    // get changes() { return this.form.valueChanges; }
+    get changes() { return this.form.valueChanges; }
+    get value() { return this.form.value; }
 
     constructor(private fb: FormBuilder) {
           }
@@ -49,6 +51,12 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     createControl(config: FieldConfig) {
         const { disabled, validation, value } = config;
         return this.fb.control({disabled, value}, validation);
+    }
+
+    handleSubmit(event: Event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.submit.emit(this.value);
     }
 
     setValue(name: string, value: any) {

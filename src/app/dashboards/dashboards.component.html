@@ -12,9 +12,9 @@
 <!-- using material grid list -->
 
 <mat-grid-list cols="6" rowHeight="1:2" gutterSize="20px" class="conatiner">
-  <mat-grid-tile *ngFor="let board of boards">
+  <mat-grid-tile *ngFor="let board of boards" >
     <a  routerLink="/dashboard/{{board.id}}/{{board.uri}}">
-      <mat-card class="example-card">
+      <mat-card class="example-card" class="mat-elevation-z4">
         <mat-card-header>
           <mat-card-title>{{board.title.name}}</mat-card-title>
         </mat-card-header>

@@ -1,25 +1,82 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-header></app-header>
-<router-outlet></router-outlet>
+<!-- <app-header></app-header>
+<router-outlet></router-outlet> -->
 
 
 <!-- still tring to make navigation on left side -->
 
 
-<!-- <mat-sidenav-container class="example-container" >
-    <mat-sidenav mode="side" opened="true" >
-        <div class="sidenav">
-            <img matListAvatar class="logo-icon" src="assets/proto.png">
-        </div>
-        
-        
+<mat-sidenav-container class="example-container"  >
+    <!-- make it dynamy list nav as soon as as possible -->
+    <mat-sidenav #sidenav mode="side" opened="false" class="mat-elevation-z16">        
+        <!-- <mat-nav-list>
+            <mat-list-item routerLink="/home" routerLinkActive="active" >                
+                <button mat-icon-button >
+                    <mat-icon color="primary">home</mat-icon>
+                </button>
+                <a matLine >Home</a>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item routerLink="/dashboard" routerLinkActive="active">            
+                <button mat-icon-button >
+                    <mat-icon color="primary">dashboard</mat-icon>
+                </button>
+                <a matLine routerLink="/dashboard">Dasboard
+                    
+                </a>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-nav-list> -->
+         <app-nav-list></app-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+
+    <mat-sidenav-content>        
+        <!-- <app-header></app-header> -->
+        <mat-toolbar color="primary" class="mat-elevation-z8">
+            <mat-toolbar-row>
+                <button type="button" mat-icon-button (click)="sidenav.toggle()" (click)="onIconMenu()" title="Open sidenav">
+                    
+                    <mat-icon *ngIf="!open">menu</mat-icon>
+                    <mat-icon *ngIf="open">clear</mat-icon>
+                </button>
+                <a mat-button routerLink="">
+                
+                <img class="logo-image" src="/assets/proto.png">
+                <span>PROTOTYPE</span>
+                </a>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+
         
-        <app-header></app-header>
-        <router-outlet></router-outlet>
     </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!-- <mat-sidenav-container class="all-wrap" fullscreen>
+    <mat-sidenav #sidenav>
+        <mat-list>
+            <mat-list-item [routerLink]="['/']"> Foo</mat-list-item>
+            <mat-list-item [routerLink]="['/bar']"> Bar</mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+
+    <div class="page-wrap">
+        <header role="banner">
+            <mat-toolbar color="primary">
+                <button type="button" mat-icon-button (click)="sidenav.open()" title="Open sidenav">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                Your Toolbar
+            </mat-toolbar>
+        </header>
+        <main class="content">
+            <router-outlet></router-outlet>
+        </main>
+        <footer>
+            Your sticky footer with a variable height.
+        </footer>
+    </div>
 </mat-sidenav-container> -->
-
-
-
