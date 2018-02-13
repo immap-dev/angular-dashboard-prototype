@@ -23,6 +23,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     get controls() { return this.config.filter(({type}) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
     get value() { return this.form.value; }
+    get raw() { return this.form.getRawValue(); }
 
     constructor(private fb: FormBuilder) {
           }
@@ -57,6 +58,8 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         event.preventDefault();
         event.stopPropagation();
         this.submit.emit(this.value);
+
+
     }
 
     setValue(name: string, value: any) {

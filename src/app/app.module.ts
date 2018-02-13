@@ -1,4 +1,4 @@
-import { DashboardService } from './dashboards/dashboards.service';
+import { DashboardService, DashboardResolve  } from './dashboards/dashboards.service';
 import { FakeDBService } from './fake-db/fake-db.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,14 +24,15 @@ import { DashboardTableComponent } from './dashboards/dashboard/dashboard-table/
 import { DashboardListComponent } from './dashboards/dashboard/dashboard-list/dashboard-list.component';
 import { HomeComponent } from './home/home.component';
 import { NavListComponent } from './core/nav-list/nav-list.component';
+import { NavService } from './core/nav-list/nav.service';
 
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'home', component: HomeComponent},
-  {path: 'dashboard', component: DashboardsComponent},
-  { path: 'dashboard/:id/:uri', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardsComponent, resolve: { dashboards: DashboardService }},
+  { path: 'dashboard/:id/:uri', component: DashboardComponent, resolve: {dashboard: DashboardResolve}  },
   // { path: '**', component: DashboardsComponent}
 ];
 
@@ -42,7 +43,7 @@ const appRoutes: Routes = [
     DashboardComponent,
     DasboardTitleComponent,
     DasboardStatComponent,
-    DasboardFormComponent,
+    // DasboardFormComponent,
     DasboardMapComponent,
     HeaderComponent,
     DashboardTableComponent,
@@ -56,12 +57,12 @@ const appRoutes: Routes = [
     DynamicFormModule,
     HttpModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(FakeDBService),
+     InMemoryWebApiModule.forRoot(FakeDBService),// , for a while using firebase
     LeafletModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     SharedModule
   ],
-  providers: [DashboardService],
+  providers: [DashboardService, DashboardResolve,NavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

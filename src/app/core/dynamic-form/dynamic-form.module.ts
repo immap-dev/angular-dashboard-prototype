@@ -20,7 +20,7 @@ import {MaterialModule} from '../../shared/material.module';
         DynamicFieldDirective
     ],
     imports: [ CommonModule, ReactiveFormsModule, MaterialModule],
-    exports: [DynamicFormComponent],
+    exports: [DynamicFormComponent, ReactiveFormsModule],
     providers: [],
     entryComponents: [
         FormInputComponent,

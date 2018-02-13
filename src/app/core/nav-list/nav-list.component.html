@@ -1,9 +1,19 @@
-<mat-nav-list *ngFor="let link of links">
-  <mat-list-item routerLink="/{{link}}" >
-    <a matLine  routerLinkActive="active">{{ link | uppercase }}</a>
+<div class="navbar-header">
+
+    <div class="logo">
+        <img class="logo-icon" src="assets/proto.png">
+        <span class="logo-text mat-h2">Report Hub 2.0</span>
+    </div>      
+
+</div>
+
+<mat-nav-list *ngFor="let link of  navigationModel">
+  <mat-list-item routerLink="/{{link.url}}" routerLinkActive="active-link">
+    <a matLine >{{ link.title | uppercase }}</a>
     <button mat-icon-button > 
-      <mat-icon color="primary">{{link}}</mat-icon>
+      <mat-icon color="primary">{{link.title}}</mat-icon>
     </button>
-    <mat-divider></mat-divider>
+    
   </mat-list-item>
+  <!-- <mat-divider></mat-divider> -->
 </mat-nav-list>

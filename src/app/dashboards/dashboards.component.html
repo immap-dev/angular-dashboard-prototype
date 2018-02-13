@@ -11,16 +11,58 @@
 
 <!-- using material grid list -->
 
-<mat-grid-list cols="6" rowHeight="1:2" gutterSize="20px" class="conatiner">
-  <mat-grid-tile *ngFor="let board of boards" >
+<!-- <mat-grid-list cols="4" rowHeight="1:2" gutterSize="10px" class="conatiner"> -->
+  <!-- <mat-grid-tile *ngFor="let board of boards" > -->
+ <!--  <mat-grid-tile *ngFor="let board of dashboards">
     <a  routerLink="/dashboard/{{board.id}}/{{board.uri}}">
       <mat-card class="example-card" class="mat-elevation-z4">
         <mat-card-header>
           <mat-card-title>{{board.title.name}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image [src]="pic" alt="Not Showing Picture">
+        <img [src]="pic" alt="Not Showing Picture">
       </mat-card>
     </a>
-  </mat-grid-tile>  
-</mat-grid-list>
+  </mat-grid-tile> -->
+  <!-- ADD NEW DASHBOARD -->
+ <!--  <mat-grid-tile>
+    <a (click)="newDashboard()">
+      <mat-card class="example-card" class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>Add dashboard</mat-card-title>
+        </mat-card-header>       
+        <button mat-fab color="primary"><mat-icon>add_box</mat-icon></button>        
+      </mat-card>
+    </a>
+  </mat-grid-tile>
+
+
+</mat-grid-list> -->
+
+<div class="card-wrapper" >
+  
+
+  <mat-card *ngFor="let board of dashboards">
+    <a  routerLink="/dashboard/{{board.id}}/{{board.uri}}">
+        <div class="mat-h2">{{board.title.name}}</div>
+        <div class="wrap-img">          
+           <img [src]="board.image" alt="Not Showing Picture">
+        </div>  
+     </a>    
+  </mat-card>
+
+  <mat-card>
+    <a (click)="newDashboard()" >
+        <div class="mat-h2">Add dashboard</div>
+        <div class="wrap-img">
+          <button mat-fab color="primary">
+            <mat-icon>add_box</mat-icon> 
+          </button>
+          
+        </div>  
+     </a>    
+  </mat-card>
+
+</div>
+
+
 

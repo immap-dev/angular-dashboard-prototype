@@ -1,12 +1,12 @@
-<mat-grid-list [cols]="gridcols" rowHeight="100px" >
+<mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >
   
-  <mat-grid-tile *ngFor="let item of layout.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
+  <mat-grid-tile *ngFor="let item of dashboard.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
     <mat-card>
     <!-- title -->
-    <app-dasboard-title *ngIf="item.type==='title'" [title]="board.title"></app-dasboard-title>
-
+    <app-dasboard-title *ngIf="item.type==='title'" [dashboard]="dashboard" (titleChanged)= "onTitleChanged($event)"></app-dasboard-title>
+    
     <!-- stats -->
-    <app-dasboard-stat *ngIf="item.type==='stat'" [stats]="board.case">
+    <app-dasboard-stat *ngIf="item.type==='stat'" [dashboard]="dashboard" (caseChanged) = "onCaseChanged($event)">
     </app-dasboard-stat>
 
     <!-- form static-->
@@ -14,11 +14,10 @@
     </app-dasboard-form> -->
 
     <!-- form dynamic-->
-    <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm" (submitted)="formSubmitted($event)"></dynamic-form> -->
     <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form>
     
     <!-- map -->
-    <app-dasboard-map *ngIf="item.type==='map'" [map]="board.maplocation">
+    <app-dasboard-map *ngIf="item.type==='map'" [map]="dashboard.maplocation">
     </app-dasboard-map>
     
     <!-- table -->
@@ -30,29 +29,7 @@
 
 </mat-grid-list>
 
-<!-- <dynamic-form [config]="config" (submitted)="formSubmitted($event)"></dynamic-form> experiment using dummy data config-->
-<!-- <app-dashboard-list></app-dashboard-list> -->
-<!-- <mat-grid-list cols="4" rowHeight="100px">
-   <mat-grid-tile colspan="2" rowspan="2">
-     <mat-card>
-    <app-dasboard-title  [title]="board.title"></app-dasboard-title>
-     </mat-card>
-   </mat-grid-tile>
-  <mat-grid-tile colspan="2" rowspan="2">
-    <mat-card>
-      <app-dasboard-stat [stats]="board.case">
-      </app-dasboard-stat>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2" rowspan="2">
-    <mat-card>
-      <mat-card-title>alkjsdflka</mat-card-title>
-      <mat-card-subtitle>alkdsjf;akljsd</mat-card-subtitle>
-      <mat-card-subtitle>alkjsd;flkjsa;dlka</mat-card-subtitle>
-    </mat-card>
-  </mat-grid-tile>
 
-</mat-grid-list> -->
 
     
 

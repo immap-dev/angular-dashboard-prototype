@@ -7,3 +7,20 @@
   
 
 }
+
+.mat-card-title{
+	text-align: center;
+	/*font-size: 45px;*/
+	align-items: center;
+	margin-bottom: 2px;
+}
+
+.mat-card-subtitle{
+	text-align: center;
+	font-size: 16px;
+}
+
+span{
+	border-left : 2px solid #959595;
+	padding-left: 5px;
+}

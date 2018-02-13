@@ -1,4 +1,29 @@
-<!-- <mat-card class="card-stats">Cases: {{stats}} </mat-card> -->
 
-<!-- coba -->
-<mat-card-title>Cases: {{stats}}</mat-card-title>
+<div *ngIf="!formActive" class="stats-card">
+    <mat-card-title> {{dashboard.case}}</mat-card-title>
+   <mat-card-subtitle>Cases</mat-card-subtitle>
+   
+    
+    <mat-card-actions align="end">
+        <button mat-icon-button (click)="openForm()">
+            <mat-icon>edit_mode</mat-icon>
+        </button>
+    </mat-card-actions>
+</div>
+
+
+
+<form [formGroup]="form" (ngSubmit)="onFormstatSubmit()" *ngIf="formActive">
+    <mat-form-field class="example-full-width">
+        <input matInput formControlName="stats" #statsInput placeholder="Stats">
+    </mat-form-field>
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" type="submit">
+            Save
+        </button>
+    
+        <button mat-raised-button color="warn" (click)="closeForm()">
+            close
+        </button>
+    </mat-card-actions>
+</form>

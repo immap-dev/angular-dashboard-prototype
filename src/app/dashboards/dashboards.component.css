@@ -1,12 +1,52 @@
 a{
   text-decoration: none;
+  cursor:pointer;
 }
 
-.mat-card-title{
-    font-size: 24px;
+
+.card-wrapper{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	margin:20px 50px 20px 50px;
+	
 }
 
-.mat-grid-list {
-  margin: 0 100px 0 100px;
+.mat-card{
+	margin:20px;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-top: 0;
+	text-align: center;
+}
 
-} 
+.mat-h2{
+	padding-top: 16px;
+    padding-bottom: 16px;
+    margin:0;
+    background-color: #673ab7;
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+
+}
+.wrap-img{
+	width: 200px;
+	height: 200px;
+	
+}
+
+.wrap-img img{
+   max-width: 100%;
+    height: 100%;
+}
+
+.mat-fab{
+	margin-top: 50px;
+
+}
+
+
+

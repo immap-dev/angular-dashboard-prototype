@@ -1,5 +1,8 @@
 import { DashboardService } from './dashboards.service';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { DashboardModel} from './dashboard.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboards',
@@ -7,13 +10,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboards.component.css']
 })
 export class DashboardsComponent implements OnInit {
-  pic = 'https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Create_with_plus_mail_layer_add_vector_stock.png';
+  pic = '/assets/hush-naidoo-382152.jpg';
   boards = [];
-  constructor(private dashboardService: DashboardService) { }
+  dashboards: any[];
+  
+  onDashboardsChanged: Subscription;
+  constructor(private dashboardService: DashboardService, private route:Router) { }
 
 
   ngOnInit() {
     this.boards = this.dashboardService.dummy;
+    this.onDashboardsChanged =
+                                this.dashboardService.onDashboardsChange
+                                    .subscribe(dashboards => {
+                                      this.dashboards = dashboards;
+                                      // this.pic = this.dashboards.image;
+                                       
+
+                                      // console.log(this.dashboards);
+                                    });
+  }
+
+  newDashboard(){
+
+    const newDashboard = new DashboardModel({});
+    this.dashboardService.createNewDashboard(newDashboard). then(() =>{
+      this.route.navigate(['/dashboard/'+newDashboard.id+'/'+ newDashboard.uri])
+    })
+
   }
 
 
