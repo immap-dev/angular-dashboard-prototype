@@ -1,4 +1,4 @@
-<div class="navbar-header">
+<div class="navbar-header background-color-teal" >
 
     <div class="logo">
         <img class="logo-icon" src="assets/proto.png">
@@ -7,9 +7,9 @@
 
 </div>
 
-<mat-nav-list *ngFor="let link of  navigationModel">
-  <mat-list-item routerLink="/{{link.url}}" routerLinkActive="active-link">
-    <a matLine >{{ link.title | uppercase }}</a>
+<mat-nav-list *ngFor="let link of  navigationModel"  >
+  <mat-list-item routerLink="/{{link.url}}" routerLinkActive="active-link"  >
+    <a matLine  >{{ link.title | uppercase }}</a>
     <button mat-icon-button > 
       <mat-icon color="primary">{{link.title}}</mat-icon>
     </button>

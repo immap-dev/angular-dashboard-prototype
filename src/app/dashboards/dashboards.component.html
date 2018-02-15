@@ -41,18 +41,18 @@
 <div class="card-wrapper" >
   
 
-  <mat-card *ngFor="let board of dashboards">
+  <mat-card *ngFor="let board of dashboards" >
     <a  routerLink="/dashboard/{{board.id}}/{{board.uri}}">
-        <div class="mat-h2">{{board.title.name}}</div>
+        <div class="mat-h2 background-color-teal white-text">{{board.title.name}}</div>
         <div class="wrap-img">          
            <img [src]="board.image" alt="Not Showing Picture">
         </div>  
      </a>    
   </mat-card>
 
-  <mat-card>
+  <mat-card >
     <a (click)="newDashboard()" >
-        <div class="mat-h2">Add dashboard</div>
+        <div class="mat-h2 background-color-teal white-text">Add dashboard</div>
         <div class="wrap-img">
           <button mat-fab color="primary">
             <mat-icon>add_box</mat-icon> 

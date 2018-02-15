@@ -1,0 +1,43 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-teal);
+$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
+$my-app-warn:    mat-palette($mat-red, 600);
+$white: mat-palette($mat-grey, 50);
+
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+
+@include angular-material-theme($my-app-theme);
+
+.background-color-teal{
+	background-color: mat-color($my-app-primary);
+}
+
+.active-link{
+	border-right: 3px solid mat-color($my-app-primary);
+}
+
+.border-color{
+	border-top: 5px solid mat-color($my-app-primary);
+}
+
+
+
+.primary-text{
+	color:mat-color($my-app-primary);
+}
+.white-text{
+	color:mat-color($white);
+}
+
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-light-blue);
+  $alternate-accent:  mat-palette($mat-yellow, 400);
+
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+
+  @include angular-material-theme($alternate-theme);
+}

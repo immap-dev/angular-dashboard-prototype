@@ -1,0 +1,25 @@
+.mat-card {
+    min-width: 100px;
+    max-width: 300px;
+    display: flex;
+    flex-flow: column;
+    
+    /*justify-content: center;*/
+   
+
+}
+
+.login{
+	display: flex;
+	flex-flow: column;
+	width: 300px;
+	margin-top: 25px;
+	margin-bottom: 25px !important;	
+
+}
+
+.example-full-width {
+  width: 100%;
+
+}
+

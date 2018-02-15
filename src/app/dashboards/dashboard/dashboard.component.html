@@ -1,7 +1,7 @@
 <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >
   
   <mat-grid-tile *ngFor="let item of dashboard.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
-    <mat-card>
+    <mat-card class="border-color">
     <!-- title -->
     <app-dasboard-title *ngIf="item.type==='title'" [dashboard]="dashboard" (titleChanged)= "onTitleChanged($event)"></app-dasboard-title>
     

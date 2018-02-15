@@ -25,6 +25,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
+        "theme.scss",
         "../node_modules/leaflet/dist/leaflet.css"
       ],
       "scripts": [],

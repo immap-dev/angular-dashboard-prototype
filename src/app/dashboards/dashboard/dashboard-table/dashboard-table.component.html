@@ -25,3 +25,89 @@
 
 
 
+ <!--  <mat-table #table [dataSource]="dataSource">
+
+   
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-form-field class="example-full-width" *ngIf="editmode">
+          <input matInput value= "{{element.position}}" >
+        </mat-form-field>
+        <span *ngIf="!editmode">
+          {{element.position}}
+        </span>  
+               
+       </mat-cell>
+    </ng-container>
+ -->
+    <!-- Name Column -->
+  <!--   <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        
+          <input matInput value= "{{element.name}}" >
+             
+      </mat-cell>
+    </ng-container> -->
+
+    <!-- Weight Column -->
+   <!--  <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        
+          <input matInput value= "{{element.weight}}" >
+        
+      </mat-cell>
+    </ng-container> -->
+
+    <!-- Symbol Column -->
+  <!--   <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        
+          <input matInput value= "{{element.symbol}}" >
+        
+      </mat-cell> 
+     
+    </ng-container>
+
+    <ng-container matColumnDef="actionsColumn">
+      <mat-header-cell *matHeaderCellDef>
+        Edit
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button  >
+          <mat-icon (click)="onEditMode()" >mode_edit</mat-icon>          
+        </button>     
+        <button mat-icon-button >
+          <mat-icon (click)="onClearMode()">clear</mat-icon>          
+        </button>        
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table> -->
+
+<!-- Coba 3 -->
+
+<!-- <h3 class="page-header">Add Invoice</h3>
+    <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button><br>
+    <form [formGroup]="invoiceForm">
+      <div formArrayName="itemRows">
+        <div *ngFor="let itemrow of invoiceForm.controls.itemRows.controls; let i=index"  [formGroupName]="i">
+          <h4>Invoice Row #{{ i + 1 }}</h4>
+          <div class="form-group">
+            <label>Item ID</label>
+            <input formControlName="itemid" class="form-control">
+            <label>Item Name</label>
+            <input formControlName="itemname" class="form-control">
+          </div>
+          <button *ngIf="invoiceForm.controls.itemRows.controls.length > 1" (click)="deleteRow(i)" class="btn btn-danger">Delete Button</button>
+        </div>
+      </div>
+
+    </form>
+    <pre>{{invoiceForm.value | json}}</pre>
+ -->

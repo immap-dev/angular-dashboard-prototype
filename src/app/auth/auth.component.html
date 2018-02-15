@@ -1,0 +1,33 @@
+ <mat-card>
+ 	<div class="primary-text">
+ 		<h2>{{title}}</h2>
+
+ 	</div>
+
+	<form class="login" name="loginForm" [formGroup]="loginForm"  (ngSubmit)="onSubmit()" novalidate>
+
+				<mat-form-field class="example-full-width" *ngIf="authType == 'register'" >
+	                <input matInput formControlName="username" placeholder="Username" type="text" >
+	            </mat-form-field>
+				<mat-form-field class="example-full-width">
+					<input matInput placeholder="Email" formControlName="email">
+					<mat-error *ngIf="loginFormErrors.email.required">
+		                        Email is required
+		            </mat-error>
+		            <mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">
+		                        Please enter a valid email address
+		            </mat-error>
+				</mat-form-field>
+				<mat-form-field class="example-full-width" >
+					<input matInput placeholder="Password" formControlName="password" type="password">
+
+				</mat-form-field>
+
+				<button mat-raised-button color="primary" [disabled]="loginForm.invalid" type="submit">
+					{{title}}
+				</button>
+		
+	</form>
+ </mat-card>
+ 
+

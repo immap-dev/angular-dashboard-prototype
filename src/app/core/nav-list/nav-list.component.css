@@ -1,11 +1,11 @@
 a.mat-line{
-  color: #673ab7;
+  /*color: #673ab7;*/
 }
 
-.active-link{
+/*.active-link{
     border-right: 3px solid #673ab7;
 
-}
+}*/
 .mat-divider{
   border-top-color:#673ab7;
   background-color: rgba(0, 0, 0, 0.5);
@@ -26,8 +26,9 @@ a.mat-line{
         /*background-color: rgba(0, 0, 0, 0.2);*/
         /*box-shadow: -5px 6px 15px -5px rgba(0,0,0,0.75);*/
         box-shadow: 0 5px 5px rgba(0,0,0, 0.3);
-        background-color: #673ab7;
+        /*background-color: #673ab7;*/
         color: #ffffff;
+        
 
 
 }

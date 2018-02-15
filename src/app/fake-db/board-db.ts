@@ -39,7 +39,7 @@ export class BoardFakeDB {
                     type: 'form',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 2
+                            cols: 4, rows: 8 //2
                         }
                     },
                     config:

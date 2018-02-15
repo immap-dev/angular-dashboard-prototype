@@ -25,12 +25,15 @@ import { DashboardListComponent } from './dashboards/dashboard/dashboard-list/da
 import { HomeComponent } from './home/home.component';
 import { NavListComponent } from './core/nav-list/nav-list.component';
 import { NavService } from './core/nav-list/nav.service';
+import { AuthComponent } from './auth/auth.component';
 
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '',  redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent},
+  {path:'login', component: AuthComponent},
+  {path: 'register', component: AuthComponent},
   { path: 'dashboard', component: DashboardsComponent, resolve: { dashboards: DashboardService }},
   { path: 'dashboard/:id/:uri', component: DashboardComponent, resolve: {dashboard: DashboardResolve}  },
   // { path: '**', component: DashboardsComponent}
@@ -50,6 +53,7 @@ const appRoutes: Routes = [
     DashboardListComponent,
     HomeComponent,
     NavListComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

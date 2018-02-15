@@ -1,7 +1,8 @@
 import { FieldConfig } from './model/field-config.interface';
 import { Component, Input, OnInit,  Output, EventEmitter, OnChanges } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
 
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({
     exportAs: 'dynamicForm',
@@ -17,6 +18,10 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     // @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
     @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
+    displayedColumns = ['actions'] //['position', 'name', 'weight', 'symbol'];
+    displayedColumnstwo =[]
+    element=[];
+    dataSource;     
     form: FormGroup;
 
 
@@ -24,6 +29,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     get changes() { return this.form.valueChanges; }
     get value() { return this.form.value; }
     get raw() { return this.form.getRawValue(); }
+    get 
 
     constructor(private fb: FormBuilder) {
           }
@@ -32,7 +38,17 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     ngOnInit() {
         // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         // Add 'implements OnInit' to the class.
+        // this.form = this.createGroup();
+
+        //testing form array    
         this.form = this.createGroup();
+        console.log(this.form);
+        console.log('controls',this.controls)
+        this.controls.forEach(control => {this.displayedColumns.push(control.name)})
+        this.controls.forEach(control => {this.displayedColumnstwo.push(control.name)})
+         console.log('col[]',this.element);
+
+
     }
 
     ngOnChanges() {
@@ -42,13 +58,13 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     }
 
 
-
-    createGroup() {
+     createGroup() {
         const group = this.fb.group({});
         this.controls.forEach( control => group.addControl(control.name, this.createControl(control)));
         return group;
     }
 
+   
     createControl(config: FieldConfig) {
         const { disabled, validation, value } = config;
         return this.fb.control({disabled, value}, validation);
@@ -58,12 +74,23 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         event.preventDefault();
         event.stopPropagation();
         this.submit.emit(this.value);
+        console.log(this.value);
+        this.element.push(this.value);
+        console.log('elemen',this.element);
+        this.dataSource = new MatTableDataSource(this.element); 
 
 
     }
 
     setValue(name: string, value: any) {
         this.form.controls[name].setValue(value, { emitEvent: true });
+    }
+
+    onDelete(index:number){
+        this.element.splice(index,1);
+        console.log('after elemen',this.element);
+        this.dataSource = new MatTableDataSource(this.element); 
+        console.log('delete',index);
     }
 
 

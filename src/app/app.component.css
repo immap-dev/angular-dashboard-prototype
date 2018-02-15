@@ -33,7 +33,7 @@ color:#ffffff;*/
 .footer{
   position: fixed;
   bottom: 0;
-  color: #673ab7;
+  /*color: #673ab7;*/
   z-index: 2;
 }
 
