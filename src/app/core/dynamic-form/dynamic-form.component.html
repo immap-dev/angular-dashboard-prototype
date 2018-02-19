@@ -25,25 +25,29 @@
 <div class="example-container mat-elevation-z8">	
   <mat-table #table [dataSource]="dataSource">
   	<ng-container *ngFor="let col of displayedColumnstwo " matColumnDef="{{col}}" >
-    <mat-header-cell *matHeaderCellDef> {{col|uppercase}} </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element[col]}} </mat-cell>        
-  </ng-container>
-  <ng-container matColumnDef="actions" >
-      <mat-header-cell *matHeaderCellDef> ACTIONS </mat-header-cell>
-      <mat-cell *matCellDef="let element;let i = index "> 
-      	<button mat-icon-button> 
-      		<mat-icon>mode_edit</mat-icon> 
-      	</button>  
-      	<button mat-icon-button>
-      		<mat-icon (click)= "onDelete(i)">delete</mat-icon>
-      	</button>
-      </mat-cell>
+      <mat-header-cell *matHeaderCellDef> {{col|uppercase}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[col]}} </mat-cell>        
     </ng-container>
-  
- 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-   </mat-table>
+    <ng-container matColumnDef="actions" >
+        <mat-header-cell *matHeaderCellDef> ACTIONS </mat-header-cell>
+        <mat-cell *matCellDef="let element;let i = index "> 
+        	<button mat-icon-button> 
+        		<mat-icon>mode_edit</mat-icon> 
+        	</button>  
+        	<button mat-icon-button>
+        		<mat-icon (click)= "onDelete(i)">delete</mat-icon>
+        	</button>
+        </mat-cell>
+      </ng-container>
+    
+   
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions" >
+  </mat-paginator>
 </div>
 
 

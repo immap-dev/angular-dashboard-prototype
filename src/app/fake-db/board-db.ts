@@ -48,17 +48,25 @@ export class BoardFakeDB {
                                 type: 'select',
                                 label: 'Location',
                                 name: 'location',
-                                options: ['City A', 'City B', ' City C', 'My City'],
+                                options: ['City A', 'City B', ' City C', 'City D'],
                                 placeholder: 'Select location',
                                 value: 'City A'
                             },
                             {
-                                type: 'input',
-                                label: 'facility',
-                                name: 'facility',
-                                placeholder: 'Facility Name',
-                                value: 'hospital'
+                                type: 'select',
+                                label: 'Location2',
+                                name: 'location2',
+                                options: ['City A', 'City B', ' City C', 'City D'],
+                                placeholder: 'Select location',
+                                value: 'City A'
                             },
+                            // {
+                            //     type: 'input',
+                            //     label: 'facility',
+                            //     name: 'facility',
+                            //     placeholder: 'Facility Name',
+                            //     value: 'hospital'
+                            // },
                             {
                                 type: 'input',
                                 label: 'number',

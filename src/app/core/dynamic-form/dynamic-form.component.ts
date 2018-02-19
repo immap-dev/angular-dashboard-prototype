@@ -1,8 +1,8 @@
 import { FieldConfig } from './model/field-config.interface';
-import { Component, Input, OnInit,  Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, OnInit,  Output, EventEmitter, OnChanges, ViewChild } from '@angular/core';
 
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { MatTableDataSource,MatPaginator, MatSort} from '@angular/material';
 
 @Component({
     exportAs: 'dynamicForm',
@@ -17,19 +17,22 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     @Input() config: FieldConfig[] = [];
     // @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
     @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
     displayedColumns = ['actions'] //['position', 'name', 'weight', 'symbol'];
     displayedColumnstwo =[]
     element=[];
     dataSource;     
     form: FormGroup;
+    pageOptions = [1, 5, 10];
 
 
     get controls() { return this.config.filter(({type}) => type !== 'button'); }
     get changes() { return this.form.valueChanges; }
     get value() { return this.form.value; }
     get raw() { return this.form.getRawValue(); }
-    get 
+    
 
     constructor(private fb: FormBuilder) {
           }
@@ -78,6 +81,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         this.element.push(this.value);
         console.log('elemen',this.element);
         this.dataSource = new MatTableDataSource(this.element); 
+        this.dataSource.paginator = this.paginator;
 
 
     }
