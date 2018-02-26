@@ -45,6 +45,22 @@ export class BoardFakeDB {
                     config:
                         [
                             {
+                                type: 'input',
+                                label: 'star',
+                                name: 'star',
+                                placeholder: 'Star',
+                                value: 4
+                                // for input we need to spesific the input or not??? like numbe or text
+                            },                            
+                            {
+                                type: 'input',
+                                label: 'number',
+                                name: 'number',
+                                placeholder: 'Enter Number',
+                                value: 4
+                                // for input we need to spesific the input or not??? like numbe or text
+                            },
+                            {
                                 type: 'select',
                                 label: 'Location',
                                 name: 'location',
@@ -54,25 +70,11 @@ export class BoardFakeDB {
                             },
                             {
                                 type: 'select',
-                                label: 'Location2',
-                                name: 'location2',
+                                label: 'facility',
+                                name: 'facility',
                                 options: ['City A', 'City B', ' City C', 'City D'],
                                 placeholder: 'Select location',
                                 value: 'City A'
-                            },
-                            // {
-                            //     type: 'input',
-                            //     label: 'facility',
-                            //     name: 'facility',
-                            //     placeholder: 'Facility Name',
-                            //     value: 'hospital'
-                            // },
-                            {
-                                type: 'input',
-                                label: 'number',
-                                name: 'number',
-                                placeholder: 'Enter Number',
-                                value: 4
                             },
                             {
                                 label: 'Save',
@@ -196,7 +198,7 @@ export class BoardFakeDB {
                     type: 'form',
                     style: {
                         gridtile: {
-                            cols: 2, rows: 2
+                            cols: 4, rows: 8
                         }
                     },
                     config:
@@ -234,7 +236,7 @@ export class BoardFakeDB {
                     type: 'map',
                     style: {
                         gridtile: {
-                            cols: 2, rows: 10
+                            cols: 4, rows: 10
                         }
                     }
                 },
@@ -242,7 +244,7 @@ export class BoardFakeDB {
                     type: 'table',
                     style: {
                         gridtile: {
-                            cols: 2, rows: 8
+                            cols: 4, rows: 8
                         },
                     },
                     header: ['position', 'name', 'weight', 'symbol', 'quantity'],

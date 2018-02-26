@@ -1,5 +1,5 @@
 import { NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { RouterModule,Routes} from '@angular/router';
 import { DashboardsComponent} from './dashboards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -8,10 +8,13 @@ import { DasboardStatComponent} from './dashboard/dasboard-stat/dasboard-stat.co
 import { DasboardMapComponent} from './dashboard/dasboard-map/dasboard-map.component';
 import { DashboardTableComponent} from './dashboard/dashboard-table/dashboard-table.component';
 import { DashboardListComponent} from './dashboard/dashboard-list/dashboard-list.component';
+import { DasboardFormComponent} from './dashboard/dasboard-form/dasboard-form.component';
+import { EditFormDialogComponent} from './dashboard/dasboard-form/edit-form-dialog.component';
 import { DynamicFormModule} from '../core/dynamic-form/dynamic-form.module';
 import { DashboardService, DashboardResolve} from './dashboards.service';
 import { MaterialModule} from '../shared/material.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import * as L from 'leaflet';
 
 
@@ -40,7 +43,9 @@ const routes: Routes =[
 		DasboardStatComponent,
 		DasboardMapComponent,
 		DashboardTableComponent,
-		DashboardListComponent,	
+		DashboardListComponent,
+		DasboardFormComponent,
+		EditFormDialogComponent	
 	],
 	imports:[
 		CommonModule,
@@ -48,9 +53,12 @@ const routes: Routes =[
 		RouterModule.forChild(routes),
 		LeafletModule.forRoot(),
 		MaterialModule,
+		ReactiveFormsModule,
+		FormsModule
 	],
 	exports:[],
-	providers:[DashboardService,DashboardResolve]
+	providers:[DashboardService,DashboardResolve],
+	entryComponents:[EditFormDialogComponent]
 
 
 })

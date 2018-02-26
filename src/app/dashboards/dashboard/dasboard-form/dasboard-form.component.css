@@ -1,3 +1,31 @@
-.form-card{
+/*.form-card{
  width:1000px;
+ border-left: 3px solid #673ab7;
 }
+*/
+.full-width{
+  /*width: 200px;*/
+}
+
+.dynamic-form{
+  min-width: 150px;
+  /*margin-top: 50px;*/
+
+  
+  width: 100%;
+
+  display: flex;
+  
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.mat-form-field{
+	margin:0 10px 0 10px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 550px;  
+}
+

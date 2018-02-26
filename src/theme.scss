@@ -1,43 +1,173 @@
-@import '~@angular/material/theming';
+// @import '~@angular/material/theming';
+// @include mat-core();
+
+// $my-app-primary: mat-palette($mat-teal);
+// $my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
+// $my-app-warn:    mat-palette($mat-red, 600);
+// $white: mat-palette($mat-grey, 50);
+
+
+// $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+
+// @include angular-material-theme($my-app-theme);
+
+// .background-color-teal{
+// 	background-color: mat-color($my-app-primary);
+// }
+
+// .active-link{
+// 	border-right: 3px solid mat-color($my-app-primary);
+// }
+
+// .border-color{
+// 	border-top: 5px solid mat-color($my-app-primary);
+// }
+
+
+
+// .primary-text{
+// 	color:mat-color($my-app-primary);
+// }
+// .white-text{
+// 	color:mat-color($white);
+// }
+
+// .alternate-theme {
+//   $alternate-primary: mat-palette($mat-light-blue);
+//   $alternate-accent:  mat-palette($mat-yellow, 400);
+
+//   $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+
+//   @include angular-material-theme($alternate-theme);
+
+  
+// }
+
+
+//second try
+
+@import "~@angular/material/theming";
 @include mat-core();
 
-$my-app-primary: mat-palette($mat-teal);
-$my-app-accent:  mat-palette($mat-pink, 500, 900, A100);
-$my-app-warn:    mat-palette($mat-red, 600);
-$white: mat-palette($mat-grey, 50);
+
+$mat-primary: (
+
+	50 : #E8F5E9,
+    100 : #C8E6C9,
+    200 : #A5D6A7,
+    300 : #81C784,
+    400 : #66BB6A,
+    500 : #4CAF50,
+    600 : #43A047,
+    700 : #388E3C,
+    800 : #2E7D32,
+    900 : #1B5E20,
+    A100 : #B9F6CA,
+    A200 : #69F0AE,
+    A400 : #00E676,
+    A700 : #00C853,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$mat-accent:(
+	50 : #eceff1,
+    100 : #cfd8dc,
+    200 : #b0bec5,
+    300 : #90a4ae,
+    400 : #78919c,
+    500 : #607d8b,
+    600 : #587583,
+    700 : #4e6a78,
+    800 : #44606e,
+    900 : #334d5b,
+    A100 : #abe1ff,
+    A200 : #78ceff,
+    A400 : #45bcff,
+    A700 : #2bb3ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$app-primary: mat-palette($mat-primary);
+$app-accent:  mat-palette($mat-accent);
+
+$app-theme: mat-light-theme($app-primary, $app-accent);
 
 
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+.light-green {
 
+    @include angular-material-theme($app-theme);
 
-@include angular-material-theme($my-app-theme);
+    .mat-color-primary {
+        color: map-get($mat-primary, 500) !important;
+    }
+    
+    .mat-color-accent {
+        color: map-get($mat-accent, 500);
+    }
+    
+    .mat-color-warn {
+        color: #f44336;
+    }
 
-.background-color-teal{
-	background-color: mat-color($my-app-primary);
-}
+    .mat-bg-primary {
+        background: map-get($mat-primary, 500) !important;
+        color: #ffffff !important;
+    }
 
-.active-link{
-	border-right: 3px solid mat-color($my-app-primary);
-}
+    .mat-bg-accent {
+        background-color: map-get($mat-accent, 500);
+        color: black;
+    }
+    
+    .mat-bg-warn {
+        background-color: #f44336;
+        color: white;
+    }
 
-.border-color{
-	border-top: 5px solid mat-color($my-app-primary);
-}
+    .mat-active-link{
+    	border-right-color:  map-get($mat-primary, 500);
+    	border-right: 3px solid;
+    }
 
+    .mat-border{
+    	border-top-color:  map-get($mat-primary, 500) !important;
+    	border-top: 3px solid;
+    }
 
+    // .mat-header-cell{
+    //     color: map-get($mat-primary, 500) !important;
+    // }
 
-.primary-text{
-	color:mat-color($my-app-primary);
-}
-.white-text{
-	color:mat-color($white);
-}
-
-.alternate-theme {
-  $alternate-primary: mat-palette($mat-light-blue);
-  $alternate-accent:  mat-palette($mat-yellow, 400);
-
-  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
-
-  @include angular-material-theme($alternate-theme);
+    background: #fff;
 }

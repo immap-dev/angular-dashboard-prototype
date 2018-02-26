@@ -1,18 +1,65 @@
+  <mat-card-title>Forms</mat-card-title>
+  <form [formGroup]="form" (ngSubmit)="submitForm()"  class="dynamic-form">
+    <ng-container *ngFor="let c of controls; let i = index " >    
 
-  <mat-card class="form-card">
-    <form >
-      <mat-form-field>
-        <mat-select placeholder="Select">
-         <mat-option *ngFor="let location of locations" [value]="location">{{location}}</mat-option>
-        </mat-select>
+      <mat-form-field *ngIf="c.type==='select'" class="full-width">          
+            <ng-container *ngIf=" i == indexOfSelect ">
+              <mat-select [formControlName]="c.name" (change)="typeChanged()" [placeholder]="c.name">              
+              <mat-option *ngFor="let  option of allProductsTypes" [value]="option">{{option}}</mat-option>
+              </mat-select>
+             <!--  <span>{{i}}{{qq}}</span> -->
+            </ng-container>
+            <ng-container *ngIf=" i != indexOfSelect ">
+              <mat-select [formControlName]="c.name" [placeholder]="c.name">             
+                <mat-option *ngFor="let  option of productsAfterChangeEvent" [value]="option.name">{{option.name}}</mat-option>
+              </mat-select>
+              <!-- <span>{{i}}</span>               -->
+            </ng-container>        
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Facility Name">
+
+
+
+      <mat-form-field *ngIf="c.type==='input'" class="full-width" >
+        <input matInput type="number" [formControlName]="c.name" [placeholder]="c.name">
       </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Number">
-      </mat-form-field>
-      <button mat-raised-button type="button" color="primary">Save</button>
-    </form>
+       
+    </ng-container>
+
+    <div>
+      <button  mat-raised-button color="primary" type="submit" class="btn btn-primary">Add</button>
+    </div>
     
-  </mat-card>
+  </form>
+
+  <!-- <div>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </div> -->
+
+  <div class="example-container mat-elevation-z8">  
+  <mat-table #table [dataSource]="dataSource" >
+    <ng-container *ngFor="let col of displayedColumnstwo " matColumnDef="{{col}}" >
+      <mat-header-cell *matHeaderCellDef> {{col|uppercase}} </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="mat-color-primary"> {{element[col]}} </mat-cell>        
+    </ng-container>
+    <ng-container matColumnDef="actions" >
+        <mat-header-cell *matHeaderCellDef> ACTIONS </mat-header-cell>
+        <mat-cell *matCellDef="let element;let i = index "> 
+          <button mat-icon-button color="primary"> 
+            <mat-icon>mode_edit</mat-icon> 
+          </button>  
+          <button mat-icon-button color="primary">
+            <mat-icon (click)= "onDelete(i)">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    
+   
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="mat-bg-primary"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions" >
+  </mat-paginator>
+</div>
+

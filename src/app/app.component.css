@@ -62,3 +62,7 @@ a.mat-line{
 .logo-image{
   height: 50px;
 }
+
+.space {
+   flex: 1 1 auto;
+}

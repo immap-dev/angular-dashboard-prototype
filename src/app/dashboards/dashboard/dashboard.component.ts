@@ -23,7 +23,7 @@ export interface Element {
 
 
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  // @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
   board: any;
   id: number;
   layout: any = {} ;

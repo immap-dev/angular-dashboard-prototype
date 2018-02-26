@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+/*@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";*/
+/*@import  "theme.scss";*/
+
 /* *{
     width: 100%;
     margin: 0;
@@ -17,4 +19,39 @@ mat-card {
   max-width: 100%;
   margin: 2em auto;
   
+}
+
+.mat-menu-item .egret-swatch {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.mat-menu-item{
+	padding-left: 0px;
+	padding-right:0px;
+}
+
+.mat-menu-item .active-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    color: #ffffff;
+}
+
+.round{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display:  flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.active-icon{
+	color: #ffffff;
 }

@@ -1,7 +1,7 @@
 <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >
   
   <mat-grid-tile *ngFor="let item of dashboard.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
-    <mat-card class="border-color">
+    <mat-card class="mat-border">
     <!-- title -->
     <app-dasboard-title *ngIf="item.type==='title'" [dashboard]="dashboard" (titleChanged)= "onTitleChanged($event)"></app-dasboard-title>
     
@@ -10,11 +10,12 @@
     </app-dasboard-stat>
 
     <!-- form static-->
-    <!-- <app-dasboard-form *ngIf="item.type==='form'" [locations]="board.locations">
-    </app-dasboard-form> -->
+    <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)">
+    </app-dasboard-form>
 
     <!-- form dynamic-->
-    <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form>
+    <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
+    <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
     
     <!-- map -->
     <app-dasboard-map *ngIf="item.type==='map'" [map]="dashboard.maplocation">

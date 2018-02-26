@@ -52,6 +52,21 @@
 
         <mat-toolbar  class=" primary-text footer ">
             ReportHub 2.0
+            <span class="space"></span>
+            <button mat-icon-button [matMenuTriggerFor]="menu">                
+              <mat-icon>format_color_fill</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                  <mat-grid-list cols="2" rowHeight="48px">
+                    <mat-grid-tile *ngFor="let theme of themes" (click)="changeTheme(theme.name)" >
+                        <div class="round" [style.backgroundColor]="theme.baseColor">
+                            <mat-icon *ngIf="theme.isActive" class="active-icon">check</mat-icon>
+                        </div>           
+                    </mat-grid-tile>
+                      
+                  </mat-grid-list>
+            </mat-menu>
         </mat-toolbar>
 
         

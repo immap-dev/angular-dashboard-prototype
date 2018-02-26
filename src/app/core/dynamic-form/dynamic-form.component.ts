@@ -21,7 +21,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     @ViewChild(MatSort) sort: MatSort;
 
     displayedColumns = ['actions'] //['position', 'name', 'weight', 'symbol'];
-    displayedColumnstwo =[]
+    displayedColumnstwo =[];
     element=[];
     dataSource;     
     form: FormGroup;
