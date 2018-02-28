@@ -1,10 +1,12 @@
 .mat-card {
     min-width: 100px;
-    max-width: 300px;
+    /*max-width: 300px;*/
+    width: auto;    
     display: flex;
     flex-flow: column;
     
     /*justify-content: center;*/
+    margin:0 10px 0 10px;
    
 
 }
@@ -12,7 +14,8 @@
 .login{
 	display: flex;
 	flex-flow: column;
-	width: 300px;
+	/*width: 300px;*/
+    width: auto;
 	margin-top: 25px;
 	margin-bottom: 25px !important;	
 
@@ -21,5 +24,14 @@
 .example-full-width {
   width: 100%;
 
+}
+
+.line-input{
+    display: flex;
+    flex-flow: row;
+}
+
+.mat-form-field{
+    margin-left: 10px;
 }
 

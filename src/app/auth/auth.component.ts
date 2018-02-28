@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators ,FormControl, FormArray} from '@angular/forms';
 import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -13,8 +13,8 @@ export class AuthComponent implements OnInit {
 	 authType: String = '';
 
 	loginForm: FormGroup;
-    loginFormErrors: any;
-
+  loginFormErrors: any;
+  alias: any= [];
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
     private router: Router,) {
@@ -28,7 +28,8 @@ export class AuthComponent implements OnInit {
 
   	 this.loginForm = this.formBuilder.group({
             email   : ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required]
+            password: ['', Validators.required],
+            alias: this.formBuilder.array([ this.createItem() ])
         });
 
   	this.route.url.subscribe(data =>{
@@ -37,9 +38,14 @@ export class AuthComponent implements OnInit {
   		this.title = (this.authType === 'login') ? 'Log In' : 'Sign Up';
 
   		if(this.authType === 'register'){
-  			this.loginForm.addControl('username', new FormControl())
+  			this.loginForm.addControl('username', new FormControl());
+        this.loginForm.addControl('firstname', new FormControl());
+        this.loginForm.addControl('lastname', new FormControl());
+        // this.loginForm.addControl('coba', this.formBuilder.array([this.createItem()]),);
   		}
   	})
+
+
 
   	 
 
@@ -47,6 +53,25 @@ export class AuthComponent implements OnInit {
   	  	this.onLoginValueChanged();
   	  })
   }
+
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      name: '',     
+    });
+  }
+
+  addItem(): void {
+    this.alias = this.loginForm.get('alias') as FormArray;
+    this.alias.push(this.createItem());
+  }
+  // still not working
+  // deleteItem(index){
+  //   this.alias = this.loginForm.get('alias') as FormArray;
+
+  //   console.log('del',this.alias);
+    
+  // }
+
 
   onLoginValueChanged(){
 

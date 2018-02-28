@@ -118,7 +118,6 @@ export class DasboardFormComponent implements OnInit {
        } else{return 'bukan'}; });
      const index = findIndex.indexOf('select');
      return index
-
     }
 
     submitForm(){
@@ -143,11 +142,24 @@ export class DasboardFormComponent implements OnInit {
 
     // Dialog
 
-    openDialog(){
+    openDialog(i){
       this.editFormDialogRef = this.dialog.open(EditFormDialogComponent,{
-        hasBackdrop:false,
-        
-      });
+          data:{
+            oldData: this.element[i],
+            config: this.config,
+            selectOne: this.allProductsTypes,
+            selectTwo: this.allProducts
+          }        
+      });      
+      this.editFormDialogRef.afterClosed().subscribe( newData =>{ 
+          if(newData) {
+            this.element[i]=newData
+            // NB: tambah if , untuk cek apaakah data yg sama seperti data yg baru 
+            console.log('o',this.element)
+            this.dataSource = new MatTableDataSource(this.element);
+          }
+            else{} 
+      });    
     }
 
 }
