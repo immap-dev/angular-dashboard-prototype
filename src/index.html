@@ -1,16 +1,88 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Prototype</title>
-  <base href="/">
+	<meta charset="utf-8">
+	<title>Prototype</title>
+	<base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+  	<style type="text/css">
+            #splash-screen {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #2196f3;
+                z-index: 99999;
+                pointer-events: none;
+            }
+
+            #splash-screen .center {
+                display: block;
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            #splash-screen .logo {
+                width: 128px;
+                margin: 0 auto;
+            }
+
+            #splash-screen .logo img {
+                filter: drop-shadow(0px 10px 6px rgba(0, 0, 0, 0.2))
+            }
+
+            
+			.progress-bar-wrapper {
+				background-color: #2196f3;  
+				position: fixed;
+				left: 0;
+				bottom: 0;						  
+
+			}
+			.progress-bar-wrapper, .progress-bar {
+				height: 5px;
+				width: 100%;
+				margin: 0;
+			}
+				.progress-bar{
+				  background-color:  #ffffff;
+				  animation: running-progress 500ms cubic-bezier(0.3, 0, 0.2, 1) infinite;
+				}
+
+				@keyframes running-progress {
+							  0% { margin-left: 0px; margin-right: 100%; }							  
+							  50% { margin-left: 25%; margin-right: 0%; }		  
+							  
+
+							  100% { margin-left: 100%; margin-right: 0; }
+				}
+    </style>
 </head>
 <body class="light-green">
-  <app-root></app-root>
+  <app-root>
+  	<div id="splash-screen">
+
+  		<div class="center">
+  			<div class="logo">
+                    <img width="128" src="assets/proto.png">
+        	</div>   
+        
+  		</div>
+  		
+  		<div class="progress-bar-wrapper">
+		    <div class="progress-bar"></div>
+		 </div>
+  	</div>
+  	
+  </app-root>
 </body>
 </html>

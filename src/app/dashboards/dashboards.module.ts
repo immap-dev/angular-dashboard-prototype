@@ -16,6 +16,9 @@ import { MaterialModule} from '../shared/material.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import * as L from 'leaflet';
+// import { HeaderComponent } from '../header/header.component';
+import {HeaderComponent} from '../shared/shared.module';
+
 
 
 const routes: Routes =[
@@ -45,7 +48,8 @@ const routes: Routes =[
 		DashboardTableComponent,
 		DashboardListComponent,
 		DasboardFormComponent,
-		EditFormDialogComponent	
+		EditFormDialogComponent,
+		HeaderComponent,	
 	],
 	imports:[
 		CommonModule,
@@ -54,7 +58,8 @@ const routes: Routes =[
 		LeafletModule.forRoot(),
 		MaterialModule,
 		ReactiveFormsModule,
-		FormsModule
+		FormsModule,
+		
 	],
 	exports:[],
 	providers:[DashboardService,DashboardResolve],

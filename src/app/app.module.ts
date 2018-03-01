@@ -11,11 +11,13 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { DynamicFormModule} from './core/dynamic-form/dynamic-form.module';
-import { HeaderComponent } from './header/header.component';
+// import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { NavListComponent } from './core/nav-list/nav-list.component';
 import { NavService } from './core/nav-list/nav.service';
 import { AuthComponent } from './auth/auth.component';
+import { SplashScreenComponent } from './core/splash-screen/splash-screen.component';
+
 
 
 const appRoutes: Routes = [
@@ -30,10 +32,11 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,    
-    HeaderComponent,    
+    // HeaderComponent,    
     HomeComponent,
     NavListComponent,
     AuthComponent,
+    SplashScreenComponent,
   ],
   imports: [
     BrowserModule,
