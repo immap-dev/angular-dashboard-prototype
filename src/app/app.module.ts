@@ -11,7 +11,7 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { DynamicFormModule} from './core/dynamic-form/dynamic-form.module';
-// import { HeaderComponent } from './header/header.component';
+
 import { HomeComponent } from './home/home.component';
 import { NavListComponent } from './core/nav-list/nav-list.component';
 import { NavService } from './core/nav-list/nav.service';
@@ -25,14 +25,13 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path:'login', component: AuthComponent},
   { path: 'register', component: AuthComponent},
-  { path:'dashboard', loadChildren:'./dashboards/dashboards.module#DashboardsModule'}, 
-  // { path: '**', component: DashboardsComponent}
+  { path:'dashboard', loadChildren:'./dashboards/dashboards.module#DashboardsModule'},  
 ];
 
 @NgModule({
   declarations: [
     AppComponent,    
-    // HeaderComponent,    
+        
     HomeComponent,
     NavListComponent,
     AuthComponent,

@@ -42,10 +42,14 @@ const sampleMap ={
                 'point': [56.879966, -121.726909],
             }
 const imageInit = '/assets/proto.png';
+const rc ={
+	cols: 4, rows:2
+}
 
 export class DashboardModel{
 	id: number;
 	uri:string;
+	typepage: string;
 	image:string;
 	title:{
 		name:string;
@@ -77,11 +81,12 @@ export class DashboardModel{
 	constructor(dashboard){
 		this.id = dashboard.id || Utilites.GenerateID();
 		this.uri = dashboard.uri || 'untitled-dashboard';
+		this.typepage = dashboard.typepage || 'default';
 		this.image = dashboard.image || imageInit;
 		this.title = dashboard.title || sampleTitle;
 		this.case = dashboard.case || 0;
 		this.gridlist = dashboard.gridlist || sampleGridlist;
-		this.widget = dashboard.widget || sampleWidget;
+		this.widget = dashboard.widget || sampleWidget;		
 		this.maplocation = dashboard.maplocation || sampleMap;
 
 	}

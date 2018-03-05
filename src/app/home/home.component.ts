@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,12 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+title;
+  constructor(private route: Router) { }
 
   ngOnInit() {
+  	this.title= this.route.url;
+  	console.log('home',this.title);
   }
 
 }

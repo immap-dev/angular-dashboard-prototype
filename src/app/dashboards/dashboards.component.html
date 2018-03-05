@@ -38,29 +38,31 @@
 
 </mat-grid-list> -->
 
-<app-header></app-header>
+<app-header [title]="title"></app-header>
 
 <div class="card-wrapper" >
   
 
   <mat-card *ngFor="let board of dashboards" >
     <a  routerLink="/dashboard/{{board.id}}/{{board.uri}}">
-        <div class="mat-h2 mat-color-primary" >{{board.title.name}}</div>
+        <!-- <div class="mat-h2 mat-color-primary" >{{board.title.name}}</div> -->
         <div class="wrap-img">          
            <img [src]="board.image" alt="Not Showing Picture">
-        </div>  
+        </div>       
+        <div class="mat-h2 mat-color-accent" >{{board.title.name}}</div>  
      </a>    
   </mat-card>
 
   <mat-card >
     <a (click)="newDashboard()" >
-        <div class="mat-h2 mat-color-primary">Add dashboard</div>
+        <!-- <div class="mat-h2 mat-color-primary">Add dashboard</div> -->
         <div class="wrap-img ">
           <button mat-fab color="primary">
             <mat-icon>add_box</mat-icon> 
           </button>
           
-        </div>  
+        </div>
+        <div class="mat-h2 mat-color-accent">Add dashboard</div>  
      </a>    
   </mat-card>
 

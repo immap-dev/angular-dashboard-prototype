@@ -1,36 +1,72 @@
-<app-header></app-header> 
-<mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >
-  
-  <mat-grid-tile *ngFor="let item of dashboard.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
-    <mat-card class="mat-border">
-    <!-- title -->
-    <app-dasboard-title *ngIf="item.type==='title'" [dashboard]="dashboard" (titleChanged)= "onTitleChanged($event)"></app-dasboard-title>
-    
-    <!-- stats -->
-    <app-dasboard-stat *ngIf="item.type==='stat'" [dashboard]="dashboard" (caseChanged) = "onCaseChanged($event)">
-    </app-dasboard-stat>
+<app-header [title]="dashboard.title.name"></app-header>
+<mat-card class="default-container" *ngIf="dashboard.typepage === 'default'">
+    <h1>Card</h1>
+    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >  
+          <mat-grid-tile *ngFor="let item of dashboard.widget;let i = index " [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
+            <mat-card class="mat-border">
 
-    <!-- form static-->
-    <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)">
-    </app-dasboard-form>
+            <!-- <button mat-icon-button (click)="addCompo(item.type)"> --><button mat-icon-button (click)="delCompo(i)">
+                <mat-icon>clear</mat-icon>{{i}}
+            </button>
 
-    <!-- form dynamic-->
-    <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
-    <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
-    
-    <!-- map -->
-    <app-dasboard-map *ngIf="item.type==='map'" [map]="dashboard.maplocation">
-    </app-dasboard-map>
-    
-    <!-- table -->
-    <app-dashboard-table *ngIf="item.type==='table'" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
+            <!-- title -->
+            <app-dasboard-title *ngIf="item.type==='title'" [dashboard]="dashboard" (titleChanged)= "onTitleChanged($event)"></app-dasboard-title>
+            
+            <!-- stats -->
+            <app-dasboard-stat *ngIf="item.type==='stat'" [dashboard]="dashboard" (caseChanged) = "onCaseChanged($event)">
+            </app-dasboard-stat>
 
-    <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
-    </mat-card>
-  </mat-grid-tile> 
+            <!-- form static-->
+            <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)">
+            </app-dasboard-form>
 
-</mat-grid-list>
+            <!-- form dynamic-->
+            <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
+            <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
+            
+            <!-- map -->
+            <app-dasboard-map *ngIf="item.type==='map'" [map]="dashboard.maplocation">
+            </app-dasboard-map>
+            
+            <!-- table -->
+            <app-dashboard-table *ngIf="item.type==='table'" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
 
+            <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
+            </mat-card>
+          </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>
+<ng-container *ngIf="dashboard.typepage !== 'default'">
+    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >  
+          <mat-grid-tile *ngFor="let item of dashboard.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
+            <mat-card class="mat-border">
+            <!-- title -->
+            <app-dasboard-title *ngIf="item.type==='title'" [dashboard]="dashboard" (titleChanged)= "onTitleChanged($event)"></app-dasboard-title>
+            
+            <!-- stats -->
+            <app-dasboard-stat *ngIf="item.type==='stat'" [dashboard]="dashboard" (caseChanged) = "onCaseChanged($event)">
+            </app-dasboard-stat>
+
+            <!-- form static-->
+            <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)">
+            </app-dasboard-form>
+
+            <!-- form dynamic-->
+            <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
+            <!-- <dynamic-form *ngIf="item.type==='form'" [config]="item.config" #form="dynamicForm"  (submit)="submit($event)"></dynamic-form> -->
+            
+            <!-- map -->
+            <app-dasboard-map *ngIf="item.type==='map'" [map]="dashboard.maplocation">
+            </app-dasboard-map>
+            
+            <!-- table -->
+            <app-dashboard-table *ngIf="item.type==='table'" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
+
+            <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
+            </mat-card>
+          </mat-grid-tile>
+    </mat-grid-list>
+</ng-container>
 
 
     

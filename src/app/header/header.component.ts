@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+	@Input() title:string;
   constructor() { }
 
   ngOnInit() {
+  	this.title = this.title.replace(/\//g,'');
+  	
   }
 
 

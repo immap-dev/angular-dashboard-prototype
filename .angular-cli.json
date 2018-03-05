@@ -26,6 +26,7 @@
       "styles": [
         "styles.css",
         "theme.scss",
+        "theme-dark.scss",
         "../node_modules/leaflet/dist/leaflet.css"
       ],
       "scripts": [],

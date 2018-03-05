@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   gridcols = 1;
   dashboard: any;
   onDashboardChanged: Subscription;
+  // addcompo= 'add'; // coba
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +45,9 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
                                     this.dashboard = dashboard;
                                     console.log('stream',this.dashboard);
                                     // console.log(this.dashboard.widget);
+                                    console.log(this.dashboard.typepage);
+                                    console.log(this.dashboard.widget);
+
                                  });
   }
 
@@ -53,10 +57,13 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-  onTitleChanged(newTitle) {    
-      
+  onTitleChanged(newTitle) {
+      const z = {type: 'stat', style: {gridtile: { cols: 2, rows: 2}}}; // coba
+      this.dashboard.typepage = 'dashboard';
+      this.dashboard.widget.push(z); //  coba
       this.dashboardService.postValue();
       console.log('dahboard: ', newTitle);
+
       
  }
 
@@ -69,6 +76,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   submit(value: { [name: string]: any }) {
     console.log(value);
     this.dashboardService.onTableChanged.next(value);
+  }
+
+  //coba
+  delCompo(compo){
+    console.log(compo)
+    this.dashboard.widget.splice(compo,1)
+    this.dashboardService.postValue();
+    // this.addcompo = 'clear';
   }
 
   ngOnDestroy() {

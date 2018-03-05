@@ -2,7 +2,7 @@ import { DashboardService } from './dashboards.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DashboardModel} from './dashboard.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'app-dashboards',
@@ -13,13 +13,14 @@ export class DashboardsComponent implements OnInit {
   pic = '/assets/hush-naidoo-382152.jpg';
   boards = [];
   dashboards: any[];
+  title;
   
   onDashboardsChanged: Subscription;
-  constructor(private dashboardService: DashboardService, private route:Router) { }
+  constructor(private dashboardService: DashboardService, private route:Router, private activatedRoute:ActivatedRoute) { }
 
 
   ngOnInit() {
-    this.boards = this.dashboardService.dummy;
+    
     this.onDashboardsChanged =
                                 this.dashboardService.onDashboardsChange
                                     .subscribe(dashboards => {
@@ -29,6 +30,10 @@ export class DashboardsComponent implements OnInit {
 
                                       // console.log(this.dashboards);
                                     });
+            this.title= this.route.url
+            console.log('url',this.title);
+
+
   }
 
   newDashboard(){
@@ -39,6 +44,8 @@ export class DashboardsComponent implements OnInit {
     })
 
   }
+
+  
 
 
 

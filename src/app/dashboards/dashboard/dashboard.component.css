@@ -17,3 +17,15 @@ mat-card {
 mat-grid-list{
     margin:50px 100px 0 100px;
 }
+
+.default-container{
+	width: auto;
+	margin-top:-40px;
+	margin-left: 100px;
+	margin-right: 100px;
+	/*padding: 0;*/
+}
+
+.default-container .mat-grid-list{
+	margin:50px 10px 0 10px;
+}

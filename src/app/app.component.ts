@@ -17,7 +17,7 @@ export class AppComponent {
     isActive: false
   }, {
     name: 'light-green',
-    baseColor: '#4CAF50',
+    baseColor: '#57b2f8',
     isActive: true
   }];
 

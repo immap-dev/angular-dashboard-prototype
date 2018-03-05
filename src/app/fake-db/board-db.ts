@@ -3,6 +3,7 @@ export class BoardFakeDB {
         {
             'id': 1,
             'uri': 'operationxt',
+            'typepage': 'dashboard',
             'image': 'https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/512/Create_with_plus_mail_layer_add_vector_stock.png',
             'title': {
                 'name': 'Operation X-Man',
@@ -154,6 +155,7 @@ export class BoardFakeDB {
         {
             'id': 2,
             'uri': 'operationy',
+            'typepage': 'dashboard',
             'image': '/assets/hush-naidoo-382152.jpg',
             'title': {
                 'name': 'Operation Y',
