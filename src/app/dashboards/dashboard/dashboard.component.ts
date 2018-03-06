@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   dashboard: any;
   onDashboardChanged: Subscription;
   // addcompo= 'add'; // coba
-
+  gridCols;// coba
   constructor(
     private route: ActivatedRoute,
     private dashboardService: DashboardService,
@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
                                     // console.log(this.dashboard.widget);
                                     console.log(this.dashboard.typepage);
                                     console.log(this.dashboard.widget);
+                                    this.gridCols = this.dashboard.gridlist.cols;
 
                                  });
   }
@@ -58,9 +59,9 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onTitleChanged(newTitle) {
-      const z = {type: 'stat', style: {gridtile: { cols: 2, rows: 2}}}; // coba
-      this.dashboard.typepage = 'dashboard';
-      this.dashboard.widget.push(z); //  coba
+      //const z = {type: 'stat', style: {gridtile: { cols: 2, rows: 2}}}; // coba
+      // this.dashboard.typepage = 'dashboard';
+      //this.dashboard.widget.push(z); //  coba
       this.dashboardService.postValue();
       console.log('dahboard: ', newTitle);
 
@@ -85,6 +86,23 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dashboardService.postValue();
     // this.addcompo = 'clear';
   }
+
+  saveDefault(){
+    this.dashboard.typepage = 'dashboard';
+    this.dashboardService.postValue();
+  }
+
+  //resize window
+  // onResize(event){
+  //   // const dashboardcols = this.dashboard.gridlist.cols
+  //   this.dashboard.gridlist.cols = (event.target.innerWidth <= 768) ? 1 : this.gridCols ;
+  //   console.log('gridlist',this.dashboard.gridlist.cols)    
+  // }
+
+  // onResizeColspan(event,id){
+  //   this.dashboard.widget[id].style.gridtile.cols = (event.target.innerWidth <= 768) ? 1 : this.dashboard.widget[id].style.gridtile.cols;
+  //   console.log('colspan',this.dashboard.widget[id].style.gridtile.cols);
+  // }
 
   ngOnDestroy() {
     this.onDashboardChanged.unsubscribe();

@@ -1,4 +1,5 @@
 import {Utilites} from './../core/utilities';
+import {FieldConfig} from './dashboard/dasboard-form/models/field-config.interface';
 
 const sampleTitle = {
 	'name': 'untitled-dashboard',
@@ -10,7 +11,7 @@ const sampleGridlist ={
 }
 
 const sampleWidget = [
-{
+				{
 
                     'type': 'title',
                     'style': {
@@ -26,6 +27,54 @@ const sampleWidget = [
                             'cols': 2, 'rows': 2
                         }
                     }
+                },
+                {
+                	'type':'form',
+                	'style': {
+                        'gridtile': {
+                            'cols': 4, rows: 8 //2
+                        }
+                    },
+                    'config':
+                        [
+                            {
+                                type: 'input',
+                                label: 'star',
+                                name: 'star',
+                                placeholder: 'Star',
+                                value: 4
+                                // for input we need to spesific the input or not??? like numbe or text
+                            },                            
+                            {
+                                type: 'input',
+                                label: 'number',
+                                name: 'number',
+                                placeholder: 'Enter Number',
+                                value: 4
+                                // for input we need to spesific the input or not??? like numbe or text
+                            },
+                            {
+                                type: 'select',
+                                label: 'Location',
+                                name: 'location',
+                                options: ['City A', 'City B', ' City C', 'City D'],
+                                placeholder: 'Select location',
+                                value: 'City A'
+                            },
+                            {
+                                type: 'select',
+                                label: 'facility',
+                                name: 'facility',
+                                options: ['City A', 'City B', ' City C', 'City D'],
+                                placeholder: 'Select location',
+                                value: 'City A'
+                            },
+                            {
+                                label: 'Save',
+                                name: 'submit',
+                                type: 'button',
+                            },
+                        ]
                 },
                 {
                     type: 'map',
@@ -67,7 +116,8 @@ export class DashboardModel{
 			gridtile:{
 				cols:number;
 				rows:number;
-			}
+			},
+		config?:FieldConfig[];
 		}
 	};
 	maplocation:{

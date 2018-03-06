@@ -13,7 +13,7 @@ title;
 
   ngOnInit() {
   	this.title= this.route.url;
-  	console.log('home',this.title);
+  	// console.log('home',this.title);
   }
 
 }

@@ -1,15 +1,18 @@
 import { HeaderComponent } from './header/header.component';
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild,OnInit,AfterViewInit} from '@angular/core';
+import { Router,ActivatedRoute,UrlSegment,NavigationEnd, NavigationStart} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  @ViewChild(HeaderComponent) header: HeaderComponent;
+export class AppComponent implements OnInit {
+  // @ViewChild(HeaderComponent) header: HeaderComponent;
   title = 'app';
   open = false;
+  header:string=' ';
+  
 
   themes = [{
     name: 'dark-pink',
@@ -21,6 +24,25 @@ export class AppComponent {
     isActive: true
   }];
 
+  constructor( private route:Router ,private activatedRoute:ActivatedRoute){  
+    
+
+  }
+  ngOnInit(){   
+
+    this.route.events.subscribe((event) => {
+      // console.log(event);
+      if (event instanceof NavigationEnd) {               
+        let split = event.url.split('/').length
+        let currentUrlPath = event.urlAfterRedirects.split('/')[split-1];
+        console.log('URL_PATH: ', currentUrlPath); 
+        this.header = currentUrlPath ;  
+      }
+      
+    });
+  }
+
+  
     onIconMenu() {
       this.open = !this.open;
     }

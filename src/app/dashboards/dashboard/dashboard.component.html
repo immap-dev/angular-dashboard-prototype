@@ -1,12 +1,13 @@
-<app-header [title]="dashboard.title.name"></app-header>
+<!-- <app-header [title]="dashboard.title.name"></app-header> -->
 <mat-card class="default-container" *ngIf="dashboard.typepage === 'default'">
-    <h1>Card</h1>
-    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >  
+    <h1>Card</h1> <button mat-raised-button color="primary" (click) ="saveDefault()">Save change</button>
+    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >
+
           <mat-grid-tile *ngFor="let item of dashboard.widget;let i = index " [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
-            <mat-card class="mat-border">
+            <mat-card> <!-- <mat-card class="mat-border"> -->
 
             <!-- <button mat-icon-button (click)="addCompo(item.type)"> --><button mat-icon-button (click)="delCompo(i)">
-                <mat-icon>clear</mat-icon>{{i}}
+                <mat-icon>clear</mat-icon>
             </button>
 
             <!-- title -->
@@ -36,10 +37,11 @@
           </mat-grid-tile>
     </mat-grid-list>
 </mat-card>
+
 <ng-container *ngIf="dashboard.typepage !== 'default'">
-    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >  
-          <mat-grid-tile *ngFor="let item of dashboard.widget" [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows">
-            <mat-card class="mat-border">
+    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px">  
+          <mat-grid-tile *ngFor="let item of dashboard.widget; let i = index " [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows" >
+            <mat-card> <!-- <mat-card class="mat-border"> -->
             <!-- title -->
             <app-dasboard-title *ngIf="item.type==='title'" [dashboard]="dashboard" (titleChanged)= "onTitleChanged($event)"></app-dasboard-title>
             
