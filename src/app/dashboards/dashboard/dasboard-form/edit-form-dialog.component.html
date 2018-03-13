@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="submit(form)">
   <h1 mat-dialog-title>Edit Data</h1>
   <mat-dialog-content *ngFor="let c of controls2;let i = index ">   
-    <mat-form-field *ngIf="c.type==='select'">
+    <!-- <mat-form-field *ngIf="c.type==='select'">
     	 <ng-container *ngIf=" i == indexOfSelect ">
 	    	<mat-select [formControlName]="c.name" (change)="typeChanged()" [placeholder]="c.name">
 	    	              
@@ -14,10 +14,44 @@
               </mat-select>
               
             </ng-container>
+
     </mat-form-field>
+
     <mat-form-field *ngIf="c.type==='input'" class="full-width" >
         <input matInput type="number" [formControlName]="c.name" [placeholder]="c.name">
-      </mat-form-field>  
+    </mat-form-field> -->
+
+      <!-- Coba-->
+      <mat-form-field *ngIf="c.type==='select' && !c.options" class="full-width">
+            
+            <ng-container *ngIf=" i == indexRef ">
+              <mat-select [formControlName]="c.name"  [placeholder]="c.name" (change)="selectChange(i)" >              
+              <mat-option *ngFor="let  option of c.data" [value]="option" > {{option}}</mat-option>
+              </mat-select>                         
+            </ng-container>
+
+            <ng-container *ngIf=" i != indexRef && i !== thelast">
+              <mat-select [formControlName]="c.name" [placeholder]="c.name" (change)="selectChange(i)">             
+                <mat-option *ngFor="let  option of containOpt2[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
+              </mat-select>              
+            </ng-container>
+
+            <ng-container *ngIf=" i == thelast ">              
+              <mat-select [formControlName]="c.name" [placeholder]="c.name">  
+
+                <mat-option *ngFor="let  option of containOpt2[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
+              </mat-select>              
+            </ng-container>
+       </mat-form-field>
+       <mat-form-field *ngIf="c.type==='select' && c.options" class="full-width" >
+        <mat-select [formControlName]="c.name" [placeholder]="c.name">             
+                <mat-option *ngFor="let  option of c.options" [value]="option">{{option}}</mat-option>
+              </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="c.type==='input'" class="full-width" >
+       
+        <input matInput [type]="c.field" min="0" [formControlName]="c.name" [placeholder]="c.name">
+      </mat-form-field>
 
   </mat-dialog-content>
   <mat-dialog-actions>

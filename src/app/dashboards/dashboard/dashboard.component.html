@@ -18,7 +18,8 @@
             </app-dasboard-stat>
 
             <!-- form static-->
-            <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)">
+            <!-- <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)"> -->
+            <app-dasboard-form *ngIf="item.type==='form'" [config]="item.config" (submit)="submit($event)">
             </app-dasboard-form>
 
             <!-- form dynamic-->
@@ -50,7 +51,8 @@
             </app-dasboard-stat>
 
             <!-- form static-->
-            <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)">
+           <!--  <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)"> -->
+             <app-dasboard-form *ngIf="item.type==='form'" [dashboard]="dashboard" [config]="item.config" (submit)="submit($event)">
             </app-dasboard-form>
 
             <!-- form dynamic-->

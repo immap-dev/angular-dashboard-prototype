@@ -1,5 +1,6 @@
 import {Utilites} from './../core/utilities';
 import {FieldConfig} from './dashboard/dasboard-form/models/field-config.interface';
+import { Validators } from '@angular/forms';
 
 const sampleTitle = {
 	'name': 'untitled-dashboard',
@@ -42,7 +43,8 @@ const sampleWidget = [
                                 label: 'star',
                                 name: 'star',
                                 placeholder: 'Star',
-                                value: 4
+                                value: 4,
+                                // validation: [Validators.required],
                                 // for input we need to spesific the input or not??? like numbe or text
                             },                            
                             {
@@ -116,9 +118,9 @@ export class DashboardModel{
 			gridtile:{
 				cols:number;
 				rows:number;
-			},
-		config?:FieldConfig[];
-		}
+			},		
+		},
+        config?:FieldConfig[];
 	};
 	maplocation:{
 		name:string;

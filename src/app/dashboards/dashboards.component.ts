@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DashboardModel} from './dashboard.model';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboards',
@@ -28,7 +29,7 @@ export class DashboardsComponent implements OnInit {
                                       // this.pic = this.dashboards.image;
                                        
 
-                                      // console.log(this.dashboards);
+                                       console.log('0',this.dashboards[0]);
                                     });
             this.title= this.route.url
             console.log('url',this.title);

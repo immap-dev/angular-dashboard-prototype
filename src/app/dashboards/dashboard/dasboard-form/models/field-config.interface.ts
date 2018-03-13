@@ -7,8 +7,10 @@ export interface FieldConfig {
     options?: string[] ;
     placeholder?: string;
     type: string;
-    validation?: ValidatorFn[];
+    // validation?: ValidatorFn[];
+    validation?: string[];
     value?: any;
     cols?: number;
     rows?: number;
+    data?: {}[];
 }

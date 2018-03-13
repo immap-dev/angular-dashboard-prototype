@@ -6,6 +6,8 @@ import {Response } from '@angular/http';
 import { DynamicFormComponent } from './../../core/dynamic-form/dynamic-form.component';
 import {Subscription} from 'rxjs/Subscription';
 
+import { Validators } from '@angular/forms';
+
 export interface Element {
   name: string;
   position: number;
@@ -47,6 +49,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
                                     // console.log(this.dashboard.widget);
                                     console.log(this.dashboard.typepage);
                                     console.log(this.dashboard.widget);
+                                    console.log('form',this.dashboard.widget[2]);
                                     this.gridCols = this.dashboard.gridlist.cols;
 
                                  });
@@ -76,6 +79,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   submit(value: { [name: string]: any }) {
     console.log(value);
+    this.dashboardService.postValue();
     this.dashboardService.onTableChanged.next(value);
   }
 
