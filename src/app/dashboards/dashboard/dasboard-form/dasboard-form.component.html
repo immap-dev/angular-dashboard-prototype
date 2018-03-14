@@ -12,7 +12,7 @@
 
             <ng-container *ngIf=" i != indexRef && i !== thelast">
               <mat-select [formControlName]="c.name" [placeholder]="c.name" (change)="selectChange(i)">             
-                <mat-option *ngFor="let  option of listValueOfInputSelect[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
+                <mat-option *ngFor="let  option of listValueOfInputSelect[i]" [value]="option[c.name]" > {{option[c.name]}} </mat-option>
               </mat-select>              
             </ng-container>
 
@@ -64,7 +64,12 @@
 
       <mat-form-field *ngIf="c.type==='input'" class="full-width" >
         <!-- <input matInput type="number" min="0" [formControlName]="c.name" [placeholder]="c.name"> -->
-        <input matInput [type]="c.inputType" min="0" [formControlName]="c.name" [placeholder]="c.name">
+        <ng-container *ngIf="c.inputType === 'number'">
+          <input matInput type= "number" min="0" [formControlName]="c.name" [placeholder]="c.name">
+        </ng-container>
+        <ng-container *ngIf="c.inputType !== 'number'">
+          <input matInput type= "text" min="0" [formControlName]="c.name" [placeholder]="c.name">
+        </ng-container>
       </mat-form-field>
 
 
@@ -72,7 +77,7 @@
     </ng-container>
 
     <div>
-      <button  mat-raised-button color="primary" type="submit" class="btn btn-primary">Add</button>
+      <button  mat-raised-button color="primary" type="submit" class="btn btn-primary"><mat-icon >add</mat-icon> </button>
     </div>
     
   </form>
@@ -118,14 +123,26 @@
     </ng-container>
     <ng-container matColumnDef="actions" >
         <mat-header-cell *matHeaderCellDef> ACTIONS </mat-header-cell>
-        <mat-cell *matCellDef="let element;let i = index "> 
-          <button mat-icon-button color="primary"> 
-            <mat-icon (click)="openDialog(i)">mode_edit</mat-icon> 
-          </button>  
-          <button mat-icon-button color="primary">
-            <mat-icon (click)= "onDelete(i)">delete</mat-icon>
-          </button>
+        <ng-container >
+            <mat-cell *matCellDef="let element;let i = index " > 
+            <button mat-icon-button color="primary" > 
+              <mat-icon (click)="openDialog(i)">mode_edit</mat-icon> 
+            </button>  
+            <button mat-icon-button color="primary">
+              <mat-icon (click)= "onDelete(i)">delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+     <!--  <ng-container *ngIf="!allowEdit">
+        <mat-cell *matCellDef="let element;let i = index " >
+           <button mat-icon-button color="primary">
+              <mat-icon (click)="onAllowEdit()"> assessment </mat-icon>
+            </button>
         </mat-cell>
+      </ng-container> -->
+        
+        
+
       </ng-container>
     
    

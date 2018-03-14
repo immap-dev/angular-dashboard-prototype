@@ -31,7 +31,7 @@
             </app-dasboard-map>
             
             <!-- table -->
-            <app-dashboard-table *ngIf="item.type==='table'" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
+            <app-dashboard-table *ngIf="item.type==='table'" [dashboard]="dashboard" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
 
             <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
             </mat-card>
@@ -40,7 +40,7 @@
 </mat-card>
 
 <ng-container *ngIf="dashboard.typepage !== 'default'">
-    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px">  
+    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >  
           <mat-grid-tile *ngFor="let item of dashboard.widget; let i = index " [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows" >
             <mat-card> <!-- <mat-card class="mat-border"> -->
             <!-- title -->
@@ -64,7 +64,7 @@
             </app-dasboard-map>
             
             <!-- table -->
-            <app-dashboard-table *ngIf="item.type==='table'" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
+            <app-dashboard-table *ngIf="item.type==='table'"  [dashboard]="dashboard" [displaytable]="item.datatable" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
 
             <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
             </mat-card>

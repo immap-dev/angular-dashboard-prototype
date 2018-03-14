@@ -300,7 +300,7 @@ export class BoardFakeDB {
                                 inputType: 'number',
                                 placeholder: 'Star',
                                 'validation': ['required',],
-                                value: 4,
+                                 value: 0,
                                  // disabled: true
                                 // for input we need to spesific the input or not??? like numbe or text
                             },                            
@@ -310,8 +310,8 @@ export class BoardFakeDB {
                                 name: 'number',                                
                                 inputType: 'number',
                                 placeholder: 'Enter Number',
-                                validation: ['required']
-                                // value: 4
+                                validation: ['required'],
+                                 value: 0
                                 // for input we need to spesific the input or not??? like numbe or text
                             },
                             {
@@ -456,34 +456,239 @@ export class BoardFakeDB {
                     },
                     config:
                         [
+                            // {
+                            //     type: 'input',
+                            //     label: 'star',
+                            //     name: 'star',                                
+                            //     inputType: 'number',
+                            //     placeholder: 'Star',
+                            //     'validation': ['required',],
+                            //     value: 4,
+                            //      // disabled: true
+                            //     // for input we need to spesific the input or not??? like numbe or text
+                            // },                            
+                            // {
+                            //     type: 'input',
+                            //     label: 'number',
+                            //     name: 'number',                                
+                            //     inputType: 'number',
+                            //     placeholder: 'Enter Number',
+                            //     validation: ['required']
+                            //     // value: 4
+                            //     // for input we need to spesific the input or not??? like numbe or text
+                            // },
+                            // {
+                            //     type: 'select',
+                            //     label: 'facility',
+                            //     name: 'facility',
+                            //     // options: ['City A', 'City B', ' City C', 'City D'],
+                            //     placeholder: 'Select location',
+                            //     // validation: [Validators.required]
+                            //     // value: 'City A',
+                            //     data: [
+                            //             {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                            //             {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                            //             {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                            //             {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                            //             {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                            //             {  location: 'city B',facility: 'SmallWidget6', food:"Gethuk"  },
+                            //             {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                            //             {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                            //             {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                            //             {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                            //             {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                            //             {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                            //             // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
+                            //             // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
+                            //             // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
+                            //             // {  facility: 'SmallWidget4',location: 'city A', food:"Eel"     },
+                            //             // {  facility: 'SmallWidget5',location: 'city F', food:"Fries"   },
+                            //             // {  facility: 'SmallWidget6',location: 'city B', food:"Gethuk"  },
+                            //             // {  facility: 'LargeWidget1',location: 'city B', food:"Ham"     },
+                            //             // {  facility: 'LargeWidget2',location: 'city C', food:"Ikan"    },
+                            //             // {  facility: 'LargeWidget3',location: 'city C', food:"Jelly"   },
+                            //             // {  facility: 'LargeWidget4',location: 'city C', food:"Lemon"   },
+                            //             // {  facility: 'LargeWidget5',location: 'city D', food:"Meat"    },
+                            //             // {  facility: 'LargeWidget6',location: 'city E', food:"Nectar"  },
+                            //           ]
+
+                                
+                            // },
                             {
                                 type: 'select',
                                 label: 'Location',
                                 name: 'location',
-                                options: ['City A', 'City B', ' City C', 'My City'],
+                                // options: ['City A', 'City B', ' City C', 'City D'],
                                 placeholder: 'Select location',
-                                value: 'City A'
+                                
+                                // validation: [Validators.required],                                
+                                // value: 'City A',
+                                cascade: [
+                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
+                                        {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                                        // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
+                                        // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
+                                        // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
+                                        // {  facility: 'SmallWidget4',location: 'city A', food:"Eel"     },
+                                        // {  facility: 'SmallWidget5',location: 'city F', food:"Fries"   },
+                                        // {  facility: 'SmallWidget6',location: 'city B', food:"Gethuk"  },
+                                        // {  facility: 'LargeWidget1',location: 'city B', food:"Ham"     },
+                                        // {  facility: 'LargeWidget2',location: 'city C', food:"Ikan"    },
+                                        // {  facility: 'LargeWidget3',location: 'city C', food:"Jelly"   },
+                                        // {  facility: 'LargeWidget4',location: 'city C', food:"Lemon"   },
+                                        // {  facility: 'LargeWidget5',location: 'city D', food:"Meat"    },
+                                        // {  facility: 'LargeWidget6',location: 'city E', food:"Nectar"  },
+                                      ]
+                            },
+                            {
+                                type: 'select',
+                                label: 'facility',
+                                name: 'facility',
+                                // options: ['City A', 'City B', ' City C', 'City D'],
+                                placeholder: 'Select location',
+                                 disabled: true,
+                                // validation: [Validators.required]
+                                // value: 'City A',
+                                cascade: [
+                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
+                                        {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                                        // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
+                                        // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
+                                        // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
+                                        // {  facility: 'SmallWidget4',location: 'city A', food:"Eel"     },
+                                        // {  facility: 'SmallWidget5',location: 'city F', food:"Fries"   },
+                                        // {  facility: 'SmallWidget6',location: 'city B', food:"Gethuk"  },
+                                        // {  facility: 'LargeWidget1',location: 'city B', food:"Ham"     },
+                                        // {  facility: 'LargeWidget2',location: 'city C', food:"Ikan"    },
+                                        // {  facility: 'LargeWidget3',location: 'city C', food:"Jelly"   },
+                                        // {  facility: 'LargeWidget4',location: 'city C', food:"Lemon"   },
+                                        // {  facility: 'LargeWidget5',location: 'city D', food:"Meat"    },
+                                        // {  facility: 'LargeWidget6',location: 'city E', food:"Nectar"  },
+                                      ]
+
+                                
+                            },
+                            {
+                                type: 'select',
+                                label: 'food',
+                                name: 'food',
+                                // options: ['City A', 'City B', ' City C', 'City D'],
+                                placeholder: 'Select location',
+                                disabled: true,
+                                // validation: [Validators.required]
+                                // value: 'City A',
+                                cascade: [
+                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
+                                        {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                                        // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
+                                        // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
+                                        // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
+                                        // {  facility: 'SmallWidget4',location: 'city A', food:"Eel"     },
+                                        // {  facility: 'SmallWidget5',location: 'city F', food:"Fries"   },
+                                        // {  facility: 'SmallWidget6',location: 'city B', food:"Gethuk"  },
+                                        // {  facility: 'LargeWidget1',location: 'city B', food:"Ham"     },
+                                        // {  facility: 'LargeWidget2',location: 'city C', food:"Ikan"    },
+                                        // {  facility: 'LargeWidget3',location: 'city C', food:"Jelly"   },
+                                        // {  facility: 'LargeWidget4',location: 'city C', food:"Lemon"   },
+                                        // {  facility: 'LargeWidget5',location: 'city D', food:"Meat"    },
+                                        // {  facility: 'LargeWidget6',location: 'city E', food:"Nectar"  },
+                                      ]
+
+                                
+                            },
+                            {
+                                type: 'select',
+                                label: 'place',
+                                name: 'place',
+                                options: ['City A', 'City B', ' City C', 'City D'],
+                                placeholder: 'Select',
+                                // validation: [Validators.required],
+                                // data: [
+                                //         { name: 'SmallWidget1', type: 'city A' },
+                                //         { name: 'SmallWidget2', type: 'city A' },
+                                //         { name: 'SmallWidget3', type: 'city A' },
+                                //         { name: 'SmallWidget4', type: 'city A' },
+                                //         { name: 'SmallWidget5', type: 'city F' },
+                                //         { name: 'SmallWidget6', type: 'city B' },
+                                //         { name: 'LargeWidget1', type: 'city B' },
+                                //         { name: 'LargeWidget2', type: 'city C' },
+                                //         { name: 'LargeWidget3', type: 'city C' },
+                                //         { name: 'LargeWidget4', type: 'city C' },
+                                //         { name: 'LargeWidget5', type: 'city D' },
+                                //         { name: 'LargeWidget6', type: 'city E' },
+                                //       ]
+                                // value: 'City A'
                             },
                             {
                                 type: 'input',
-                                label: 'facility',
-                                name: 'facility',
-                                placeholder: 'Facility Name',
-                                value: 'hospital'
-                            },
+                                label: 'star',
+                                name: 'star',                                
+                                inputType: 'number',
+                                placeholder: 'Star',
+                                'validation': ['required',],
+                                value: 4,
+                                 // disabled: true
+                                // for input we need to spesific the input or not??? like numbe or text
+                            },                            
                             {
                                 type: 'input',
                                 label: 'number',
-                                name: 'number',
+                                name: 'number',                                
+                                inputType: 'number',
                                 placeholder: 'Enter Number',
-                                value: 4
+                                validation: ['required']
+                                // value: 4
+                                // for input we need to spesific the input or not??? like numbe or text
                             },
                             {
                                 label: 'Save',
                                 name: 'submit',
                                 type: 'button',
                             },
-                        ]
+                        ],
+                        dataraw: [
+                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   , place:'City A', star:4, number:5},
+                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" , place:'City A', star:4, number:5},
+                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   , place:'City A', star:4, number:5},
+                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     , place:'City A', star:4, number:5},
+                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   , place:'City A', star:4, number:5},
+                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  , place:'City A', star:4, number:5},
+                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    , place:'City A', star:4, number:5},
+                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   , place:'City A', star:4, number:5},
+                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   , place:'City A', star:4, number:5},
+                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    , place:'City A', star:4, number:5},
+                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  , place:'City A', star:4, number:5},
+                                      ]
                 },
                 {
                     type: 'map',

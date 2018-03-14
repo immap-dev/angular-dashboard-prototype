@@ -81,6 +81,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log(value);
     this.dashboardService.postValue();
     this.dashboardService.onTableChanged.next(value);
+    console.log('valueform',value);
   }
 
   //coba

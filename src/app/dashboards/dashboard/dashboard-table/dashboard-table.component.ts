@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit, OnDestroy,Injectable, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit, OnDestroy,Injectable, EventEmitter,OnChanges } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import {Subscription} from 'rxjs/Subscription';
 import { DashboardService } from '../../dashboards.service';
@@ -18,8 +18,10 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 })
 
 
-export class DashboardTableComponent implements OnInit {
+export class DashboardTableComponent implements OnInit,AfterViewInit {
 
+  @Input()
+  dashboard;
   // data table
   @Input()
   displaytable;
@@ -53,6 +55,8 @@ export class DashboardTableComponent implements OnInit {
   // coba 3
   public invoiceForm: FormGroup;
 
+  raw;
+
 
 
   constructor(private dashboardService:DashboardService, private _fb: FormBuilder) { }
@@ -64,23 +68,55 @@ export class DashboardTableComponent implements OnInit {
     // console.log('data:' + this.displaytable);
 
     //baru
-    this.sourceTableData = this.dashboardService.onTableChanged.subscribe(table => {
-                            this.displayTabletwo.push(table);
-                            this.dataSourcetwo = new MatTableDataSource(this.displayTabletwo);
+    // let filterWidgetForm= this.dashboard.widget.filter(w=> w.type === 'form');
+    // this.raw = filterWidgetForm[0].dataraw;
+    // const keys =Object.keys(this.raw[0]);
+    // this.displayHeadertwo = keys;
+
+    //    this.dataSourcetwo = new MatTableDataSource(this.raw);
+    //    this.dataSourcetwo.sort = this.sort;
+       // this.dataSourcetwo.paginator = this.paginator; 
+
+    // this.sourceTableData = this.dashboardService.onTableChanged.subscribe(table => {
+    //                         this.displayTabletwo.push(table);
+    //                         this.dataSourcetwo = new MatTableDataSource(this.displayTabletwo);
                                                      
-                            this.displayHeadertwo = Object.keys(table);
-                            // this.displayHeadertwo.push(...this.d);                          
-                            console.log(this.displayHeadertwo);
-                            // console.log(this.d);
+    //                         this.displayHeadertwo = Object.keys(table);
+    //                         // this.displayHeadertwo.push(...this.d);                          
+    //                         console.log(this.displayHeadertwo);
+    //                         // console.log(this.d);
+
+    //                         this.dataSourcetwo.sort = this.sort;
+    //                         this.dataSourcetwo.paginator = this.paginator;                            
+    //                       }) 
+     this.sourceTableData = this.dashboardService.onDashboardChanged.subscribe(dashboard => {
+                            
+                            // this.dataSourcetwo = new MatTableDataSource(this.displayTabletwo);
+                             let filterWidgetForm= dashboard.widget.filter(w=> w.type === 'form');
+                             this.raw = filterWidgetForm[0].dataraw;
+                             this.dataSourcetwo = new MatTableDataSource(this.raw);
+                             const keys =Object.keys(this.raw[0]);                        
+                            this.displayHeadertwo = keys//Object.keys(table);
+                            
 
                             this.dataSourcetwo.sort = this.sort;
-                            this.dataSourcetwo.paginator = this.paginator;                            
+                            this.dataSourcetwo.paginator = this.paginator ;                            
                           }) 
+
 
      // this.invoiceForm = this._fb.group({
      //    itemRows: this._fb.array([this.initItemRows()])
      //  }); 
 
+  }
+
+  ngAfterViewInit(){
+     this.dataSourcetwo = new MatTableDataSource(this.raw);
+      this.dataSourcetwo.paginator = this.paginator; 
+  }
+
+  ngOnChanges(){
+    
   }
   
   ngOnDestroy(){

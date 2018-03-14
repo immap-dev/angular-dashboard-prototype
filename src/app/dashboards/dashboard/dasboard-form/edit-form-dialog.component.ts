@@ -19,6 +19,7 @@ export class EditFormDialogComponent implements OnInit{
   	containOpt=[];
   	daftar =[];
   	containOpt2=[];
+
 	  
 	constructor( @Inject(MAT_DIALOG_DATA) public data: any, 
 	 			  private formBuilder: FormBuilder, 
@@ -29,20 +30,23 @@ export class EditFormDialogComponent implements OnInit{
     
 	ngOnInit(){ 	
 	   this.form = this.createGroup();
-	   this.form.setValue(this.data.oldData);
-	   // console.log('inject-data2', this.controls2);
-	   this.allProductsTypes = this.data.selectOne;
-	   // console.log('product',this.allProductsTypes);
-	   this.indexOfSelect = this.findSelectIndex();
-	    console.log('index',this.indexOfSelect);
+     console.log('tolddata',this.data.oldData);
 
-	   this.indexRef = this.findIndexRef()[0];
-	   this.thelast = this.findIndexRef()[this.findIndexRef().length-1];
+	   this.form.setValue(this.data.oldData);
+     this.indexRef = this.findIndexRef()[0];
+     this.sortData(this.indexRef);
+      this.setInitData();
+     this.thelast = this.findIndexRef()[this.findIndexRef().length-1];
+
+
+	
+
+	   
 	 console.log('indexref',this.indexRef);
 	 console.log('olddata', this.data.oldData);
 
 	   
-	   this.typeChanged();
+	   // this.typeChanged();
 
 	}
 
@@ -58,43 +62,63 @@ export class EditFormDialogComponent implements OnInit{
 	        return group;
 	}
 
-	findSelectIndex(){
-	      
-	       const findIndex =  this.controls2.map((e) => { if( e.type === 'select'){
-	         return e.type;  
-	       } else{return 'bukan'}; });
-	     const index = findIndex.indexOf('select');
-	     return index
-	}
 
-	typeChanged() {   	
-	    
-	      const b = this.controls2[this.indexOfSelect].name;    	
-	      const productType = this.form.get(b).value;
-	      this.productsAfterChangeEvent = this.data.selectTwo.filter(p => p.type === productType);   	
 
-	}
-
-	//############################################
 	findIndexRef(){
-      const findIndex =  this.controls2.map((e) => { if( e.type === 'select' && e.data){
+      const findIndex =  this.controls2.map((e) => { if( e.type === 'select' && e.cascade){
          return e.type;  
        } else{return 'no'}; });
+      console.log('ff',findIndex)
       const selections =findIndex.reduce((r, v, i) => r.concat(v === 'select' ? i : []), [])
       return selections
     }
 
     sortData(n){
       let choicetipe=[];
-      const zz =Object.keys(this.data.config[n].data[n]);
-      const firstChoice = this.data.config[n].data;
-      const zzo = this.data.config[n].name;
-      firstChoice.forEach(val=>choicetipe.push(val[zzo]));
+      
+      let firstChoice = this.data.config[n].cascade;
+      const nameOfSelectInput = this.data.config[n].name;
+      firstChoice.forEach(val=>choicetipe.push(val[nameOfSelectInput]));
       const name = firstChoice;      
-      this.data.config[n].data = (Array.from(new Set(choicetipe)));
-      console.log('sort',this.data.config[n].data );
-      return this.data.config[n].data.sort();   
+       firstChoice = (Array.from(new Set(choicetipe)));
 
+      // console.log('sort',this.data.config[n].cascade );
+
+      return firstChoice.sort();   
+
+    }
+
+    
+
+    setInitData(){
+      let init = this.findIndexRef();
+      const orderNameselect=[]
+      const initNext = init[init.indexOf(this.indexRef)+1]
+      for(let x of init){
+        orderNameselect.push(this.controls2[x].name);
+      }
+
+      // Object.values(this.data.)
+      for(let y in orderNameselect){
+        this.daftar[y] = this.data.oldData[orderNameselect[y]];
+      }
+      const xy = this.data.config[initNext].cascade;
+      let xyz = xy;
+      console.log(xyz);
+
+      for(let j in this.daftar){
+        if(j>'0'){
+          this.containOpt2[init[j]]=xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j]);
+        }
+        console.log(this.containOpt2);
+       
+       
+      }
+
+
+
+
+      console.log('edit',orderNameselect,init,init.indexOf(0));
     }
 
     selectChange(i){
@@ -112,18 +136,17 @@ export class EditFormDialogComponent implements OnInit{
       let initdaftar = init.indexOf(i);// search index from indexin 
       let nextOpt = init[init.indexOf(i)+1];
      
-      // const zz = Object.keys(this.config[i+1].data[i+1]);
-      // console.log('zz',zz)   
+     
       let choosen = this.form.get(b).value;
       console.log('select',choosen);
-      const z= this.data.config[nextOpt].data
-       this.optional= z.filter(p=>p[b]=== choosen);
-       this.containOpt[nextOpt]=this.optional;
+      const z= this.data.config[nextOpt].cascade
+      this.optional= z.filter(p=>p[b]=== choosen);
+      this.containOpt[nextOpt]=this.optional;
       console.log('apakah berubah', this.optional);
       console.log('apakah masuk', this.containOpt);
 
       //biar bisa saling chainng, kurang disable , enable udah bisa
-      const xy = this.data.config[nextOpt].data;
+      const xy = this.data.config[nextOpt].cascade;
       let xyz = xy;
 
       //cek apakah index ref bukan

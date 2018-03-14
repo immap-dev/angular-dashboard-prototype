@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject, Afte
 import { FieldConfig} from './models/field-config.interface';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { EditFormDialogComponent} from './edit-form-dialog.component';
-import { Validators, ValidatorFn } from '@angular/forms';
+import { Validators, ValidatorFn,NgForm } from '@angular/forms';
 
 import { MatTableDataSource,MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -17,6 +17,8 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  allowEdit:boolean=false;
 
   form: FormGroup;
   get controls() { return this.config.filter(({type}) => type !== 'button'); };
@@ -74,7 +76,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
   	ngOnInit() {
   	  	this.form = this.createGroup();
   	  	console.log('c',this.controls);
-
+        console.log('forminit',this.form);
        
         // to make first select in form
          this.indexRef = this.findIndexRef()[0];
@@ -107,6 +109,8 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
        keys.forEach(key=>{this.columnOne.push(key)});
        keys.forEach(key=>{this.columnTwo.push(key)});
 
+       console.log('STATUS',this.form.get('location').disabled,this.form.get('facility').disabled,this.form.get('food').disabled);
+
        // console.log('aksion',this.columnOne);
 
        
@@ -125,7 +129,9 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
         //table
         // this.controls.forEach(control => {this.displayedColumns.push(control.name)})
         // console.log('first',this.displayedColumns)
-        // this.controls.forEach(control => {this.displayedColumnstwo.push(control.name)})      
+        // this.controls.forEach(control => {this.displayedColumnstwo.push(control.name)}) 
+
+
 
   	}
 
@@ -173,23 +179,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
         }        
     }
 
-    // typeChanged() {    	
-    	
-    //   const b = this.controls[this.indexOfSelect].name;    
-    //   const productType = this.form.get(b).value;
-    // 	this.productsAfterChangeEvent = this.allProducts.filter(p => p.type === productType);// not dynamic 
-
-    // }
-
-    // findSelectIndex(){
-    //   // to find index  of first control that type === select , used for cascade select
-    //    const findIndex =  this.controls.map((e) => { if( e.type === 'select'){
-    //      return e.type;  
-    //    } else{return 'no'}; });
-    //  const index = findIndex.indexOf('select');
-    //  return index
-    // }
-
+   
     //chain experiment
 
     findIndexRef(){
@@ -292,7 +282,34 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
         control.enable() ;
       } 
     }
+
+    resetForm(){
+    
+      let z= this.controls.length;      
+      for (let xx=0; xx <z; xx++){
+        if(this.controls[xx].disabled){
+          console.log(xx,this.controls[xx].disabled);
+           let control =this.form.get(this.controls[xx].name)
+           control.disable() ;             
+        }
+        let control =this.form.get(this.controls[xx].name)
+        
+        // console.log(xx,this.controls[xx].disabled);
+      }
+      
+      this.form.reset()
+
+      Object.keys(this.form.controls).forEach(key => {
+          this.form.controls[key].setErrors(null)
+      });
      
+      this.form= this.createGroup();
+
+    
+    }
+
+       
+   
    
 
 
@@ -319,25 +336,28 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       event.stopPropagation();
       // this.submit.emit(this.value);
       // this.submit.emit(this.dashboard.widget[2].dataraw);
+      // this.resetForm();
       this.submit.emit(this.raw);
-     } else{ console.log('tidak valid')};
-      //insert to table
-      // this.element.push(this.value);
-      // this.dataSource = new MatTableDataSource(this.element); 
-      // this.dataSource.paginator = this.paginator;
-      // event.preventDefault();
-      // event.stopPropagation();
-      // this.submit.emit(this.value);
+      console.log(this.form.get('facility').disabled,this.form.get('food').disabled);
+      this.resetForm()
+
+     
+     } else{ console.log('not valid')};
+      
       console.log('element',this.element)
     }
 
 
     onDelete(index:number){
         this.element.splice(index,1);
+        this.raw.splice(index,1)
         console.log('after elemen',this.element);
-        this.dataSource = new MatTableDataSource(this.element); 
+        // this.dataSource = new MatTableDataSource(this.element); 
+         this.dataSourceRaw.paginator = this.paginator;
+         this.submit.emit(this.raw);
         console.log('delete',index);
     }
+
 
 
 
@@ -346,7 +366,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
     openDialog(i){
       this.editFormDialogRef = this.dialog.open(EditFormDialogComponent,{
           data:{
-            oldData: this.element[i],
+            oldData: this.raw[i],
             config: this.config,
             // selectOne: this.allProductsTypes,
             // selectTwo: this.allProducts
@@ -354,10 +374,12 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       });      
       this.editFormDialogRef.afterClosed().subscribe( newData =>{ 
           if(newData) {
-            this.element[i]=newData
-            // NB: tambah if , untuk cek apaakah data yg sama seperti data yg baru 
-            console.log('o',this.element)
-            this.dataSource = new MatTableDataSource(this.element);
+            this.raw[i]=newData
+           
+            console.log('o',this.raw[i])
+            
+            this.dataSourceRaw.paginator = this.paginator;
+             this.submit.emit(this.raw);
           }
             else{} 
       });    
