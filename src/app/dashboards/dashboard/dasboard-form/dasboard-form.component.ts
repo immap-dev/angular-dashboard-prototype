@@ -358,6 +358,10 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
         console.log('delete',index);
     }
 
+    onAllowEdit(){
+      this.allowEdit = !this.allowEdit;
+    }
+
 
 
 

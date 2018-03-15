@@ -1,86 +1,77 @@
   <mat-card-title>Forms</mat-card-title>
-  <form [formGroup]="form" (ngSubmit)="submitForm()"  class="dynamic-form">
-    <ng-container *ngFor="let c of controls; let i = index " >    
+   <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="onAllowEdit()" [hidden]="!allowEdit"> {{ !allowEdit ? "Edit Form" : "Close"}}</button>
+    <!-- <button mat-raised-button color="warn" (click)="onAllowEdit()" [hidden]="allowEdit"> X </button> -->
+  </mat-card-actions>
+  <div [hidden]="!allowEdit">
+    
+    <form  [formGroup]="form" (ngSubmit)="submitForm()"  class="dynamic-form" >
+      <ng-container *ngFor="let c of controls; let i = index "  >    
 
-      <mat-form-field *ngIf="c.type==='select' && !c.options" class="full-width">
-             <!-- using name -->
-            <ng-container *ngIf=" i == indexRef ">
-              <mat-select [formControlName]="c.name"  [placeholder]="c.name" (change)="selectChange(i)" >              
-              <mat-option *ngFor="let  option of c.cascade" [value]="option" > {{option}}</mat-option>
-              </mat-select>                         
-            </ng-container>
+        <mat-form-field *ngIf="c.type==='select' && !c.options" class="full-width" >
+               <!-- using name -->
+              <ng-container *ngIf=" i == indexRef ">
+                <mat-select [formControlName]="c.name"  [placeholder]="c.name" (change)="selectChange(i)"  >              
+                <mat-option *ngFor="let  option of c.cascade" [value]="option" > {{option}}</mat-option>
+                </mat-select>                         
+              </ng-container>
 
-            <ng-container *ngIf=" i != indexRef && i !== thelast">
-              <mat-select [formControlName]="c.name" [placeholder]="c.name" (change)="selectChange(i)">             
-                <mat-option *ngFor="let  option of listValueOfInputSelect[i]" [value]="option[c.name]" > {{option[c.name]}} </mat-option>
-              </mat-select>              
-            </ng-container>
+              <ng-container *ngIf=" i != indexRef && i !== thelast">
+                <mat-select [formControlName]="c.name" [placeholder]="c.name" (change)="selectChange(i)" >             
+                  <mat-option *ngFor="let  option of listValueOfInputSelect[i]" [value]="option[c.name]" > {{option[c.name]}} </mat-option>
+                </mat-select>              
+              </ng-container>
 
-            <ng-container *ngIf=" i == thelast ">              
-              <mat-select [formControlName]="c.name" [placeholder]="c.name">  
+              <ng-container *ngIf=" i == thelast ">              
+                <mat-select [formControlName]="c.name" [placeholder]="c.name" >  
 
-                <mat-option *ngFor="let  option of listValueOfInputSelect[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
-              </mat-select>              
-            </ng-container>
-
-            <!-- <ng-container *ngIf=" i != indexRef ">
-              <mat-select [formControlName]="c.name" [placeholder]="c.name">             
-                <mat-option *ngFor="let  option of c.data" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
-              </mat-select>              
-            </ng-container> -->
-
-           <!--  <ng-container *ngIf=" i == indexOfSelect ">
-              <mat-select [formControlName]="c.name" (change)="typeChanged()" [placeholder]="c.name">              
-              <mat-option *ngFor="let  option of allProductsTypes" [value]="option">{{option}}</mat-option>
-              </mat-select>                         
-            </ng-container> -->
-
-            <!-- <ng-container *ngIf=" i != indexOfSelect ">
-              <mat-select [formControlName]="c.name" [placeholder]="c.name">             
-                <mat-option *ngFor="let  option of productsAfterChangeEvent" [value]="option.name">{{option.name}}</mat-option>
-              </mat-select>
+                  <mat-option *ngFor="let  option of listValueOfInputSelect[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
+                </mat-select>              
+              </ng-container>  
               
-            </ng-container> -->   
+             
             
-           
-          
 
 
-      </mat-form-field>
+        </mat-form-field >
 
 
-      <mat-form-field *ngIf="c.type==='select' && c.options" class="full-width" >
-        <mat-select [formControlName]="c.name" [placeholder]="c.name">             
-                <mat-option *ngFor="let  option of c.options" [value]="option">{{option}}</mat-option>
-              </mat-select>
-      </mat-form-field>
-
-      <!-- <mat-form-field *ngIf="c.type==='select' && !c.data && !c.options" class="full-width" >
-        <mat-select [formControlName]="c.name" [placeholder]="c.name">             
-                <mat-option *ngFor="let  option of productsAfterChangeEvent" [value]="option.name">{{option.name}}</mat-option>
-              </mat-select>              
-      </mat-form-field> -->
-
-
-      <mat-form-field *ngIf="c.type==='input'" class="full-width" >
-        <!-- <input matInput type="number" min="0" [formControlName]="c.name" [placeholder]="c.name"> -->
-        <ng-container *ngIf="c.inputType === 'number'">
-          <input matInput type= "number" min="0" [formControlName]="c.name" [placeholder]="c.name">
-        </ng-container>
-        <ng-container *ngIf="c.inputType !== 'number'">
-          <input matInput type= "text" min="0" [formControlName]="c.name" [placeholder]="c.name">
-        </ng-container>
-      </mat-form-field>
-
+        <mat-form-field *ngIf="c.type==='select' && c.options" class="full-width" >
+          <mat-select [formControlName]="c.name" [placeholder]="c.name" >             
+                  <mat-option *ngFor="let  option of c.options" [value]="option">{{option}}</mat-option>
+                </mat-select>
+        </mat-form-field>
 
        
-    </ng-container>
 
-    <div>
-      <button  mat-raised-button color="primary" type="submit" class="btn btn-primary"><mat-icon >add</mat-icon> </button>
-    </div>
-    
-  </form>
+
+        <mat-form-field  *ngIf="c.type==='input'" class="full-width" >
+          <!-- <input matInput type="number" min="0" [formControlName]="c.name" [placeholder]="c.name"> -->
+          <ng-container *ngIf="c.inputType === 'number'">
+            <input matInput type= "number" min="0" [formControlName]="c.name" [placeholder]="c.name" >
+          </ng-container>
+          <ng-container *ngIf="c.inputType !== 'number'">
+            <input matInput type= "text" min="0" [formControlName]="c.name" [placeholder]="c.name" >
+          </ng-container>
+        </mat-form-field>
+
+
+         
+      </ng-container>
+
+      
+         <div> <button  mat-raised-button color="primary" type="submit" class="btn btn-primary"><mat-icon >add</mat-icon> </button>
+         </div>
+       
+      
+      
+      
+    </form>
+    <!-- <div>
+        <button  mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="submitForm()"><mat-icon >add</mat-icon> </button>
+      </div> -->
+  
+  </div>
 
   
 
@@ -118,28 +109,25 @@
   <mat-table #table [dataSource]="dataSourceRaw" >
     <ng-container *ngFor="let col of columnTwo " matColumnDef="{{col}}" >
       <mat-header-cell *matHeaderCellDef> {{col|uppercase}} </mat-header-cell>
-      <mat-cell *matCellDef="let element" class="mat-color-primary"> {{element[col]}} </mat-cell>
+      <mat-cell *matCellDef="let element" class="mat-color-primary">
+      <span class="tablet-label">{{col|uppercase}}</span>
+        {{element[col]}} 
+      </mat-cell>
       <p></p>        
     </ng-container>
-    <ng-container matColumnDef="actions" >
-        <mat-header-cell *matHeaderCellDef> ACTIONS </mat-header-cell>
+    <ng-container   matColumnDef="actions" >
+        <mat-header-cell *matHeaderCellDef [hidden]="!allowEdit"> ACTIONS </mat-header-cell>
         <ng-container >
-            <mat-cell *matCellDef="let element;let i = index " > 
+            <mat-cell *matCellDef="let element;let i = index "  [hidden]="!allowEdit">
+            <span class="tablet-label">ACTIONS</span> 
             <button mat-icon-button color="primary" > 
               <mat-icon (click)="openDialog(i)">mode_edit</mat-icon> 
             </button>  
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" >
               <mat-icon (click)= "onDelete(i)">delete</mat-icon>
             </button>
           </mat-cell>
-        </ng-container>
-     <!--  <ng-container *ngIf="!allowEdit">
-        <mat-cell *matCellDef="let element;let i = index " >
-           <button mat-icon-button color="primary">
-              <mat-icon (click)="onAllowEdit()"> assessment </mat-icon>
-            </button>
-        </mat-cell>
-      </ng-container> -->
+        </ng-container>  
         
         
 

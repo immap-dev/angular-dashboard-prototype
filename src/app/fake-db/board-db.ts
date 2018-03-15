@@ -95,7 +95,7 @@ export class BoardFakeDB {
                     type: 'form',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 8 //2
+                            cols: 4, rows: 10 //2
                         }
                     },
                     config:
@@ -315,23 +315,33 @@ export class BoardFakeDB {
                                 // for input we need to spesific the input or not??? like numbe or text
                             },
                             {
+                                type: 'input',
+                                label: 'people',
+                                name: 'people',                                
+                                inputType: 'number',
+                                placeholder: 'Enter people',
+                                validation: ['required'],
+                                 value: 0
+                                // for input we need to spesific the input or not??? like numbe or text
+                            },
+                            {
                                 label: 'Save',
                                 name: 'submit',
                                 type: 'button',
                             },
                         ],
                         dataraw: [
-                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   , place:'City A', star:4, number:5},
-                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" , place:'City A', star:4, number:5},
-                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   , place:'City A', star:4, number:5},
-                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     , place:'City A', star:4, number:5},
-                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   , place:'City A', star:4, number:5},
-                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  , place:'City A', star:4, number:5},
-                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    , place:'City A', star:4, number:5},
-                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   , place:'City A', star:4, number:5},
-                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   , place:'City A', star:4, number:5},
-                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    , place:'City A', star:4, number:5},
-                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  , place:'City A', star:4, number:5},
+                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    , place:'City A', star:4, number:5,people:100},
+                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  , place:'City A', star:4, number:5,people:100},
                                       ]
                 },
                 {
