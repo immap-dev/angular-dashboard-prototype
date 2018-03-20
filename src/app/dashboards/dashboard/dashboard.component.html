@@ -19,7 +19,9 @@
 
             <!-- form static-->
             <!-- <app-dasboard-form *ngIf="item.type==='form'" [locations]="dashboard.locations" [config]="item.config" (submit)="submit($event)"> -->
-            <app-dasboard-form *ngIf="item.type==='form'" [config]="item.config" (submit)="submit($event)">
+           <!--  <app-dasboard-form *ngIf="item.type==='form'" [config]="item.config" (submit)="submit($event)">
+            </app-dasboard-form> -->
+             <app-dasboard-form *ngIf="item.type==='form'" [dashboard]="dashboard" [config]="item.config" (submit)="submit($event)">
             </app-dasboard-form>
 
             <!-- form dynamic-->
@@ -33,7 +35,7 @@
             <!-- table -->
             <app-dashboard-table *ngIf="item.type==='table'" [dashboard]="dashboard" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
 
-            <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
+            <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list" (submit)="submit($event)"></app-dashboard-list>
             </mat-card>
           </mat-grid-tile>
     </mat-grid-list>
