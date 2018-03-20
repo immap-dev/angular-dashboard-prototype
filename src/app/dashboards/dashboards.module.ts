@@ -10,12 +10,14 @@ import { DashboardTableComponent} from './dashboard/dashboard-table/dashboard-ta
 import { DashboardListComponent} from './dashboard/dashboard-list/dashboard-list.component';
 import { DasboardFormComponent} from './dashboard/dasboard-form/dasboard-form.component';
 import { EditFormDialogComponent} from './dashboard/dasboard-form/edit-form-dialog.component';
+import { EditListComponent} from './dashboard/dashboard-list/edit-list.component';
 import { DynamicFormModule} from '../core/dynamic-form/dynamic-form.module';
 import { DashboardService, DashboardResolve} from './dashboards.service';
 import { MaterialModule} from '../shared/material.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import * as L from 'leaflet';
+import {SearchPipe} from '../core/search.pipe';
 
 import {SharedModule} from '../shared/shared.module';
 
@@ -49,6 +51,8 @@ const routes: Routes =[
 		DashboardListComponent,
 		DasboardFormComponent,
 		EditFormDialogComponent,
+		EditListComponent,
+		SearchPipe,
 		// HeaderComponent,	
 	],
 	imports:[
@@ -64,7 +68,7 @@ const routes: Routes =[
 	],
 	exports:[],
 	providers:[DashboardService,DashboardResolve],
-	entryComponents:[EditFormDialogComponent]
+	entryComponents:[EditFormDialogComponent,EditListComponent]
 
 
 })

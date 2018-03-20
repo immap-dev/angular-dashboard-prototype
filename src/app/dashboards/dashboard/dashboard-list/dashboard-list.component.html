@@ -1,35 +1,56 @@
-<!-- <mat-card>
-  <mat-list>
-    <h2 mat-subheader>List</h2> -->
-    <!-- <mat-list-item *ngFor="let folder of folders">
-      <mat-icon mat-list-icon>folder</mat-icon>
-      <h4 mat-line>{{folder.name}}</h4>
-      <p mat-line> {{folder.updated | date}} </p>
-    </mat-list-item> -->
-    <!-- <mat-list-item *ngFor="let folder of list">
-      <mat-icon mat-list-icon>folder</mat-icon>
-      <h4 mat-line>{{folder.name}}</h4>
-      <p mat-line> {{folder.updated | date}} </p>
-      <mat-divider></mat-divider>
-    </mat-list-item> -->
-    <!-- <mat-divider></mat-divider>
-    <h3 mat-subheader>Notes</h3>
-    <mat-list-item *ngFor="let note of notes">
-      <mat-icon mat-list-icon>note</mat-icon>
-      <h4 mat-line>{{note.name}}</h4>
-      <p mat-line> {{note.updated | date}} </p>
-    </mat-list-item> -->
-  <!-- </mat-list>
-</mat-card> -->
+<!-- <input [(ngModel)]="searchText" placeholder="search text goes here"> -->
+<mat-card-actions align="end">
+ 
+  <!-- <div class="example-header"> -->
+    <mat-form-field *ngIf="search">
+      <input matInput [(ngModel)]="searchText" placeholder="Search" >
+    </mat-form-field>
+     <button mat-mini-fab (click)="onSearch()" color="primary">
+    <mat-icon >search</mat-icon>
+  </button>
+  <!-- </div> -->
 
-<!-- coba -->
+</mat-card-actions>
 
-<mat-list>
+<!-- <div class="example-header">
+    <mat-form-field *ngIf="search">
+      <input matInput [(ngModel)]="searchText" placeholder="Filter" >
+    </mat-form-field>
+    
+  </div> -->
+  <div class="line mat-border"></div>
+<mat-list color="primary" >
   <h2 mat-subheader>List</h2>
-  <mat-list-item *ngFor="let folder of list">
-    <mat-icon mat-list-icon>folder</mat-icon>
+  <mat-list-item *ngFor="let folder of list| search : searchText;let i = index ">
+    <!-- <mat-icon mat-list-icon>folder</mat-icon>
     <h4 mat-line>{{folder.name}}</h4>
     <p mat-line> {{folder.updated | date}} </p>
     <mat-divider></mat-divider>
+  </mat-list-item> -->
+  <!-- <mat-list-item> -->
+    <div>
+      <button mat-icon-button color="primary" (click)="openDialog(i)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    
+   
+    <div class="conten">
+       
+      <h4 class="mat-color-primary" >{{folder.name}}</h4>
+      <p> {{folder.text}} </p>
+    </div>
+    
+    <div class="link-conten">
+  
+    <p> Update: {{folder.updated | date}} @{{folder.updated | date:'shortTime'}} </p>
+	     <a href="">
+	    	<button mat-icon-button color="primary">
+			    <mat-icon aria-label="Example icon-button with a heart icon">send</mat-icon>
+			 </button>
+		</a>
+		    
+    </div>
+    <mat-divider></mat-divider>
   </mat-list-item>
-</mat-list>
+</mat-list> 

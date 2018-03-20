@@ -1,7 +1,67 @@
+
 .mat-list-icon {
   color: rgba(0, 0, 0, 0.54);
 }
 
+h4{
+	/*color: red;*/
+}
+
 .mat-card{
     width:1000px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+
+.mat-list .mat-list-item{
+  height: auto;
+  max-height: 300px;
+  
+}
+
+.conten{
+ width: 60%;
+ /* min-width: 30%; */
+ 
+}
+
+.link-conten{
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: nowrap; */
+  justify-content: center;
+  align-items:center;
+  /* margin-left: 100px; */
+  margin: auto;
+}
+
+.example-header {
+  width: 80%;
+}
+
+ .mat-form-field{
+  width: 100%;
+}
+
+.mat-card-actions{
+  margin:0;
+
+}
+
+.mat-list{
+  height: 400px;
+  overflow: auto;
+}
+
+.line{
+  width: 100%;
+  margin-bottom:  5px;
+}
+
+.conten h4{
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

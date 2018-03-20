@@ -4,8 +4,8 @@
     <!-- <button mat-raised-button color="warn" (click)="onAllowEdit()" [hidden]="allowEdit"> X </button> -->
   </mat-card-actions>
   <div [hidden]="!allowEdit">
-    
-    <form  [formGroup]="form" (ngSubmit)="submitForm()"  class="dynamic-form" >
+    <form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="submitForm(form, formDirective)" class="dynamic-form">
+    <!-- <form  [formGroup]="form" (ngSubmit)="submitForm()"  class="dynamic-form" > -->
       <ng-container *ngFor="let c of controls; let i = index "  >    
 
         <mat-form-field *ngIf="c.type==='select' && !c.options" class="full-width" >
@@ -64,7 +64,7 @@
          </div>
        
       
-      
+      <!-- <p>{{form.status | json}}</p> -->
       
     </form>
     <!-- <div>
@@ -111,35 +111,34 @@
       <mat-header-cell *matHeaderCellDef> {{col|uppercase}} </mat-header-cell>
       <mat-cell *matCellDef="let element" class="mat-color-primary">
       <span class="tablet-label">{{col|uppercase}}</span>
-        {{element[col]}} 
+        {{element[col]}}
       </mat-cell>
       <p></p>        
     </ng-container>
     <ng-container   matColumnDef="actions" >
         <mat-header-cell *matHeaderCellDef [hidden]="!allowEdit"> ACTIONS </mat-header-cell>
         <ng-container >
-            <mat-cell *matCellDef="let element;let i = index "  [hidden]="!allowEdit">
-            <span class="tablet-label">ACTIONS</span> 
+            <mat-cell *matCellDef="let row;let i = index "  [hidden]="!allowEdit">
+            <span class="tablet-label">ACTIONS</span>
+
             <button mat-icon-button color="primary" > 
-              <mat-icon (click)="openDialog(i)">mode_edit</mat-icon> 
+              <mat-icon (click)="openDialog(row)">mode_edit</mat-icon>
             </button>  
             <button mat-icon-button color="primary" >
-              <mat-icon (click)= "onDelete(i)">delete</mat-icon>
+              <mat-icon (click)= "onDelete(row,i)">delete</mat-icon>{{i}}
             </button>
           </mat-cell>
-        </ng-container>  
-        
-        
+        </ng-container>   
 
-      </ng-container>
+    </ng-container>
     
    
     <mat-header-row *matHeaderRowDef="columnOne" class="mat-bg-primary"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: columnOne"></mat-row>
+    <mat-row *matRowDef="let row; columns: columnOne" ></mat-row>
   </mat-table>
 
   <mat-paginator #paginator
-                 [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions" >
+                 [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions"  >
   </mat-paginator>
 </div>
 

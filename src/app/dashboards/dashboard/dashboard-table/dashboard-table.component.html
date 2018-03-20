@@ -4,7 +4,10 @@
   <!-- Dynamic Table -->
   <ng-container *ngFor="let col of displayHeadertwo" matColumnDef="{{col}}">
     <mat-header-cell *matHeaderCellDef mat-sort-header> {{col|uppercase}} </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element[col]}} </mat-cell>        
+    <mat-cell *matCellDef="let element">
+    <span class="tablet-label">{{col|uppercase}}</span> 
+      {{element[col]}} 
+    </mat-cell>        
   </ng-container>
   
   <ng-container matColumnDef="actions">

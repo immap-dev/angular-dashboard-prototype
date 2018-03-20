@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject, Afte
 import { FieldConfig} from './models/field-config.interface';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { EditFormDialogComponent} from './edit-form-dialog.component';
-import { Validators, ValidatorFn,NgForm } from '@angular/forms';
+import { Validators, ValidatorFn,NgForm,FormGroupDirective } from '@angular/forms';
 
 import { MatTableDataSource,MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -36,7 +36,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
    // displayedColumns = ['actions'];
    // displayedColumnstwo =[];
    element=[];
-   dataSource;  
+   // dataSource;  
    // pageOptions = [1, 5, 10];
 
    
@@ -65,11 +65,14 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
   containOpt=[];
   daftar =[];
   listValueOfInputSelect=[];
-  columnOne=['actions'];
+  referenceCascade =[];
+  // columnOne=['actions'];
+  columnOne=[];
   columnTwo=[];
   dataSourceRaw;
   pageOptions = [1, 5, 10];
   raw;
+
   constructor( private fb: FormBuilder, private dialog:MatDialog) { }
 
 
@@ -80,6 +83,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
        
         // to make first select in form
          this.indexRef = this.findIndexRef()[0];
+         console.log(this.findIndexRef());
          this.sortData(this.indexRef);
          this.thelast = this.findIndexRef()[this.findIndexRef().length-1];
 
@@ -97,6 +101,14 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
 
        const keys =Object.keys(this.raw[0]);
 
+       this.columnOne = keys;
+       this.columnOne.push('actions');
+       console.log(this.columnOne,'one');
+       this.columnTwo = Object.keys(this.raw[0]);
+       console.log(this.columnTwo,'teo');
+      
+
+
        this.dataSourceRaw = new MatTableDataSource(this.raw);
 
        // console.log('source',this.dataSourceRaw) 
@@ -106,10 +118,10 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
        // console.log('key', Object.keys(this.raw[0]));
        // console.log(this.columnOne);
 
-       keys.forEach(key=>{this.columnOne.push(key)});
-       keys.forEach(key=>{this.columnTwo.push(key)});
+       // keys.forEach(key=>{this.columnOne.push(key)});
+       // keys.forEach(key=>{this.columnTwo.push(key)});
 
-       console.log('STATUS',this.form.get('location').disabled,this.form.get('facility').disabled,this.form.get('food').disabled);
+       // console.log('STATUS',this.form.get('location').disabled,this.form.get('facility').disabled,this.form.get('food').disabled);
 
        // console.log('aksion',this.columnOne);
 
@@ -135,7 +147,8 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
 
   	}
 
-    ngAfterViewInit(){     
+    ngAfterViewInit(){
+      this.dataSourceRaw = new MatTableDataSource(this.raw);     
        this.dataSourceRaw.paginator = this.paginator;
 
     }
@@ -194,12 +207,18 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       let choicetipe=[];
       
       const firstChoice = this.config[n].cascade;
+      console.log('sort',this.config[n].cascade );
       const nameOfSelectInput = this.config[n].name;
       firstChoice.forEach(val=>choicetipe.push(val[nameOfSelectInput]));
+      console.log('sort',this.config[n].cascade );
+
+      this.referenceCascade = this.config[n].cascade;
+
       const name = firstChoice;      
       this.config[n].cascade = (Array.from(new Set(choicetipe)));
 
       console.log('sort',this.config[n].cascade );
+      console.log('sortref',this.referenceCascade );
 
       return this.config[n].cascade.sort();   
 
@@ -229,7 +248,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
 
       console.log('select',choosen);
 
-      const z= this.config[nextOpt].cascade
+      const z= this.referenceCascade //this.config[nextOpt].cascade
       this.optional= z.filter(p=>p[controlName]=== choosen);
       this.containOpt[nextOpt]=this.optional;
 
@@ -240,7 +259,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       // const xy = this.config[nextOpt].cascade;
       // let xyz = xy;
 
-      let cascadeOption = this.config[nextOpt].cascade;
+      let cascadeOption = this.referenceCascade //this.config[nextOpt].cascade;
 
       //cek apakah index ref bukan
       if(i===this.indexRef  ){
@@ -270,8 +289,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
 
       console.log('opt2',this.listValueOfInputSelect);
 
-      this.toggle(this.config[nextOpt].name);
-     
+      this.toggle(this.config[nextOpt].name);    
 
     }
 
@@ -283,27 +301,18 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       } 
     }
 
-    resetForm(){
-    
+    resetForm(){    
       let z= this.controls.length;      
       for (let xx=0; xx <z; xx++){
         if(this.controls[xx].disabled){
-          console.log(xx,this.controls[xx].disabled);
+          // console.log('reset',xx,this.controls[xx].errorState);
            let control =this.form.get(this.controls[xx].name)
            control.disable() ;             
-        }
-        let control =this.form.get(this.controls[xx].name)
-        
-        // console.log(xx,this.controls[xx].disabled);
-      }
+        }        
+      }  
       
-      this.form.reset()
 
-      Object.keys(this.form.controls).forEach(key => {
-          this.form.controls[key].setErrors(null)
-      });
-     
-      this.form= this.createGroup();
+      this.form= this.createGroup();    
 
     
     }
@@ -313,10 +322,45 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
    
 
 
+    // OLD SUBMIT
+    // submitForm(){
 
-    submitForm(){
+    // 	console.log('f2',this.form.value);
 
-    	console.log('f2',this.form.value);
+    //  if(this.valid){
+    //   this.element.push(this.value);
+    //   // this.dashboard.widget[2].dataraw.push(this.value);
+
+    //   this.raw.push(this.value);
+
+    //   console.log('submit-raw',this.raw);
+    //   this.dataSourceRaw = new MatTableDataSource(this.raw)
+
+    //   this.dataSourceRaw.paginator = this.paginator;
+     
+
+    //   //this.dataSource = new MatTableDataSource(this.element); 
+
+    //   // this.dataSource.paginator = this.paginator;
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    //   // this.submit.emit(this.value);
+    //   // this.submit.emit(this.dashboard.widget[2].dataraw);
+    //   // this.resetForm();
+    //   this.submit.emit(this.raw);
+    //   // console.log(this.form.get('facility').disabled,this.form.get('food').disabled);
+    //    this.form.reset()
+    //   this.resetForm()
+
+     
+    //  } else{ console.log('not valid')};
+      
+    //   console.log('element',this.element)
+    // }
+
+    submitForm(formData: any, formDirective: FormGroupDirective){
+
+      console.log('f2',this.form.value);
 
      if(this.valid){
       this.element.push(this.value);
@@ -325,6 +369,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       this.raw.push(this.value);
 
       console.log('submit-raw',this.raw);
+      this.dataSourceRaw = new MatTableDataSource(this.raw)
 
       this.dataSourceRaw.paginator = this.paginator;
      
@@ -338,8 +383,12 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       // this.submit.emit(this.dashboard.widget[2].dataraw);
       // this.resetForm();
       this.submit.emit(this.raw);
-      console.log(this.form.get('facility').disabled,this.form.get('food').disabled);
-      this.resetForm()
+      // console.log(this.form.get('facility').disabled,this.form.get('food').disabled);
+       // this.form.reset()
+      // this.resetForm()
+      formDirective.resetForm();
+      this.form.reset();
+      this.resetForm();
 
      
      } else{ console.log('not valid')};
@@ -348,26 +397,79 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
     }
 
 
-    onDelete(index:number){
+    // onDelete(index:number){
+    //     this.element.splice(index,1);
+    //     this.raw.splice(index,1)
+    //     console.log('after elemen',this.element);
+    //     //this.dataSource = new MatTableDataSource(this.element); 
+    //      this.dataSource = new MatTableDataSource(this.raw)
+    //      this.dataSourceRaw.paginator = this.paginator;
+    //      this.submit.emit(this.raw);
+    //     console.log('delete',index,this.raw[index]);
+    // }
+
+    onDelete(row:any,i){
+      const index=this.raw.findIndex(x=>x===row);
+      console.log('row',row, index, i, this.raw[index+1]);
+
         this.element.splice(index,1);
-        this.raw.splice(index,1)
-        console.log('after elemen',this.element);
-        // this.dataSource = new MatTableDataSource(this.element); 
-         this.dataSourceRaw.paginator = this.paginator;
+        this.raw.splice(index,1)            
+         // this.dataSource = new MatTableDataSource(this.raw)
+         this.dataSourceRaw = new MatTableDataSource(this.raw);
+          this.dataSourceRaw.paginator = this.paginator;
+         
+        if( typeof this.raw[index+1] === 'undefined' && i<=0){
+          console.log('pindah');
+          this.dataSourceRaw.paginator = this.paginator;
+          this.paginator.previousPage();
+        }
+
+           
          this.submit.emit(this.raw);
-        console.log('delete',index);
+        console.log('delete',index,this.raw[index]);
     }
 
     onAllowEdit(){
       this.allowEdit = !this.allowEdit;
     }
 
+  cekRow(row:any){
+    const a=this.raw.findIndex(x=>x===row)
+    console.log('row',row, a)
+  }
 
 
 
     // Dialog
 
-    openDialog(i){
+    // openDialog(i){
+    //   console.log('daftar',i);
+    //   this.editFormDialogRef = this.dialog.open(EditFormDialogComponent,{
+    //       data:{
+    //         oldData: this.raw[i],
+    //         config: this.config,
+    //         // selectOne: this.allProductsTypes,
+    //         // selectTwo: this.allProducts
+    //       }        
+    //   });      
+    //   this.editFormDialogRef.afterClosed().subscribe( newData =>{ 
+    //       if(newData) {
+    //         this.raw[i]=newData
+    //        this.dataSource = new MatTableDataSource(this.raw);
+    //         console.log('o',this.raw[i])
+            
+    //         this.dataSourceRaw.paginator = this.paginator;
+    //          this.submit.emit(this.raw);
+    //       }
+    //         else{} 
+    //   });    
+    // }
+
+    openDialog(row:any){
+      const i=this.raw.findIndex(x=>x===row);
+      console.log('row',row, i);
+
+      console.log('daftar',i);
       this.editFormDialogRef = this.dialog.open(EditFormDialogComponent,{
           data:{
             oldData: this.raw[i],
@@ -379,7 +481,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       this.editFormDialogRef.afterClosed().subscribe( newData =>{ 
           if(newData) {
             this.raw[i]=newData
-           
+           this.dataSourceRaw = new MatTableDataSource(this.raw);
             console.log('o',this.raw[i])
             
             this.dataSourceRaw.paginator = this.paginator;

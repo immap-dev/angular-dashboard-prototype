@@ -30,3 +30,41 @@
 .mat-cell {
    color: #673ab7;
   }
+.tablet-label {
+  display: none;
+}
+
+@media (max-width: 768px)   {
+  .mat-form-field.mat-form-field {
+    width: 150px;
+  }
+
+  .tablet-label {
+    width: 80px;
+    display: inline-block;
+        font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row { 
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 24px;
+  }
+
+  .dynamic-form div{
+ 
+     margin-left: 73px;
+     margin-right: 10px;
+
+
+  }
+
+  .mat-table {
+    overflow: auto;
+    height: 450px; 
+  }
+} 

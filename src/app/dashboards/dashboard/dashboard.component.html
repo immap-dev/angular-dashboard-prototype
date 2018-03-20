@@ -66,7 +66,7 @@
             <!-- table -->
             <app-dashboard-table *ngIf="item.type==='table'"  [dashboard]="dashboard" [displaytable]="item.datatable" [displaytable]="item.datatable" [displayheader]="item.header"></app-dashboard-table>
 
-            <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list"></app-dashboard-list>
+            <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list" (submit)="submit($event)"></app-dashboard-list>
             </mat-card>
           </mat-grid-tile>
     </mat-grid-list>

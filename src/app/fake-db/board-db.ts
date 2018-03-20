@@ -164,9 +164,9 @@ export class BoardFakeDB {
                                 name: 'location',
                                 // options: ['City A', 'City B', ' City C', 'City D'],
                                 placeholder: 'Select location',
-                                
+                                validation: ['required'],
                                 // validation: [Validators.required],                                
-                                // value: 'City A',
+                                 value: '',
                                 cascade: [
                                         {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
                                         {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
@@ -201,21 +201,22 @@ export class BoardFakeDB {
                                 // options: ['City A', 'City B', ' City C', 'City D'],
                                 placeholder: 'Select location',
                                  disabled: true,
+                                  // validation: ['required'],
                                 // validation: [Validators.required]
                                 // value: 'City A',
                                 cascade: [
-                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
-                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
-                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
-                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
-                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
-                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
-                                        {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
-                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
-                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
-                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
-                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
-                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                                        // {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                                        // {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                                        // {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                                        // {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                                        // {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                                        // {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
+                                        // {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                                        // {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                                        // {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                                        // {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                                        // {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                                        // {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
                                         // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
                                         // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
                                         // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
@@ -239,21 +240,22 @@ export class BoardFakeDB {
                                 // options: ['City A', 'City B', ' City C', 'City D'],
                                 placeholder: 'Select location',
                                 disabled: true,
+                                 // validation: ['required'],
                                 // validation: [Validators.required]
                                 // value: 'City A',
                                 cascade: [
-                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
-                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
-                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
-                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
-                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
-                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
-                                        {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
-                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
-                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
-                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
-                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
-                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                                        // {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                                        // {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                                        // {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                                        // {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                                        // {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                                        // {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
+                                        // {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                                        // {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                                        // {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                                        // {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                                        // {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                                        // {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
                                         // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
                                         // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
                                         // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
@@ -299,7 +301,7 @@ export class BoardFakeDB {
                                 name: 'star',                                
                                 inputType: 'number',
                                 placeholder: 'Star',
-                                'validation': ['required',],
+                                validation: ['required'],
                                  value: 0,
                                  // disabled: true
                                 // for input we need to spesific the input or not??? like numbe or text
@@ -311,7 +313,7 @@ export class BoardFakeDB {
                                 inputType: 'number',
                                 placeholder: 'Enter Number',
                                 validation: ['required'],
-                                 value: 0
+                                 value: 0,
                                 // for input we need to spesific the input or not??? like numbe or text
                             },
                             {
@@ -321,7 +323,7 @@ export class BoardFakeDB {
                                 inputType: 'number',
                                 placeholder: 'Enter people',
                                 validation: ['required'],
-                                 value: 0
+                                 value: 0,
                                 // for input we need to spesific the input or not??? like numbe or text
                             },
                             {
@@ -387,21 +389,25 @@ export class BoardFakeDB {
                     type: 'list',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 4
+                            cols: 4, rows: 6
                         },
                     },
                     list: [
                         {
                             name: 'Photos1',
-                            updated: new Date('1/1/16'),
+                            text: 'This establishes the main-axis, thus defining the direction flex items are placed in the flex container', 
+                            updated: new Date(),      
+                            // updated: new Date('1/1/16'),
                         },
                         {
                             name: 'Recipes1',
+                            text: 'This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property',
                             updated: new Date('1/17/16'),
                         },
                         {
                             name: 'Work1',
-                            updated: new Date('1/28/16'),
+                            text: 'This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property',
+                            updated: new Date()//('1/28/16'),
                         }
                     ]
                 }
@@ -461,7 +467,7 @@ export class BoardFakeDB {
                     type: 'form',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 8
+                            cols: 4, rows: 10
                         }
                     },
                     config:
@@ -570,18 +576,18 @@ export class BoardFakeDB {
                                 // validation: [Validators.required]
                                 // value: 'City A',
                                 cascade: [
-                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
-                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
-                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
-                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
-                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
-                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
-                                        {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
-                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
-                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
-                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
-                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
-                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                                        // {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                                        // {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                                        // {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                                        // {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                                        // {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                                        // {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
+                                        // {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                                        // {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                                        // {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                                        // {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                                        // {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                                        // {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
                                         // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
                                         // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
                                         // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
@@ -608,18 +614,18 @@ export class BoardFakeDB {
                                 // validation: [Validators.required]
                                 // value: 'City A',
                                 cascade: [
-                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
-                                        {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
-                                        {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
-                                        {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
-                                        {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
-                                        {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
-                                        {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
-                                        {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
-                                        {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
-                                        {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
-                                        {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
-                                        {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
+                                        // {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   },
+                                        // {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" },
+                                        // {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   },
+                                        // {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     },
+                                        // {  location: 'city F',facility: 'SmallWidget5', food:"Fries"   },
+                                        // {  location: 'city B',facility: 'SmallWidget1', food:"Gethuk"  },
+                                        // {  location: 'city B',facility: 'LargeWidget1', food:"Ham"     },
+                                        // {  location: 'city C',facility: 'LargeWidget2', food:"Ikan"    },
+                                        // {  location: 'city C',facility: 'LargeWidget3', food:"Jelly"   },
+                                        // {  location: 'city C',facility: 'LargeWidget4', food:"Lemon"   },
+                                        // {  location: 'city D',facility: 'LargeWidget5', food:"Meat"    },
+                                        // {  location: 'city E',facility: 'LargeWidget6', food:"Nectar"  },
                                         // {  facility: 'SmallWidget1',location: 'city A', food:"Apple"   },
                                         // {  facility: 'SmallWidget2',location: 'city A', food:"Biscuit" },
                                         // {  facility: 'SmallWidget3',location: 'city A', food:"Candy"   },
