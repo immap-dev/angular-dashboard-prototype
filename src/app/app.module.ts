@@ -36,6 +36,7 @@ const appRoutes: Routes = [
     NavListComponent,
     AuthComponent,
     SplashScreenComponent,
+    
   ],
   imports: [
     BrowserModule,

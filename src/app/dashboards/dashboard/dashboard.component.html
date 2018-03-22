@@ -1,4 +1,5 @@
 <!-- <app-header [title]="dashboard.title.name"></app-header> -->
+
 <mat-card class="default-container" *ngIf="dashboard.typepage === 'default'">
     <h1>Card</h1> <button mat-raised-button color="primary" (click) ="saveDefault()">Save change</button>
     <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >
@@ -43,6 +44,7 @@
 
 <ng-container *ngIf="dashboard.typepage !== 'default'">
     <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >  
+
           <mat-grid-tile *ngFor="let item of dashboard.widget; let i = index " [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows" >
             <mat-card> <!-- <mat-card class="mat-border"> -->
             <!-- title -->
@@ -71,8 +73,11 @@
             <app-dashboard-list *ngIf="item.type==='list'" [list]="item.list" (submit)="submit($event)"></app-dashboard-list>
             </mat-card>
           </mat-grid-tile>
+          <app-downlod-button></app-downlod-button>
     </mat-grid-list>
 </ng-container>
+
+
 
 
     

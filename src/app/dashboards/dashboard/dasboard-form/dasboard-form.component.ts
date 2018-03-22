@@ -474,6 +474,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
           data:{
             oldData: this.raw[i],
             config: this.config,
+            cascadereference: this.referenceCascade           
             // selectOne: this.allProductsTypes,
             // selectTwo: this.allProducts
           }        

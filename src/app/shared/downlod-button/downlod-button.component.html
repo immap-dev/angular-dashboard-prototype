@@ -1,0 +1,46 @@
+
+<div class="example-button-row"> 
+  <button mat-fab (click)="onOpen()" color="primary">
+    <mat-icon  *ngIf="!open"  aria-label="Example icon-button with a heart icon">cloud_download
+
+    </mat-icon>
+     <mat-icon *ngIf="open" aria-label="Example icon-button with a heart  icon">
+       clear
+    </mat-icon>
+  </button>
+
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon  aria-label="Example icon-button with a heart icon">group</mat-icon>
+   
+  </button>
+  
+
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon aria-label="Example icon-button with a heart icon">show_chart</mat-icon>
+  </button>
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon aria-label="Example icon-button with a heart icon">attach_money</mat-icon>
+  </button>
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon aria-label="Example icon-button with a heart icon">attach_file</mat-icon>
+  </button>
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon aria-label="Example icon-button with a heart icon">assignment</mat-icon>
+  </button>
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon aria-label="Example icon-button with a heart icon">assignment_late</mat-icon>
+
+  </button>
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon aria-label="Example icon-button with a heart icon">assignment_turned_in</mat-icon>
+    
+  </button>
+  <button mat-mini-fab *ngIf="open" color="primary">
+    <mat-icon  aria-label="Example icon-button with a heart icon">picture_as_pdf</mat-icon>
+   
+  </button>
+
+  
+  
+  
+</div>

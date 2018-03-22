@@ -67,3 +67,12 @@ a.mat-line{
 .space {
    flex: 1 1 auto;
 }
+
+@media (max-width: 768px)   {
+
+  .mat-sidenav{
+    min-width: 100px;
+    max-width: 200px;
+  }
+  
+}

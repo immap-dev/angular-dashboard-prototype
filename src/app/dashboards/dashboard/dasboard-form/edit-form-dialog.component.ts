@@ -12,6 +12,7 @@ export class EditFormDialogComponent implements OnInit{
 	allProductsTypes;
 	productsAfterChangeEvent;
 	indexOfSelect;
+  refOptions;
 
 	indexRef;
   	optional;
@@ -19,6 +20,8 @@ export class EditFormDialogComponent implements OnInit{
   	containOpt=[];
   	daftar =[];
   	containOpt2=[];
+    listValueOfInputSelect=[];
+  referenceCascade =[];
 
 	  
 	constructor( @Inject(MAT_DIALOG_DATA) public data: any, 
@@ -32,20 +35,20 @@ export class EditFormDialogComponent implements OnInit{
 	   this.form = this.createGroup();
      console.log('tolddata',this.data.oldData);
 
-	   this.form.setValue(this.data.oldData);
+	   
      this.indexRef = this.findIndexRef()[0];
-     this.sortData(this.indexRef);
-      this.setInitData();
-     this.thelast = this.findIndexRef()[this.findIndexRef().length-1];
+     // this.sortData(this.indexRef);
+     this.refOptions =  this.sortData(this.indexRef);
 
-
-	
+     
+     this.thelast = this.findIndexRef()[this.findIndexRef().length-1];	
 
 	   
 	 console.log('indexref',this.indexRef);
 	 console.log('olddata', this.data.oldData);
 
-	   
+	    this.setInitData();
+      this.form.setValue(this.data.oldData);
 	   // this.typeChanged();
 
 	}
@@ -73,10 +76,25 @@ export class EditFormDialogComponent implements OnInit{
       return selections
     }
 
-    sortData(n){
+    // sortData(n){
+    //   let choicetipe=[];
+      
+    //   let firstChoice = this.data.config[n].cascade;
+    //   const nameOfSelectInput = this.data.config[n].name;
+    //   firstChoice.forEach(val=>choicetipe.push(val[nameOfSelectInput]));
+    //   const name = firstChoice;      
+    //    firstChoice = (Array.from(new Set(choicetipe)));
+
+    //   // console.log('sort',this.data.config[n].cascade );
+
+    //   return firstChoice.sort();   
+
+    // }
+     sortData(n){
       let choicetipe=[];
       
-      let firstChoice = this.data.config[n].cascade;
+      let firstChoice = this.data.cascadereference//this.data.config[n].cascade;
+      this.referenceCascade = this.data.cascadereference;
       const nameOfSelectInput = this.data.config[n].name;
       firstChoice.forEach(val=>choicetipe.push(val[nameOfSelectInput]));
       const name = firstChoice;      
@@ -90,6 +108,37 @@ export class EditFormDialogComponent implements OnInit{
 
     
 
+    // setInitData(){
+    //   let init = this.findIndexRef();
+    //   const orderNameselect=[]
+    //   const initNext = init[init.indexOf(this.indexRef)+1]
+    //   for(let x of init){
+    //     orderNameselect.push(this.controls2[x].name);
+    //   }
+
+    //   // Object.values(this.data.)
+    //   for(let y in orderNameselect){
+    //     this.daftar[y] = this.data.oldData[orderNameselect[y]];
+    //   }
+    //   const xy = this.data.config[initNext].cascade;
+    //   let xyz = xy;
+    //   console.log(xyz);
+
+    //   for(let j in this.daftar){
+    //     if(j>'0'){
+    //       this.containOpt2[init[j]]=xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j]);
+    //     }
+    //     console.log(this.containOpt2);
+       
+       
+    //   }
+
+
+
+
+    //   console.log('edit',orderNameselect,init,init.indexOf(0));
+    // }
+
     setInitData(){
       let init = this.findIndexRef();
       const orderNameselect=[]
@@ -102,18 +151,29 @@ export class EditFormDialogComponent implements OnInit{
       for(let y in orderNameselect){
         this.daftar[y] = this.data.oldData[orderNameselect[y]];
       }
-      const xy = this.data.config[initNext].cascade;
+      console.log("SETINITDAF",this.daftar)
+      const xy = this.referenceCascade//this.data.config[initNext].cascade;
       let xyz = xy;
       console.log(xyz);
 
-      for(let j in this.daftar){
-        if(j>'0'){
-          this.containOpt2[init[j]]=xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j]);
+      // for(let j in this.daftar){
+      //   if(j>'0'){
+      //     this.containOpt2[init[j]]=xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j]);
+      //   }
+      //   // this.containOpt2[init[j]]=xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j]);
+
+      //   console.log('SETINIDATA',this.containOpt2,j,this.daftar[j]);
+       
+       
+      // }
+
+      for(let j =0;j<this.daftar.length;j++){
+        if(j>0){
+          this.containOpt2[init[j]]=xyz.filter(p=>p[orderNameselect[j-1]]=== this.daftar[j-1]);
         }
-        console.log(this.containOpt2);
-       
-       
+        console.log('SETINIDATA',this.containOpt2,j,this.daftar[j-1],orderNameselect[j-1]);
       }
+
 
 
 
@@ -121,11 +181,69 @@ export class EditFormDialogComponent implements OnInit{
       console.log('edit',orderNameselect,init,init.indexOf(0));
     }
 
+    // selectChange(i){
+    //   console.log('i',i);     
+
+    //   let b = this.controls2[i].name;
+    //   let init = this.findIndexRef();// index of type select chaining
+    //   const orderNameselect=[]
+    //   for(let x of init){
+    //     orderNameselect.push(this.controls2[x].name);
+    //   }
+    //   console.log('order',orderNameselect);
+
+    //   console.log('init',init); 
+    //   let initdaftar = init.indexOf(i);// search index from indexin 
+    //   let nextOpt = init[init.indexOf(i)+1];
+     
+     
+    //   let choosen = this.form.get(b).value;
+    //   console.log('select',choosen);
+    //   const z= this.data.config[nextOpt].cascade
+    //   this.optional= z.filter(p=>p[b]=== choosen);
+    //   this.containOpt[nextOpt]=this.optional;
+    //   console.log('apakah berubah', this.optional);
+    //   console.log('apakah masuk', this.containOpt);
+
+    //   //biar bisa saling chainng, kurang disable , enable udah bisa
+    //   const xy = this.data.config[nextOpt].cascade;
+    //   let xyz = xy;
+
+    //   //cek apakah index ref bukan
+    //   if(i===this.indexRef  ){
+    //     this.daftar =[];
+    //     this.containOpt2=[];       
+               
+    //     this.daftar[init.indexOf(i)] = choosen;
+
+    //   } else{
+    //     this.daftar[init.indexOf(i)] = choosen;
+    //  console.log('daftar',this.daftar);
+    //   }
+
+     
+      
+    //   for(let j in this.daftar){      
+       
+    //     xyz = xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j])
+    //     console.log('loop',xyz);
+    //   }
+    //   console.log('xy',xyz);
+    //   this.containOpt2[nextOpt] = xyz;
+    //   console.log('opt2',this.containOpt2);
+    //   // this.toggle(this.data.config[nextOpt].name);
+     
+
+    // }
+
     selectChange(i){
       console.log('i',i);     
 
-      let b = this.controls2[i].name;
+      let controlName = this.controls2[i].name;
       let init = this.findIndexRef();// index of type select chaining
+      let initdaftar = init.indexOf(i);// search index from indexin 
+      let nextOpt = init[init.indexOf(i)+1];
+     
       const orderNameselect=[]
       for(let x of init){
         orderNameselect.push(this.controls2[x].name);
@@ -133,21 +251,25 @@ export class EditFormDialogComponent implements OnInit{
       console.log('order',orderNameselect);
 
       console.log('init',init); 
-      let initdaftar = init.indexOf(i);// search index from indexin 
-      let nextOpt = init[init.indexOf(i)+1];
+      
      
-     
-      let choosen = this.form.get(b).value;
+      let choosen = this.form.get(controlName).value;
       console.log('select',choosen);
-      const z= this.data.config[nextOpt].cascade
-      this.optional= z.filter(p=>p[b]=== choosen);
+      const z= this.referenceCascade//this.data.config[nextOpt].cascade
+      console.log(this.referenceCascade);
+      this.optional= z.filter(p=>p[controlName]=== choosen);
       this.containOpt[nextOpt]=this.optional;
+      this.containOpt2[nextOpt]=this.optional;
       console.log('apakah berubah', this.optional);
       console.log('apakah masuk', this.containOpt);
+      this.daftar.splice(nextOpt,1);
+      console.log('ceknexoptdaftar',this.daftar)
+
 
       //biar bisa saling chainng, kurang disable , enable udah bisa
-      const xy = this.data.config[nextOpt].cascade;
-      let xyz = xy;
+      // const xy = this.data.config[nextOpt].cascade;
+      // let xyz = xy;
+      let cascadeOption = this.referenceCascade;
 
       //cek apakah index ref bukan
       if(i===this.indexRef  ){
@@ -165,11 +287,12 @@ export class EditFormDialogComponent implements OnInit{
       
       for(let j in this.daftar){      
        
-        xyz = xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j])
-        console.log('loop',xyz);
+        // xyz = xyz.filter(p=>p[orderNameselect[j]]=== this.daftar[j])
+        cascadeOption = cascadeOption.filter(p=>p[orderNameselect[j]]=== this.daftar[j])
+         console.log('loop',cascadeOption);
       }
-      console.log('xy',xyz);
-      this.containOpt2[nextOpt] = xyz;
+      console.log('xy',cascadeOption);
+      this.containOpt2[nextOpt] = cascadeOption;
       console.log('opt2',this.containOpt2);
       // this.toggle(this.data.config[nextOpt].name);
      

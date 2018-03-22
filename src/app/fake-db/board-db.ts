@@ -401,7 +401,7 @@ export class BoardFakeDB {
                         },
                         {
                             name: 'Recipes1',
-                            text: 'This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property This establishes the main-axis, thus defining the direction flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property',
+                            text: 'This establishes the main-axis, This establishes the main-axisThis establishes theisThis establishes his establishes the main-axisThis establishes the main-axisThis establishes the flex items are placed in the flex container. By default, flex items will all try to fit onto one line. You can change that and allow the items to wrap as needed with this property',
                             updated: new Date('1/17/16'),
                         },
                         {
@@ -682,6 +682,16 @@ export class BoardFakeDB {
                                 name: 'number',                                
                                 inputType: 'number',
                                 placeholder: 'Enter Number',
+                                validation: ['required'],
+                                value: 4
+                                // for input we need to spesific the input or not??? like numbe or text
+                            },
+                            {
+                                type: 'date',
+                                label: 'Start Date',
+                                name: 'start',                    
+                               
+                                placeholder: 'Start Date *',
                                 validation: ['required']
                                 // value: 4
                                 // for input we need to spesific the input or not??? like numbe or text

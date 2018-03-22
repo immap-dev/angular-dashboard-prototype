@@ -1,0 +1,10 @@
+<mat-card >
+	<div *ngFor="let x of checkbox" >
+	  <mat-checkbox color="warn" [(ngModel)]="x.checked">{{x.name}}</mat-checkbox>
+	<p>{{x.checked}}</p>
+	</div>
+
+
+</mat-card>
+
+  

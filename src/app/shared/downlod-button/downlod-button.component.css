@@ -1,0 +1,14 @@
+.example-button-row {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  /* animation-timing-function: ease-in; */
+  position: fixed;
+  top: 285px;
+  right: 25px;
+}
+
+button{
+  margin: 5px;
+}

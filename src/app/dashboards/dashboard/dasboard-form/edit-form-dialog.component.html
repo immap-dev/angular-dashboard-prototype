@@ -57,7 +57,7 @@
 
   <mat-form-field *ngIf="c.type==='select' && !c.options" class="full-width">
             
-            <ng-container *ngIf=" i == indexRef ">
+            <!-- <ng-container *ngIf=" i == indexRef ">
               <mat-select [formControlName]="c.name"  [placeholder]="c.name" (change)="selectChange(i)" >              
               <mat-option *ngFor="let  option of c.cascade" [value]="option" > {{option}}</mat-option>
               </mat-select>                         
@@ -74,8 +74,29 @@
 
                 <mat-option *ngFor="let  option of containOpt2[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
               </mat-select>              
+            </ng-container> -->
+
+            <ng-container *ngIf=" i == indexRef ">
+              <mat-select [formControlName]="c.name"  [placeholder]="c.name" (change)="selectChange(i)" >              
+              <mat-option *ngFor="let  option of refOptions" [value]="option" > {{option}}</mat-option>
+              </mat-select>                         
             </ng-container>
+
+            <ng-container *ngIf=" i != indexRef && i !== thelast">
+              <mat-select [formControlName]="c.name" [placeholder]="c.name" (change)="selectChange(i)" >             
+                <mat-option *ngFor="let  option of containOpt2[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
+              </mat-select>              
+            </ng-container>
+
+            <ng-container *ngIf=" i == thelast ">              
+              <mat-select [formControlName]="c.name" [placeholder]="c.name">  
+
+                <mat-option *ngFor="let  option of containOpt2[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
+              </mat-select>              
+            </ng-container>
+
        </mat-form-field>
+
        <mat-form-field *ngIf="c.type==='select' && c.options" class="full-width" >
         <mat-select [formControlName]="c.name" [placeholder]="c.name">             
                 <mat-option *ngFor="let  option of c.options" [value]="option">{{option}}</mat-option>

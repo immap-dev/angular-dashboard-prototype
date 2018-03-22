@@ -27,9 +27,7 @@
 
                   <mat-option *ngFor="let  option of listValueOfInputSelect[i]" [value]="option[c.name]" > {{option[c.name]}}</mat-option>
                 </mat-select>              
-              </ng-container>  
-              
-             
+              </ng-container>         
             
 
 
@@ -54,15 +52,17 @@
             <input matInput type= "text" min="0" [formControlName]="c.name" [placeholder]="c.name" >
           </ng-container>
         </mat-form-field>
-
-
-         
+        <ng-container *ngIf="c.type==='date'">
+          <app-date-picker [form]="form" [control]="c" ></app-date-picker>    
+        </ng-container>
+             
       </ng-container>
 
       
          <div> <button  mat-raised-button color="primary" type="submit" class="btn btn-primary"><mat-icon >add</mat-icon> </button>
          </div>
-       
+        
+
       
       <!-- <p>{{form.status | json}}</p> -->
       
@@ -102,6 +102,8 @@
                  [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions" >
   </mat-paginator>
 </div> -->
+
+<!-- <app-checkbox></app-checkbox> -->
 
 <!-- coba -->
 <div class="example-container mat-elevation-z8">

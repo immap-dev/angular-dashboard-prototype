@@ -24,9 +24,11 @@ h4{
 
 .conten{
  width: 60%;
- /* min-width: 30%; */
+ 
  
 }
+
+
 
 .link-conten{
   display: flex;
@@ -36,6 +38,7 @@ h4{
   align-items:center;
   /* margin-left: 100px; */
   margin: auto;
+  /*margin-left: 10px;*/
 }
 
 .example-header {
@@ -54,7 +57,13 @@ h4{
 .mat-list{
   height: 400px;
   overflow: auto;
+  /*font-size: 3vh;*/
 }
+
+.mat-list .mat-list-item{
+  /*font-size: 1rem;*/
+}
+
 
 .line{
   width: 100%;
@@ -65,3 +74,6 @@ h4{
   margin-bottom: 10px;
   margin-top: 10px;
 }
+/*.mat-list.mat-list-item .mat-list-item-content{
+  height: auto;
+}*/

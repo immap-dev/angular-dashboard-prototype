@@ -20,6 +20,7 @@ import * as L from 'leaflet';
 import {SearchPipe} from '../core/search.pipe';
 
 import {SharedModule} from '../shared/shared.module';
+import {CheckboxModule} from '../core/checkbox/checkbox.module';
 
 
 
@@ -57,6 +58,7 @@ const routes: Routes =[
 	],
 	imports:[
 		CommonModule,
+		CheckboxModule,
 		DynamicFormModule,
 		RouterModule.forChild(routes),
 		LeafletModule.forRoot(),
