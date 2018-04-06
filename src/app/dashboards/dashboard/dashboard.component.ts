@@ -51,6 +51,8 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
                                     console.log(this.dashboard.widget);
                                     console.log('form',this.dashboard.widget[2]);
                                     this.gridCols = this.dashboard.gridlist.cols;
+                                    // console.log('BACK',this.location.back());
+                                    console.log('cek tanggal',new Date());
 
                                  });
   }
@@ -108,6 +110,10 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   //   this.dashboard.widget[id].style.gridtile.cols = (event.target.innerWidth <= 768) ? 1 : this.dashboard.widget[id].style.gridtile.cols;
   //   console.log('colspan',this.dashboard.widget[id].style.gridtile.cols);
   // }
+
+  goBack(){
+    this.location.back();
+  }
 
   ngOnDestroy() {
     this.onDashboardChanged.unsubscribe();

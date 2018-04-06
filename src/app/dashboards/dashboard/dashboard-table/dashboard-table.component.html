@@ -114,3 +114,69 @@
     </form>
     <pre>{{invoiceForm.value | json}}</pre>
  -->
+
+ <!-- TRY -->
+  <!-- <mat-table #table [dataSource]="dataSource"> -->
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <!-- <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element">  -->
+        <!-- text -->
+        <!-- <mat-form-field class="example-full-width">
+    <input matInput  [value]="element.position">
+  </mat-form-field>
+         </mat-cell>
+    </ng-container> -->
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element" color="primary"> -->
+        <!-- text with link -->
+       <!--  <a href="https://material.angular.io/components/icon/api">
+          {{element.name}}
+        </a> 
+      </mat-cell>
+    </ng-container> -->
+
+    <!-- Weight Column -->
+   <!--  <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element">  -->
+        <!-- link with icon -->
+        <!-- <a   href="https://material.angular.io/components/icon/api">
+        <mat-icon color="primary">launch</mat-icon>
+        </a>
+        </mat-cell>
+    </ng-container> -->
+
+    <!-- Symbol Column -->
+    <!-- <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element">  -->
+        <!-- {{element.symbol}} -->
+        <!-- icon -->
+       <!--  <mat-icon color="primary">{{element.symbol}}</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table> -->
+
+  <!-- icon, iconlink,text,textlink -->
+  <!-- <p>{{tabledata[0].name}}</p>
+
+  <mat-icon color="primary">{{tabledata[0].symbol}}</mat-icon>
+
+  <a  href="{{tabledata[0].weight}}">
+        <mat-icon color="primary">launch</mat-icon>
+  </a>
+
+  <a href="{{tabledata[0].name}}">
+          {{tabledata[0].name}}
+        </a> -->

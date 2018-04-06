@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Edit Data</h1>
    <mat-dialog-content *ngFor="let c of controlName;let i = index ">
 	
-   	  <mat-form-field *ngIf="c!=='text' && c!== 'updated'">
+   	  <mat-form-field *ngIf="c=== 'name'">
 	    <input matInput placeholder="Input" [formControlName]="c">
 	  </mat-form-field>
 

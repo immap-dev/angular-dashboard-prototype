@@ -57,6 +57,9 @@ export class DashboardTableComponent implements OnInit,AfterViewInit {
 
   raw;
 
+  //icon  link
+  tabledata;
+
 
 
   constructor(private dashboardService:DashboardService, private _fb: FormBuilder) { }
@@ -106,7 +109,9 @@ export class DashboardTableComponent implements OnInit,AfterViewInit {
 
      // this.invoiceForm = this._fb.group({
      //    itemRows: this._fb.array([this.initItemRows()])
-     //  }); 
+     //  });
+
+     this.tabledata = ELEMENT_DATA; 
 
   }
 
@@ -181,6 +186,29 @@ export class DashboardTableComponent implements OnInit,AfterViewInit {
 //   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
    
 // ];
+
+const ELEMENT_DATA = [
+  {position: 1, name: 'Hydrogen', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 2, name: 'Helium', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 3, name: 'Lithium', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 4, name: 'Beryllium', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 5, name: 'Boron', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 6, name: 'Carbon', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 7, name: 'Nitrogen', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 8, name: 'Oxygen', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 9, name: 'Fluorine', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 10, name: 'Neon', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 11, name: 'Sodium', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 12, name: 'Magnesium', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 13, name: 'Aluminum', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 14, name: 'Silicon', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 15, name: 'Phosphorus', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 16, name: 'Sulfur', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 17, name: 'Chlorine', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 18, name: 'Argon', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 19, name: 'Potassium', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+  {position: 20, name: 'Calcium', weight: 'https://material.angular.io/components/icon/api', symbol: 'query_builder'},
+];
 
 
 

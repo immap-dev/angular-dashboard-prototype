@@ -14,3 +14,29 @@
 .subtitle{
 	font-size: 18px;
 }
+
+.row{
+	display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.left{
+	align-self: flex-start;
+}
+
+.right{
+	margin-left: auto;
+	margin-right: 200px;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+p{
+	font-size: 14px;
+	font-weight: 500;
+}

@@ -58,6 +58,33 @@ margin:0 10px 0 10px;
   display: none;
 }
 
+.comma{
+  display: flex;
+  flex-flow: row;
+  /*justify-content: center;*/
+  justify-content: flex-start;
+  align-items: center;
+  /*text-transform: uppercase;*/
+}
+
+.right{
+  margin-left: auto;
+  margin-right: 140px;}
+.left{
+  align-self: flex-start;
+}
+.icon{
+  margin-left: 100px;
+  margin-right: 20px;
+  font-size: 25px;
+}
+
+.space{
+  margin-left: 5px;
+
+}
+
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {  
 

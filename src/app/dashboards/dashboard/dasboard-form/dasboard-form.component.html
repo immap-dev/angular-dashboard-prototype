@@ -10,9 +10,15 @@
 
         <mat-form-field *ngIf="c.type==='select' && !c.options" class="full-width" >
                <!-- using name -->
-              <ng-container *ngIf=" i == indexRef ">
+              <!-- <ng-container *ngIf=" i == indexRef ">
                 <mat-select [formControlName]="c.name"  [placeholder]="c.name" (change)="selectChange(i)"  >              
                 <mat-option *ngFor="let  option of c.cascade" [value]="option" > {{option}}</mat-option>
+                </mat-select>                         
+              </ng-container> -->
+
+              <ng-container *ngIf=" i == indexRef ">
+                <mat-select [formControlName]="c.name"  [placeholder]="c.name" (change)="selectChange(i)"  >              
+                <mat-option *ngFor="let  option of firstCascade" [value]="option" > {{option}}</mat-option>
                 </mat-select>                         
               </ng-container>
 
@@ -106,7 +112,9 @@
 <!-- <app-checkbox></app-checkbox> -->
 
 <!-- coba -->
-<div class="example-container mat-elevation-z8">
+
+<!-- DISPLAY table -->
+<div class="example-container mat-elevation-z8" *ngIf="display =='table'">
 
   <mat-table #table [dataSource]="dataSourceRaw" >
     <ng-container *ngFor="let col of columnTwo " matColumnDef="{{col}}" >
@@ -126,8 +134,8 @@
             <button mat-icon-button color="primary" > 
               <mat-icon (click)="openDialog(row)">mode_edit</mat-icon>
             </button>  
-            <button mat-icon-button color="primary" >
-              <mat-icon (click)= "onDelete(row,i)">delete</mat-icon>{{i}}
+            <button mat-icon-button color="warn" >
+              <mat-icon (click)= "onDelete(row,i)">delete</mat-icon><!-- {{i}} -->
             </button>
           </mat-cell>
         </ng-container>   
@@ -139,6 +147,35 @@
     <mat-row *matRowDef="let row; columns: columnOne" ></mat-row>
   </mat-table>
 
+  <mat-paginator #paginator
+                 [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions"  >
+  </mat-paginator>
+</div>
+
+<!-- DISPLAY Comma -->
+<div *ngIf="display =='comma'"> 
+  <!-- <ng-container  *ngFor="let data of raw; let i = index "> -->
+  <div  *ngFor="let data of obs | async">
+    
+      <div class="comma">
+        <mat-icon class="icon" color="primary">location_on</mat-icon>
+        <p *ngFor="let key of columnTwo" class="space mat-color-primary" color="primary">
+          {{data[key]}}, 
+        </p>
+        <ng-container *ngIf="allowEdit">
+         <div class="right">
+           <button mat-mini-fab color="primary">
+            <mat-icon (click)="openDialog(data)">mode_edit</mat-icon>
+          </button>
+           <button mat-mini-fab color="warn"  >
+            <mat-icon aria-label="Example icon-button with a heart icon"  (click)= "onDelete(data,i)" >close</mat-icon>
+           </button>         
+         </div>        
+        </ng-container>
+      </div>
+      
+    
+  </div>
   <mat-paginator #paginator
                  [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions"  >
   </mat-paginator>

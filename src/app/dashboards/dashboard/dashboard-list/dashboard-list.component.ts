@@ -9,7 +9,8 @@ import {EditListComponent} from './edit-list.component';
 })
 export class DashboardListComponent implements OnInit {
  search:boolean= false;
-  @Input() list; 
+  @Input() list;
+  @Input() dashboard; 
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog) { }
@@ -26,14 +27,15 @@ export class DashboardListComponent implements OnInit {
   openDialog(i): void {
     this.editListDialog = this.dialog.open(EditListComponent, {
       width: '250px',
-      data: this.list[i]
+      data: this.list.draft[i]
       
     });
 
     this.editListDialog.afterClosed().subscribe(result => {
       if(result){
         console.log('The dialog was closed',result);
-      this.list[i] = result;
+      this.list.draft[i] = result;
+       this.dashboard.date = new Date(); // to change date in Database
       this.submit.emit(this.list);
       }
       else{

@@ -233,6 +233,7 @@ export class DashboardModel{
         }[];
         list?:{}[];
         dataraw?:{}[];
+        cascadeRef?:{}[];
     }[];
     maplocation:{
         name:string;

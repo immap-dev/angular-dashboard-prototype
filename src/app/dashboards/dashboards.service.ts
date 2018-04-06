@@ -129,8 +129,9 @@ export class DashboardService implements Resolve<any> {
         return new Promise((resolve, reject) => {
             this.http.put('api/scrumboard-boards/' + this.dashboard.id, this.dashboard)
                      .subscribe(response => {
-                         this.onDashboardChanged.next(this.dashboard);
-                         console.log(this.dashboard);
+
+                         this.onDashboardChanged.next(this.dashboard);                         
+                         console.log("POST",this.dashboard);
                          resolve(this.dashboard);
                      }, reject);
 

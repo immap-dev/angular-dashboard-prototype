@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject, AfterViewInit,OnDestroy } from '@angular/core';
 import { FieldConfig} from './models/field-config.interface';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { EditFormDialogComponent} from './edit-form-dialog.component';
 import { Validators, ValidatorFn,NgForm,FormGroupDirective } from '@angular/forms';
-
+import {Observable} from 'rxjs/Observable';
 import { MatTableDataSource,MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
@@ -11,7 +11,7 @@ import { MatTableDataSource,MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_
   templateUrl: './dasboard-form.component.html',
   styleUrls: ['./dasboard-form.component.css']
 })
-export class DasboardFormComponent implements OnInit, AfterViewInit {
+export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
   @Input() config;
   @Input() dashboard;
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
@@ -66,12 +66,17 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
   daftar =[];
   listValueOfInputSelect=[];
   referenceCascade =[];
+  
+  firstCascade=[];
   // columnOne=['actions'];
   columnOne=[];
   columnTwo=[];
   dataSourceRaw;
   pageOptions = [1, 5, 10];
   raw;
+  display:string;
+  try;
+  obs: Observable<any>;
 
   constructor( private fb: FormBuilder, private dialog:MatDialog) { }
 
@@ -80,11 +85,24 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
   	  	this.form = this.createGroup();
   	  	console.log('c',this.controls);
         console.log('forminit',this.form);
+
+         //cek dataraw
+       let filterWidgetForm= this.dashboard.widget.filter(w=> w.type === 'form');
+       this.raw = filterWidgetForm[0].dataraw//this.dashboard.widget[2].dataraw;
+       console.log('CASCADE',filterWidgetForm[0].cascadeRef);
+       console.log('CASCADECOBA',this.raw[0]); 
+       // this.try=Object.values(this.raw[0]);
+       // this.try = this.try.join(" and ");      
+       this.referenceCascade= filterWidgetForm[0].cascadeRef;
        
         // to make first select in form
          this.indexRef = this.findIndexRef()[0];
          console.log(this.findIndexRef());
-         this.sortData(this.indexRef);
+         this.firstCascade=this.sortData(this.indexRef);
+        
+
+         // this.sortData(this.indexRef);
+
          this.thelast = this.findIndexRef()[this.findIndexRef().length-1];
 
 
@@ -93,10 +111,8 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
         // //this.config[this.indexRef].data
         // console.log('fa',this.sortData(this.indexRef));
 
-         //cek dataraw
-       let filterWidgetForm= this.dashboard.widget.filter(w=> w.type === 'form');
-       this.raw = filterWidgetForm[0].dataraw//this.dashboard.widget[2].dataraw;
-       
+        
+      
        // console.log('filer-form',filterForm[0].dataraw);
 
        const keys =Object.keys(this.raw[0]);
@@ -110,6 +126,10 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
 
 
        this.dataSourceRaw = new MatTableDataSource(this.raw);
+
+
+       // this.obs = this.dataSourceRaw.connect();
+       // console.log("OBS",this.obs);
 
        // console.log('source',this.dataSourceRaw) 
        // this.dataSourceRaw.paginator = this.paginator;
@@ -142,6 +162,23 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
         // this.controls.forEach(control => {this.displayedColumns.push(control.name)})
         // console.log('first',this.displayedColumns)
         // this.controls.forEach(control => {this.displayedColumnstwo.push(control.name)}) 
+        // console.log("CEK WIDGET",this.dashboard.widget.type === 'form');
+
+
+        //SET FORM DISPLAY TABLE OR COMMA
+        let x=this.dashboard.widget;
+        x.forEach(z=> {
+          if(z.type == 'form'){
+            this.display = z.style.display;
+            console.log('CEK FORM',z.type,this.display)};
+          });
+       setTimeout(() => {
+            this.obs = this.dataSourceRaw.connect();
+       console.log("OBS",this.obs);
+        });
+       
+
+
 
 
 
@@ -203,26 +240,48 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       return selections
     }
 
+    // sortData(n){
+    //   let choicetipe=[];
+      
+    //   const firstChoice = this.config[n].cascade;
+    //   console.log('sort',this.config[n].cascade );
+    //   const nameOfSelectInput = this.config[n].name;
+    //   firstChoice.forEach(val=>choicetipe.push(val[nameOfSelectInput]));
+    //   console.log('sort',this.config[n].cascade );
+
+    //   this.referenceCascade = this.config[n].cascade;
+
+    //   const name = firstChoice;      
+    //   this.config[n].cascade = (Array.from(new Set(choicetipe)));
+
+    //   console.log('sort',this.config[n].cascade );
+    //   console.log('sortref',this.referenceCascade );
+
+    //   return this.config[n].cascade.sort();   
+
+    // }
+    //OnesourceReference
     sortData(n){
       let choicetipe=[];
       
-      const firstChoice = this.config[n].cascade;
-      console.log('sort',this.config[n].cascade );
+      const firstChoice = this.referenceCascade//this.config[n].cascade;
+      // console.log('sort',this.config[n].cascade );
       const nameOfSelectInput = this.config[n].name;
       firstChoice.forEach(val=>choicetipe.push(val[nameOfSelectInput]));
-      console.log('sort',this.config[n].cascade );
+      // console.log('sort',this.config[n].cascade );
 
-      this.referenceCascade = this.config[n].cascade;
+      // this.referenceCascade = this.config[n].cascade;//ganti
 
       const name = firstChoice;      
-      this.config[n].cascade = (Array.from(new Set(choicetipe)));
+      const filtered = (Array.from(new Set(choicetipe)));
 
-      console.log('sort',this.config[n].cascade );
+      // console.log('sort',this.config[n].cascade );
       console.log('sortref',this.referenceCascade );
 
-      return this.config[n].cascade.sort();   
+      return filtered.sort();   
 
     }
+
 
 
     selectChange(i){
@@ -248,7 +307,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
 
       console.log('select',choosen);
 
-      const z= this.referenceCascade //this.config[nextOpt].cascade
+      const z= this.referenceCascade//this.referenceCascade //this.config[nextOpt].cascade
       this.optional= z.filter(p=>p[controlName]=== choosen);
       this.containOpt[nextOpt]=this.optional;
 
@@ -259,7 +318,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       // const xy = this.config[nextOpt].cascade;
       // let xyz = xy;
 
-      let cascadeOption = this.referenceCascade //this.config[nextOpt].cascade;
+      let cascadeOption = this.referenceCascade//this.referenceCascade //this.config[nextOpt].cascade;
 
       //cek apakah index ref bukan
       if(i===this.indexRef  ){
@@ -382,6 +441,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
       // this.submit.emit(this.value);
       // this.submit.emit(this.dashboard.widget[2].dataraw);
       // this.resetForm();
+      this.dashboard.date = new Date(); // to change date in Database
       this.submit.emit(this.raw);
       // console.log(this.form.get('facility').disabled,this.form.get('food').disabled);
        // this.form.reset()
@@ -474,7 +534,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
           data:{
             oldData: this.raw[i],
             config: this.config,
-            cascadereference: this.referenceCascade           
+            cascadereference: this.referenceCascade //this.referenceCascade           
             // selectOne: this.allProductsTypes,
             // selectTwo: this.allProducts
           }        
@@ -491,6 +551,10 @@ export class DasboardFormComponent implements OnInit, AfterViewInit {
             else{} 
       });    
     }
+
+    ngOnDestroy(): void {
+  if (this.dataSourceRaw) { this.dataSourceRaw.disconnect(); }
+}
 
 }
 

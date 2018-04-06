@@ -48,6 +48,8 @@ export class DasboardStatComponent implements OnInit {
 
   onFormstatSubmit() {
     this.dashboard.case = this.form.getRawValue().stats;
+    //get a update time(date)
+    this.dashboard.date = new Date();
     // console.log(this.dashboard.case);
     this.caseChanged.emit(this.dashboard.case)
     this.formActive = false;

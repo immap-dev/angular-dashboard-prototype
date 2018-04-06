@@ -49,6 +49,7 @@ export class DasboardTitleComponent implements OnInit {
     
     this.dashboard.title = this.form.getRawValue();
     this.dashboard.uri = encodeURIComponent(this.dashboard.title.name).replace(/%20/g, '-').toLowerCase();
+    this.dashboard.date = new Date();
     this.titleChanged.emit(this.dashboard.title);
     this.formActive = false;
 
