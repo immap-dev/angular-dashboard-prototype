@@ -1,6 +1,6 @@
 
 <div class="example-button-row"> 
-  <button mat-fab (click)="onOpen()" color="primary">
+  <button mat-fab (click)="onOpen()" color="primary" matTooltip="Download" matTooltipPosition="before">
     <mat-icon  *ngIf="!open"  aria-label="Example icon-button with a heart icon">cloud_download
 
     </mat-icon>
@@ -9,36 +9,43 @@
     </mat-icon>
   </button>
 
-  <button mat-mini-fab *ngIf="open" color="primary">
+<ng-container *ngFor="let button of listButton">
+  <button mat-mini-fab *ngIf="open" color="primary"matTooltip="{{button.tooltip}}" matTooltipPosition="before" type="{{button.action}}">
+    <mat-icon  aria-label="Example icon-button with a heart icon">{{button.icon}}</mat-icon>
+   
+  </button> 
+</ng-container>
+  <!-- <button mat-mini-fab *ngIf="open" color="primary" matTooltip="Download Beneficiaries CSV" matTooltipPosition="before">
     <mat-icon  aria-label="Example icon-button with a heart icon">group</mat-icon>
    
   </button>
   
 
-  <button mat-mini-fab *ngIf="open" color="primary">
+  <button mat-mini-fab *ngIf="open" color="primary" matTooltip="Download Cart!" matTooltipPosition="before">
     <mat-icon aria-label="Example icon-button with a heart icon">show_chart</mat-icon>
   </button>
-  <button mat-mini-fab *ngIf="open" color="primary">
+  <button mat-mini-fab *ngIf="open" color="primary" matTooltip="Download Money" matTooltipPosition="before">
     <mat-icon aria-label="Example icon-button with a heart icon">attach_money</mat-icon>
   </button>
-  <button mat-mini-fab *ngIf="open" color="primary">
+  <button mat-mini-fab *ngIf="open" color="primary" matTooltip="Download Attached File" matTooltipPosition="before">
     <mat-icon aria-label="Example icon-button with a heart icon">attach_file</mat-icon>
   </button>
-  <button mat-mini-fab *ngIf="open" color="primary">
+  <button mat-mini-fab *ngIf="open" color="primary" matTooltip="Download Assignment" matTooltipPosition="before">
     <mat-icon aria-label="Example icon-button with a heart icon">assignment</mat-icon>
   </button>
-  <button mat-mini-fab *ngIf="open" color="primary">
+  <button mat-mini-fab *ngIf="open" color="primary" matTooltip="Download Assignment Late" matTooltipPosition="before">
     <mat-icon aria-label="Example icon-button with a heart icon">assignment_late</mat-icon>
 
   </button>
-  <button mat-mini-fab *ngIf="open" color="primary">
+  <button mat-mini-fab *ngIf="open" color="primary"matTooltip="Download Assignment Done" matTooltipPosition="before">
     <mat-icon aria-label="Example icon-button with a heart icon">assignment_turned_in</mat-icon>
     
   </button>
-  <button mat-mini-fab *ngIf="open" color="primary">
+  <button mat-mini-fab *ngIf="open" color="primary"matTooltip="Download PDF!" matTooltipPosition="before">
     <mat-icon  aria-label="Example icon-button with a heart icon">picture_as_pdf</mat-icon>
    
-  </button>
+  </button> -->
+  
 
   
   

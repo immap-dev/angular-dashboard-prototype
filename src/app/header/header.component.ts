@@ -2,7 +2,7 @@ import { Component, OnInit, Input,AfterViewInit,OnChanges } from '@angular/core'
 import { Location } from '@angular/common';
 import { DashboardService } from '../dashboards/dashboards.service';
 import {Subscription} from 'rxjs/Subscription';
-import { Router, ActivatedRoute, UrlSegment,NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, UrlSegment,NavigationEnd,RouterState } from '@angular/router';
 
 
 
@@ -88,8 +88,15 @@ export class HeaderComponent implements OnInit,OnChanges{
 
 
   goBack(){
-      this.location.back();
-      // console.log('BACKUP',this.location);
+      // this.location.back();
+      console.log('BACKUP',this.location);
+
+      //alternative
+      const state: RouterState = this.route.routerState;
+
+       console.log("RUTE",);
+      this.route.navigate(['../dashboard'], { relativeTo: this.activatedRoute });
+
   }
 
 

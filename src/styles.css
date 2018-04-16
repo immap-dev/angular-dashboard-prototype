@@ -10,14 +10,12 @@
 body{
     margin:0;
     height: 100%;
+
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     font-family: Roboto;
-}
-
-mat-card {
-  max-width: 100%;
+    width: 100%;
   margin: 2em auto;
   
 }
@@ -56,3 +54,25 @@ mat-card {
 .active-icon{
 	color: #ffffff;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+ 
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+

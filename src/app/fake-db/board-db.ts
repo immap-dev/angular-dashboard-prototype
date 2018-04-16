@@ -18,7 +18,7 @@ export class DashboardModel{
         cols:number;
 
     };
-    download?:boolean;
+    download?:{}[];
     widget: {
         type:string;
         style:{
@@ -50,12 +50,16 @@ export class DashboardModel{
         // list?:{}[];       
         dataraw?:{}[];
         cascadeRef?:{}[];
-         list?:{
+        list?:{
              
             search?:boolean;
             draft?:{}[];
 
         };
+        table?:{
+            tableConfig?:{}[];
+            tableData?:{}[];
+        }
     }[];
     maplocation:{
         name:string;
@@ -86,7 +90,49 @@ export class BoardFakeDB {
             'gridlist': {
                 cols: 4
             },
-            download:true,
+            download:[
+                      {
+                        icon:'group',
+                        tooltip:'Organization',
+                        action:'reset'
+                      },
+                      {
+                        icon:'show_chart',
+                        tooltip:'Chart',
+                        action:'button'
+                      },
+                      {
+                        icon:'attach_money',
+                        tooltip:'Finance',
+                        action:'button'
+                      },
+                      {
+                        icon:'attach_file',
+                        tooltip:'Download Beneficiaries CSV',
+                        action:'button'
+                      },
+                      {
+                        icon:'assignment',
+                        tooltip:'Assignment',
+                        action:'button'
+                      },
+                      {
+                        icon:'assignment_late',
+                        tooltip:'Assignment Late',
+                        action:'button'
+                      },
+                      {
+                        icon:'assignment_turned_in',
+                        tooltip:'Assignment In',
+                        action:'button'
+                      },
+                      {
+                        icon:'picture_as_pdf',
+                        tooltip:'Download PDF',
+                        action:'button'
+                      },
+                    ],
+             // download:true,
             'widget': [
                 {
                     type: 'title',
@@ -389,6 +435,109 @@ export class BoardFakeDB {
                             cols: 4, rows: 8
                         },
                     },
+                    table:{
+                        tableConfig:[
+                          {name :'cluster', type:'text'},
+                          {name :'organization', type:'textLink'},
+                          {name :'user', type:'text'},
+                          {name :'contact', type:'text'},
+                          {name :'title', type:'textLink'},
+                          {name :'goto', type:'iconLink'},
+                          {name :'status', type:'icon'},
+                        ],
+                        tableData:[
+                          { 
+                           cluster:{val:'Health1'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'warn',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                            cluster:{val:'Health2'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'accent',icon:'query_builder',type:'icon'}
+                          },
+                          { 
+                           cluster:{val:'Health3'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}},
+                          { 
+                           cluster:{val:'Health4'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          { 
+                           cluster:{val:'Health5'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          { 
+                            cluster: {val:'Health6'}, 
+                            organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                            user: {val:'HealthTPO'},
+                            contact: {val:'Health@health.com'},
+                            title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/apk'}, 
+                            goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                            status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health7'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health8'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health9'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health10'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world Hydrogen one of element in this world Hydrogen one of element in this world Hydrogen',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+
+                        ]
+                    }
                     
                 },
                 {
@@ -644,6 +793,109 @@ export class BoardFakeDB {
                             cols: 4, rows: 8
                         },
                     },
+                    table:{
+                        tableConfig:[
+                          {name :'cluster', type:'text'},
+                          {name :'organization', type:'textLink'},
+                          {name :'user', type:'text'},
+                          {name :'contact', type:'text'},
+                          {name :'title', type:'textLink'},
+                          {name :'goto', type:'iconLink'},
+                          {name :'status', type:'icon'},
+                        ],
+                        tableData:[
+                          { 
+                           cluster:{val:'Health1'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'warn',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                            cluster:{val:'Health2'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'accent',icon:'query_builder',type:'icon'}
+                          },
+                          { 
+                           cluster:{val:'Health3'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}},
+                          { 
+                           cluster:{val:'Health4'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          { 
+                           cluster:{val:'Health5'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          { 
+                            cluster: {val:'Health6'}, 
+                            organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                            user: {val:'HealthTPO'},
+                            contact: {val:'Health@health.com'},
+                            title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/apk'}, 
+                            goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                            status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health7'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health8'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health9'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+                          {
+                           cluster:{val:'Health10'}, 
+                           organization: {val:'Hydrogen',link:'https://material.angular.io/components/icon/api'},
+                           user: {val:'HealthTPO'},
+                           contact: {val:'Health@health.com'},
+                           title: {val:'Hydrogen one of element in this world Hydrogen one of element in this world Hydrogen one of element in this world Hydrogen',link:'https://material.angular.io/components/icon/api'}, 
+                           goto:{link: 'https://material.angular.io/components/icon/api',icon:'launch'}, 
+                           status: {color:'primary',icon:'query_builder',type:'icon'}
+                          },
+
+                        ]
+                    }
                     // header: ['position', 'name', 'weight', 'symbol', 'quantity'],
                     // datatable: [
                     //     { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', quantity: 10 },

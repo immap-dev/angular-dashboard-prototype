@@ -1,7 +1,13 @@
 .mat-card{
-    min-width: 100px;
+    /*min-width: 100px;
     max-width: 400px;
     display: flex;
-    justify-content: center;
+    justify-content: center;*/
     margin-top: 100px;
+}
+
+.card-wrapper{
+	 display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 }

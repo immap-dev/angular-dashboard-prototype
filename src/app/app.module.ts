@@ -1,4 +1,5 @@
 import { DashboardService, DashboardResolve  } from './dashboards/dashboards.service';
+import { CommonModule } from '@angular/common';  
 import { FakeDBService } from './fake-db/fake-db.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
     DynamicFormModule,
     HttpModule,
     HttpClientModule,
