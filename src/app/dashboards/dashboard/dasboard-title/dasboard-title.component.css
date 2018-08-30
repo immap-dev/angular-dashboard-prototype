@@ -8,11 +8,21 @@
 
 }
 
-.mat-card-title{
-	text-align: center;
-	/*font-size: 45px;*/
+.stats-card {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	margin-bottom: 2px;
+	padding: 10px;
+}
+
+.mat-card-title{
+	/* text-align: center; */
+	font-size: 2vw;
+	/* align-items: center; */
+	/* margin-bottom: 2px; */
+	font-weight: 300;
 }
 
 .mat-card-subtitle{
@@ -23,4 +33,31 @@
 span{
 	border-left : 2px solid #959595;
 	padding-left: 5px;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  .mat-card-title{
+	/* text-align: center; */
+	font-size: 3vw;
+	/* align-items: center; */
+	/* margin-bottom: 2px; */
+	
+}
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .mat-card-title{
+	/* text-align: center; */
+	font-size: 4vw;
+	/* align-items: center; */
+	/* margin-bottom: 2px; */
+}
+  
+  
 }

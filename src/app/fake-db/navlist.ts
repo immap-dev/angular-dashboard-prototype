@@ -17,13 +17,14 @@ export class NavFakeDB{
 				'title': 'my admin',
 				'icon' : 'assignment_turned_in',
 				'hide' : true,
-				'child':[
-				 	{name:'Region','icon' :'place',list:['A','B','C']},
-				 	{name:'Cluster', 'icon' :'pie_chart',list:['Health','Agraria']},
-				 	{name:'Country','icon' :'insert_photo',list:['Etiopia','Afganistan','Indo']},
-				 	{name: 'Organization','icon' :'people',list:['UN','UNESCO','UNICHEF']},
-				 	{name: 'Facility','icon' :'build',list:['Army','Army2']}
-				 ]
+				'list': ['Army', 'Army2']
+				// 'child':[
+				//  	{name:'Region','icon' :'place',list:['A','B','C']},
+				//  	{name:'Cluster', 'icon' :'pie_chart',list:['Health','Agraria']},
+				//  	{name:'Country','icon' :'insert_photo',list:['Etiopia','Afganistan','Indo']},
+				//  	{name: 'Organization','icon' :'people',list:['UN','UNESCO','UNICHEF']},
+				//  	{name: 'Facility','icon' :'build',list:['Army','Army2']}
+				//  ]
 				
 			},
 			{
@@ -31,13 +32,14 @@ export class NavFakeDB{
 				'title': 'my admin',
 				'icon' : 'assignment_turned_in',
 				'hide' : true,
-				'child':[
-				 	{name:'Region','icon' :'place',list:['A','B','C']},
-				 	{name:'Cluster', 'icon' :'pie_chart',list:['Health','Agraria']},
-				 	{name:'Country','icon' :'insert_photo',list:['Etiopia','Afganistan','Indo']},
-				 	{name: 'Organization','icon' :'people',list:['UN','UNESCO','UNICHEF']},
-				 	{name: 'Facility','icon' :'build',list:['Army','Army2']}
-				 ]
+				'list': ['Army', 'Army2']
+				// 'child':[
+				//  	{name:'Region','icon' :'place',list:['A','B','C']},
+				//  	{name:'Cluster', 'icon' :'pie_chart',list:['Health','Agraria']},
+				//  	{name:'Country','icon' :'insert_photo',list:['Etiopia','Afganistan','Indo']},
+				//  	{name: 'Organization','icon' :'people',list:['UN','UNESCO','UNICHEF']},
+				//  	{name: 'Facility','icon' :'build',list:['Army','Army2']}
+				//  ]
 				
 			},
 			// {

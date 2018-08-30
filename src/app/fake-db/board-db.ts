@@ -154,7 +154,7 @@ export class BoardFakeDB {
                     type: 'form',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 10 //2
+                            cols: 4, rows: 6 //2
                         },
                     display:'table',
                     // display:'comma',
@@ -424,7 +424,7 @@ export class BoardFakeDB {
                     type: 'map',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 10
+                            cols: 4, rows: 7
                         }
                     }
                 },
@@ -432,7 +432,7 @@ export class BoardFakeDB {
                     type: 'table',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 8
+                            cols: 4, rows: 6
                         },
                     },
                     table:{
@@ -544,7 +544,7 @@ export class BoardFakeDB {
                     type: 'list',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 6
+                            cols: 4, rows: 4
                         },
                     },
                     // list: [
@@ -629,7 +629,7 @@ export class BoardFakeDB {
                     type: 'title',
                     style: {
                         gridtile: {
-                            cols: 2, rows: 2
+                            cols: 2, rows: 1
                         }
                     }
                 },
@@ -637,7 +637,7 @@ export class BoardFakeDB {
                     type: 'stat',
                     style: {
                         gridtile: {
-                            cols: 2, rows: 2
+                            cols: 2, rows: 1
                         }
                     }
                 },               

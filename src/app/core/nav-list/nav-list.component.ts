@@ -21,6 +21,7 @@ export class NavListComponent implements OnInit, OnDestroy {
   dashboards: any[];
   onDashboardsChanged: Subscription;
   check;
+  showMenu = false;
   constructor( 
               private navService:NavService,
               private dashboardService: DashboardService,
@@ -68,6 +69,17 @@ export class NavListComponent implements OnInit, OnDestroy {
     this.navigationModel[i].hide = !this.navigationModel[i].hide;
     console.log("OPEN",i,this.navigationModel[i].hide);
 
+  }
+
+  onMenu(){
+
+    this.showMenu = !this.showMenu;
+  }
+
+  onExpand(index){
+    console.log(index);
+    this.navigationModel[index].hide = !this.navigationModel[index].hide;
+    console.log(this.navigationModel[index].hide);
   }
   
   ngOnDestroy(){

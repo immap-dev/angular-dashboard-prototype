@@ -29,3 +29,32 @@ mat-grid-list{
 .default-container .mat-grid-list{
 	margin:50px 10px 0 10px;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+   mat-grid-list{
+        margin:-40px 20px 0 20px;
+    }
+  
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  mat-grid-list{
+        margin:-40px 10px 0 10px;
+    }
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    mat-grid-list{
+        margin:-40px 5px 0 5px;
+    }
+  
+  
+}

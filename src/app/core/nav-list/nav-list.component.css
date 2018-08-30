@@ -12,26 +12,71 @@ a.mat-line{
 }
 
 .mat-nav-list{
-  padding-top: 0px;
+  /* padding-top: 0px; */
 }
 
 .navbar-header{
-	padding: 0 16px 0 24px;
+	      padding: 0 16px 0 24px;
         display: flex;
         align-items: center;
-        height: 64px;
-        min-height: 64px;
         justify-content: space-between;
         transition: padding 200ms ease;
+        box-shadow: 0 5px 5px rgba(0,0,0, 0.3);
+        /* height: 64px;
+        min-height: 64px; */
         /*background-color: rgba(0, 0, 0, 0.2);*/
         /*box-shadow: -5px 6px 15px -5px rgba(0,0,0,0.75);*/
-        box-shadow: 0 5px 5px rgba(0,0,0, 0.3);
         /*background-color: #673ab7;*/
         color: #ffffff;
+        height: 150px;
         
-
-
+        
+        /* width: 100%; */
 }
+
+.main-menu{
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  z-index: 2;
+}
+
+.user{
+  position: absolute;
+  top: 100px;
+  right: 70px;
+  color: #fff;
+  
+}
+
+.main-list-menu{
+  width: 100%; 
+  background-color: #26a69a;
+  z-index: 1;
+  position: absolute;
+  top:150px;
+  color: #fff;
+}
+
+.main-list-menu .mat-list-item {
+  color: #fff;
+ 
+}
+
+.shadow{
+box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+.align{
+  display: flex;
+    align-items: center;
+}
+
+.align .mat-icon{
+  padding-right: 10px;
+}
+
+
 
 .mat-h2{
 	margin-bottom: 5px;
@@ -63,8 +108,8 @@ width: 38px;
 }
 
 .mat-expansion-panel-header-description{
-  flex-grow: 0;
-  margin-right:4px;
+  /* flex-grow: 0;
+  margin-right:4px; */
   
 }
 .divider{
@@ -72,10 +117,71 @@ width: 38px;
   width: 100%
 }
 
+.listing{
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+  margin-top:10px;
+}
+
+.listing .mat-accordion{
+  width: 75%;
+  margin-bottom: 5px;
+}
+
+.listing .mat-accordion.full-width{
+  margin-bottom: 10px;
+  margin-top:5px;
+  width:100%;
+}
+
+.listing mat-list{
+  padding-top: 0;
+}
+.listing mat-list .mat-list-item{
+  cursor: pointer;
+}
+.listing mat-list .mat-list-item:hover{
+  background-color: rgba(33,150,243,0.3);
+
+}
+.listItemActive{
+  background-color: rgba(33,150,243,0.3);
+}
+
+/deep/ .listing .mat-expansion-panel-body{
+  padding: 0 0 0;
+}
+.main-list-menu .mat-list-item{
+  cursor: pointer;
+}
+
+.main-list-menu .mat-list-item:hover{
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+mat-list.main-list-menu{
+  padding-top: 0px;
+}
+
+.matListActive{
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-list-menu .mat-icon{
+  padding-right: 10px;
+}
+
+
 @media (max-width: 768px)   {
 
   .logo-text{
     font-size: 16px;
+  }
+
+  .main-list-menu .mat-list-item{
+    font-size: 13px;
   }
   
 }

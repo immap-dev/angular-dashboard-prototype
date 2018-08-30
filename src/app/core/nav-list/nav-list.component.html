@@ -3,45 +3,122 @@
     <div class="logo">
         <img class="logo-icon" src="assets/proto.png">
         <span class="logo-text mat-h2">Report Hub 2.0</span>
-    </div>      
+    </div>
+    
+    <div class="user">
+      <p>testwhowas</p>
+    </div>
+    <div class="main-menu">
+      <button mat-fab class="mat-bg-primary" (click)="onMenu()">
+        <mat-icon aria-label="icon" >add</mat-icon>
+      </button>
+    </div>
 
 </div>
 
-<mat-nav-list *ngFor="let link of  navigationModel;let i = index "  >
+<!-- Main Menu  -->
+<ng-container *ngIf="showMenu">
+  <mat-list role="list" class="main-list-menu">
+    <mat-list-item class="shadow" role="listitem" routerLink="/home" routerLinkActive="matListActive">
+      <mat-icon>bubble_chart</mat-icon>HOME      
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>lock_open</mat-icon>LOG OUT
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>group</mat-icon>MY ORGANIZATION
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>account_circle</mat-icon>MY PROFILE
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>assignment_turned_in</mat-icon>MY ADMIN
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>insert_chart</mat-icon>MY STOCKS
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>zoom_in</mat-icon>MY PROJECTS
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>insert_chart</mat-icon>EPR ADMIN
+    </mat-list-item>
+    <mat-list-item class="shadow" role="listitem">
+      <mat-icon>bubble_chart</mat-icon>EPR DASHBOARD
+    </mat-list-item>
+  </mat-list>
+</ng-container>
+
+
+<div class=" listing" >
+  <ng-container *ngFor="let link of navigationModel;let i = index ">
+    <ng-container *ngIf="link.list">
+      <mat-accordion [class.full-width]="!link.hide">
+        <mat-expansion-panel [hideToggle]=true>
+          <mat-expansion-panel-header 
+            style="background-color:#2491eb;
+            color:#fff;"
+             (click)="onExpand(i)">
+            <mat-panel-title style="color:#fff;">
+              <div class="align">
+                <mat-icon>{{link.icon}}</mat-icon> {{ link.title | uppercase }}
+              </div>
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <mat-list role="list" >
+            <ng-container *ngFor="let a of link.list">
+              <mat-list-item  role="listitem" (click)="select(a)">{{a}}</mat-list-item>
+            </ng-container>                 
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>  
+    </ng-container>
+  </ng-container>
+</div>
+
+<!-- OLD VERSION -->
+<!-- <mat-nav-list *ngFor="let link of  navigationModel;let i = index "  >
   <ng-container  *ngIf="!link.child" >
-  <mat-list-item class ="mat-color-primary" routerLink="{{link.url}}" routerLinkActive="mat-active-link"  >
-    <a matLine  >{{ link.title | uppercase }}</a>
-    <button mat-icon-button > 
-      <mat-icon >{{link.icon}}</mat-icon>
-    </button>  
+    <mat-list-item class ="mat-color-primary" routerLink="{{link.url}}" routerLinkActive="mat-active-link"  >
+      <a matLine  >{{ link.title | uppercase }}</a>
+      <button mat-icon-button > 
+        <mat-icon >{{link.icon}}</mat-icon>
+      </button>      
+    </mat-list-item>
     
-  </mat-list-item>
-</ng-container>
-  <!-- <mat-divider></mat-divider> -->
-<ng-container  *ngIf="link.child" >
-  <mat-list-item class ="mat-color-primary" (click)="onOnpen(i)" routerLinkActive="mat-active-link"  >
-    <a matLine  >{{ link.title | uppercase }}{{i}}</a>
-    <button mat-icon-button > 
-      <mat-icon >{{link.icon}}</mat-icon>
-    </button>  
-    
-  </mat-list-item>
-    <mat-accordion [hidden]="link.hide" *ngFor="let item of link.child" >
-      <mat-expansion-panel hideToggle="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{item.name}}{{i}}
-          </mat-panel-title>            
-            <mat-panel-description>        
-            <mat-icon class ="mat-color-primary">{{item.icon}}</mat-icon>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="mat-border"></div>
-        <mat-list role="list" *ngFor="let a of item.list">  
-          <mat-list-item role="listitem" (click)="select(a)">{{a}}</mat-list-item>
-          
-        </mat-list>
-      </mat-expansion-panel>
-    </mat-accordion>
-</ng-container>
-</mat-nav-list>
+  </ng-container>
+
+  
+  
+  <ng-container  *ngIf="link.child" >
+    <mat-list-item class ="mat-color-primary" (click)="onOnpen(i)" routerLinkActive="mat-active-link"  >
+      <a matLine  >{{ link.title | uppercase }}{{i}}</a>
+      <button mat-icon-button > 
+        <mat-icon >{{link.icon}}</mat-icon>
+      </button>  
+      
+    </mat-list-item>
+      <mat-accordion [hidden]="link.hide" *ngFor="let item of link.child" >
+        <mat-expansion-panel hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.name}}{{i}}
+            </mat-panel-title>            
+              <mat-panel-description>        
+              <mat-icon class ="mat-color-primary">{{item.icon}}</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="mat-border"></div>
+          <mat-list role="list" *ngFor="let a of item.list">  
+            <mat-list-item role="listitem" (click)="select(a)">{{a}}</mat-list-item>
+            
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+  </ng-container>
+</mat-nav-list> -->
+
+
+
+

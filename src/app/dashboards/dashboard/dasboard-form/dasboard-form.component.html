@@ -3,6 +3,7 @@
     <button mat-raised-button color="primary" (click)="onAllowEdit()" [hidden]="!allowEdit"> {{ !allowEdit ? "Edit Form" : "Close"}}</button>
     <!-- <button mat-raised-button color="warn" (click)="onAllowEdit()" [hidden]="allowEdit"> X </button> -->
   </mat-card-actions>
+  
   <div [hidden]="!allowEdit">
     <form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="submitForm(form, formDirective)" class="dynamic-form">
     <!-- <form  [formGroup]="form" (ngSubmit)="submitForm()"  class="dynamic-form" > -->

@@ -15,10 +15,14 @@ h4{
   flex: 1 1 auto;
 }
 
+.mat-list{
+  overflow: initial !important;
+}
 
 .mat-list .mat-list-item{
   height: auto;
   max-height: 300px;
+
   
 }
 
@@ -28,6 +32,8 @@ h4{
  
  
 }
+
+
 
 
 

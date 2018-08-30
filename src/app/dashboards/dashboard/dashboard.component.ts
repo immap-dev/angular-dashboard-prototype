@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular/core';
+import { element } from 'protractor';
+import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy,DoCheck } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DashboardService } from '../dashboards.service';
@@ -24,7 +25,7 @@ export interface Element {
 
 
 
-export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy,DoCheck {
   // @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
   board: any;
   id: number;
@@ -32,8 +33,11 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   gridcols = 1;
   dashboard: any;
   onDashboardChanged: Subscription;
+  onDashboardChangedBackUp: Subscription;
   // addcompo= 'add'; // coba
   gridCols;// coba
+  old: any;
+  
   constructor(
     private route: ActivatedRoute,
     private dashboardService: DashboardService,
@@ -44,17 +48,65 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
    this.onDashboardChanged = this.dashboardService.onDashboardChanged
                                  .subscribe(dashboard => {
+                                   
+                                  //  const temporary = dashboard;
                                     this.dashboard = dashboard;
-                                    console.log('stream',this.dashboard);
+                                    
+                                  //  const temporary = Object.assign({}, dashboard);
+                                  //   this.old = temporary;
+                                    // console.log('stream',this.dashboard);
                                     // console.log(this.dashboard.widget);
-                                    console.log(this.dashboard.typepage);
-                                    console.log(this.dashboard.widget);
-                                    console.log('form',this.dashboard.widget[2]);
-                                    this.gridCols = this.dashboard.gridlist.cols;
+                                    // console.log(this.dashboard.typepage);
+                                    // console.log(this.dashboard.widget);
+                                    // console.log('form',this.dashboard.widget[2]);
+                                    // this.gridCols = this.dashboard.gridlist.cols;
                                     // console.log('BACK',this.location.back());
-                                    console.log('cek tanggal',new Date());
+                                    // console.log('cek tanggal',new Date());
 
                                  });
+  
+    
+   
+    if (window.innerWidth > 767) {
+      // if (this.dashboard.gridlist.cols != this.old.gridlist.cols ){
+      //   console.log("#################################################################" );
+      //   this.dashboard.gridlist.cols = this.old.gridlist.cols;
+      //   this.dashboard.widget = this.old.widget;
+      //   this.dashboard.widget.forEach(element => {
+      //     element.style.gridtile.cols = 3;
+      //   });
+      // }
+      // console.log(this.old,"######################################################################");
+     
+      // console.log("##",this.old);
+      
+      
+
+      
+    } else if (window.innerWidth > 480 && window.innerWidth <= 767) {
+      // console.log("::::",this.old);
+      this.dashboard.gridlist.cols = 3;
+      this.dashboard.widget.forEach(element => {
+        console.log("COLSPAN", element.style.gridtile.cols, "1")
+
+        element.style.gridtile.cols = 3;
+      });
+      
+    } else if ( window.innerWidth > 320 && window.innerWidth <= 480) {
+      this.dashboard.gridlist.cols = 1;
+      this.dashboard.widget.forEach(element => {
+        console.log("COLSPAN", element.style.gridtile.cols, "1")
+
+        element.style.gridtile.cols = 1;
+      });
+      
+    }
+
+    setTimeout(() => {
+      console.log('Test');
+      this.onHeightResize();
+    }, 1000);
+    
   }
 
   ngAfterViewInit() {
@@ -62,6 +114,18 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     // Add 'implements AfterViewInit' to the class.
 
   }
+
+  ngDoCheck() {
+
+    // console.log("doCHECK");
+    
+    setTimeout(() => {
+      // console.log('Test');
+      this.onHeightResize();
+    }, 2000);
+  }
+
+  
 
   onTitleChanged(newTitle) {
       //const z = {type: 'stat', style: {gridtile: { cols: 2, rows: 2}}}; // coba
@@ -113,6 +177,78 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   goBack(){
     this.location.back();
+  }
+
+  // for layout
+
+  onResize(event) {
+   console.log("RESIZE");
+   console.log(this.dashboard);
+    if (event.target.innerWidth > 767) {
+      // console.log(this.dashboard);
+      // console.log(this.old,"#################################################################");
+        // this.dashboard.gridlist.cols = this.old.gridlist.cols;
+        // this.dashboard.widget = this.old.widget;
+        // this.dashboard.widget.forEach(element => {
+        //   element.style.gridtile.cols = 3;
+        // });
+      
+
+
+
+    } else if (event.target.innerWidth > 480 && event.target.innerWidth <= 767) {
+      
+      this.dashboard.gridlist.cols = 3;
+      
+      this.dashboard.widget.forEach(element => {
+        console.log("COLSPAN", element.style.gridtile.cols, "1")
+
+        element.style.gridtile.cols = 3;
+      });
+      
+    } else if (event.target.innerWidth > 320 && event.target.innerWidth <= 480) {
+    
+      this.dashboard.gridlist.cols = 1;
+      this.dashboard.widget.forEach(element => {
+        console.log("COLSPAN", element.style.gridtile.cols, "1")
+
+        element.style.gridtile.cols = 1;
+      });
+      
+    }
+   }
+
+  onHeightResize(){
+    // let a = document.getElementsByTagName("mat-grid-tile")[];
+    // let ab = document.getElementsByClassName("mat-card")[0].scrollHeight;
+    // console.log("HEIGHT Resize",ab)
+
+    let a = document.getElementsByTagName("mat-grid-tile");
+    let b =document.getElementsByClassName("mat-card");
+    // console.log("TES");
+    let leng = a.length;
+    // console.log("length", leng);
+    for (let i = 0; i < leng; i++) {
+      if(i==2){
+        console.log("he:",a[i].clientHeight, "ab:",b[i].scrollHeight)
+      }
+
+      let he = a[i].clientHeight;
+      let ab = b[i].scrollHeight;
+      if(he<ab){      
+        while (he < ab) {        
+          this.dashboard.widget[i].style.gridtile.rows += 1;
+          he += 100;
+          if (i == 5){
+
+            // console.log("HHH");
+          }
+          // console.log("PAKE WHILE");
+        }
+        // console.log('final', ab, he);
+      }
+    }
+    // console.log;
   }
 
   ngOnDestroy() {

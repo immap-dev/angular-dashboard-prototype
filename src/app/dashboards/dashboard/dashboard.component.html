@@ -44,7 +44,7 @@
 
 <ng-container *ngIf="dashboard.typepage !== 'default'">
     
-    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" >  
+    <mat-grid-list [cols]="dashboard.gridlist.cols" rowHeight="100px" (window:resize)="onResize($event)" >  
 
           <mat-grid-tile *ngFor="let item of dashboard.widget; let i = index " [colspan]="item.style.gridtile.cols"  [rowspan]="item.style.gridtile.rows" >
             <mat-card> <!-- <mat-card class="mat-border"> -->
