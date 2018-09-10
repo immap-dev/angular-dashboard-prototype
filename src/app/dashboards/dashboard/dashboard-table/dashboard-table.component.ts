@@ -94,19 +94,22 @@ export class DashboardTableComponent implements OnInit,AfterViewInit {
     //                         this.dataSourcetwo.sort = this.sort;
     //                         this.dataSourcetwo.paginator = this.paginator;                            
     //                       }) 
-     this.sourceTableData = this.dashboardService.onDashboardChanged.subscribe(dashboard => {
+
+    // NOT USING IT
+     // this.sourceTableData = this.dashboardService.onDashboardChanged.subscribe(dashboard => {
                             
-                            // this.dataSourcetwo = new MatTableDataSource(this.displayTabletwo);
-                             let filterWidgetForm= dashboard.widget.filter(w=> w.type === 'form');
-                             this.raw = filterWidgetForm[0].dataraw;
-                             this.dataSourcetwo = new MatTableDataSource(this.raw);
-                             const keys =Object.keys(this.raw[0]);                        
-                            this.displayHeadertwo = keys//Object.keys(table);
+     //                        // this.dataSourcetwo = new MatTableDataSource(this.displayTabletwo);
+     //                         let filterWidgetForm= dashboard.widget.filter(w=> w.type === 'form');
+     //                         this.raw = filterWidgetForm[0].dataraw;
+     //                         this.dataSourcetwo = new MatTableDataSource(this.raw);
+     //                         const keys = Object.keys(this.raw[0]);                        
+     //                        this.displayHeadertwo = keys//Object.keys(table);
                             
 
-                            this.dataSourcetwo.sort = this.sort;
-                            this.dataSourcetwo.paginator = this.paginator ;                            
-                          }) 
+     //                        this.dataSourcetwo.sort = this.sort;
+     //                        this.dataSourcetwo.paginator = this.paginator ;                            
+     //                      }) 
+     // NOT USING IT END
 
 
      // this.invoiceForm = this._fb.group({
@@ -145,7 +148,7 @@ export class DashboardTableComponent implements OnInit,AfterViewInit {
   }
   
   ngOnDestroy(){
-    this.sourceTableData.unsubscribe();
+    // this.sourceTableData.unsubscribe();
   }
 
 

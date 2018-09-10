@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject, AfterViewInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject,OnChanges, AfterViewInit,OnDestroy } from '@angular/core';
 import { FieldConfig} from './models/field-config.interface';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { EditFormDialogComponent} from './edit-form-dialog.component';
-import { Validators, ValidatorFn,NgForm,FormGroupDirective } from '@angular/forms';
+import { Validators, ValidatorFn,NgForm,FormGroupDirective,FormArray, FormControl } from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import { MatTableDataSource,MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -17,7 +17,8 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
   @Output() submit: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  // for app-checkbox component
+  notif=false;
   allowEdit:boolean=false;
 
   form: FormGroup;
@@ -78,6 +79,16 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
   try;
   obs: Observable<any>;
 
+  // multi-form 
+  length= 0;
+  openAdditionalForm= false;
+  multiform; 
+  openExtendFormData;
+
+  //checkbox
+  hideme=[];
+  check;
+
   constructor( private fb: FormBuilder, private dialog:MatDialog) { }
 
 
@@ -85,12 +96,19 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
   	  	this.form = this.createGroup();
   	  	console.log('c',this.controls);
         console.log('forminit',this.form);
+        // exp
+        let zz=this.form.controls['tesmulti']
+        // console.log('forminit2',this.form.controls['tesmulti'].controls, typeof this.form.controls['tesmulti']);
+        console.log("KELUAR", this.form.get('tesmulti').value);
+        // exp-end
 
          //cek dataraw
        let filterWidgetForm= this.dashboard.widget.filter(w=> w.type === 'form');
        this.raw = filterWidgetForm[0].dataraw//this.dashboard.widget[2].dataraw;
+       this.multiform = filterWidgetForm[0].childForm;
        console.log('CASCADE',filterWidgetForm[0].cascadeRef);
-       console.log('CASCADECOBA',this.raw[0]); 
+       console.log('CASCADECOBA',this.raw[0]);
+       console.log("CEK", filterWidgetForm[0].childForm); 
        // this.try=Object.values(this.raw[0]);
        // this.try = this.try.join(" and ");      
        this.referenceCascade= filterWidgetForm[0].cascadeRef;
@@ -115,17 +133,43 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
       
        // console.log('filer-form',filterForm[0].dataraw);
 
-       const keys =Object.keys(this.raw[0]);
+       if (this.raw.length<1) {
+         // code...
+         this.controls.forEach(key=>{
+           console.log("COBADICOBA",key.name)
+         this.columnOne.push(key.name)
+         this.columnTwo.push(key.name)
+         });
+         this.columnOne.push('actions');
+       } else{
+         console.log("COBADICOBATESTES");
+
+         const keys = Object.keys(this.raw[0]);
+
 
        this.columnOne = keys;
        this.columnOne.push('actions');
        console.log(this.columnOne,'one');
        this.columnTwo = Object.keys(this.raw[0]);
-       console.log(this.columnTwo,'teo');
-      
+       console.log(this.columnTwo,'teo');  
 
 
        this.dataSourceRaw = new MatTableDataSource(this.raw);
+
+       }
+       // USING it
+       // const keys = Object.keys(this.raw[0]);
+
+       // this.columnOne = keys;
+       // this.columnOne.push('actions');
+       // console.log(this.columnOne,'one');
+       // this.columnTwo = Object.keys(this.raw[0]);
+       // console.log(this.columnTwo,'teo');
+      
+
+
+       // this.dataSourceRaw = new MatTableDataSource(this.raw);
+        // USING it
 
 
        // this.obs = this.dataSourceRaw.connect();
@@ -170,11 +214,18 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
         x.forEach(z=> {
           if(z.type == 'form'){
             this.display = z.style.display;
-            console.log('CEK FORM',z.type,this.display)};
-          });
+            console.log('CEK FORM',z.type,this.display);
+            
+          };
+        });
+
        setTimeout(() => {
+             
+            // this.obs = this.dataSourceRaw.connect();
             this.obs = this.dataSourceRaw.connect();
-       console.log("OBS",this.obs);
+
+
+           console.log("OBS",this.obs);
         });
        
 
@@ -187,16 +238,42 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
     ngAfterViewInit(){
       this.dataSourceRaw = new MatTableDataSource(this.raw);     
        this.dataSourceRaw.paginator = this.paginator;
+    } 
 
-    }
+    
+  	// createGroup() {
+   //      const group = this.fb.group({});
+   //      this.controls.forEach( control => group.addControl(control.name, this.createControl(control)));
+   //      return group;
+   //  }
 
-
-
-  	createGroup() {
+    createGroup() {
         const group = this.fb.group({});
-        this.controls.forEach( control => group.addControl(control.name, this.createControl(control)));
+        this.controls.forEach( control => 
+                                { if(control.type === 'multi-checkbox')
+                                  {
+                                    console.log('COBA',control)
+
+                                    group.addControl(control.name, this.buildCheckbox(control));
+
+
+
+                                  } else{
+                                    group.addControl(control.name, this.createControl(control))
+                                  }
+                                }
+                                
+                              );
+
+        
         return group;
     }
+
+    
+
+  
+
+
 
     //Old
     // createControl(config: FieldConfig) {
@@ -206,7 +283,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
 
    
     createControl(config: FieldConfig) {
-        // console.log('create control',config);
+         console.log('create control',config);
         const validat:ValidatorFn[]=[];
         const { disabled, validation, value } = config;
 
@@ -261,6 +338,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
 
     // }
     //OnesourceReference
+
     sortData(n){
       let choicetipe=[];
       
@@ -417,21 +495,114 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
     //   console.log('element',this.element)
     // }
 
+    // Checkbox
+    checkboxChange(event){
+      console.log(`TES-Checkbox ${event.source.value}`);
+      let a = event.source.value;    
+      console.log(this.hideme); 
+    }
+
+    childcheckboxChange(event,data){
+      console.log(`TES-Checkbox ${event.source.value}`,data.name);     
+      let a = event.source.value; 
+      console.log(a) ;
+      console.log(data);
+    }
+
+    // buildCheckbox(x) {
+    //   const arr = x.map(xx => {
+    //     // console.log("THunder", xx.name,xx);
+    //     // return this.fb.control(xx.name);
+    //     this.createControl(xx.name);
+    //   });
+    //   return this.fb.array(arr);
+    // }
+
+    buildCheckbox(config) {
+      // const arr = x.map(xx => {
+      //   // console.log("THunder", xx.name,xx);
+      //   // return this.fb.control(xx.name);
+      //   this.createControl(xx.name);
+      // });
+        const validat:ValidatorFn[]=[];
+        const { disabled, validation, value } = config;
+
+        if(validation){
+          console.log('validation',validation);
+          validation.forEach(valid =>{
+            if(valid==='required'){
+              // const a='a';
+              validat.push(Validators.required);
+            }
+            if(valid =='max(3)'){
+              console.log('max');
+            }
+          });
+          console.log('change',validat);
+          let ctrl = Validators.compose(validat);         
+          return this.fb.array([],ctrl);
+        } else { 
+          console.log('validation tak ada');
+          // return this.fb.control({disabled, value});
+          return this.fb.array([]);
+        }        
+      
+    }
+
+    onCheckChange(event,controlName){
+      console.log(event,controlName);
+      const formArray: FormArray = this.form.get(controlName) as FormArray;
+      if(event.checked){
+        console.log(event.source.value);
+         formArray.push(new FormControl(event.source.value));
+      }
+      else{
+        console.log('belum dicentang');
+        // let i: number = 0;
+        //  formArray.controls.forEach((ctrl: FormControl) => {
+        //     if(ctrl.value == event.source.value) {
+        //       console.log(ctrl.value);
+        //       // Remove the unselected element from the arrayForm
+        //       formArray.removeAt(i);
+        //       return;
+        //     }
+        //   i++;
+        //  });
+      }
+
+    }
+
+    resetCheckbox(){
+      for (let i = 0; i <= this.hideme.length; i++) {
+        if (this.hideme[i] == true) {
+          this.hideme[i] = false;
+          console.log(this.hideme[i])
+        }
+      }
+    }
+    //Checkbox-end
+
     submitForm(formData: any, formDirective: FormGroupDirective){
 
-      console.log('f2',this.form.value);
+      console.log('f2',this.form.value);       
+      
+      console.log(this.hideme);
+      
 
      if(this.valid){
       this.element.push(this.value);
       // this.dashboard.widget[2].dataraw.push(this.value);
 
+
       this.raw.push(this.value);
 
       console.log('submit-raw',this.raw);
-      this.dataSourceRaw = new MatTableDataSource(this.raw)
+
+      this.dataSourceRaw = new MatTableDataSource(this.raw);
+      this.obs = this.dataSourceRaw.connect();
 
       this.dataSourceRaw.paginator = this.paginator;
-     
+       this.check = false;
 
       //this.dataSource = new MatTableDataSource(this.element); 
 
@@ -443,12 +614,18 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
       // this.resetForm();
       this.dashboard.date = new Date(); // to change date in Database
       this.submit.emit(this.raw);
+      this.notif = true;
       // console.log(this.form.get('facility').disabled,this.form.get('food').disabled);
        // this.form.reset()
       // this.resetForm()
       formDirective.resetForm();
       this.form.reset();
       this.resetForm();
+      
+       // to unchecked checkbox after submit
+       this.check = false;
+       // to close multi-checkbox after submit
+       this.resetCheckbox();  
 
      
      } else{ console.log('not valid')};
@@ -476,6 +653,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
         this.raw.splice(index,1)            
          // this.dataSource = new MatTableDataSource(this.raw)
          this.dataSourceRaw = new MatTableDataSource(this.raw);
+        this.obs = this.dataSourceRaw.connect();
           this.dataSourceRaw.paginator = this.paginator;
          
         if( typeof this.raw[index+1] === 'undefined' && i<=0){
@@ -543,6 +721,7 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
           if(newData) {
             this.raw[i]=newData
            this.dataSourceRaw = new MatTableDataSource(this.raw);
+           this.obs = this.dataSourceRaw.connect();
             console.log('o',this.raw[i])
             
             this.dataSourceRaw.paginator = this.paginator;
@@ -552,9 +731,65 @@ export class DasboardFormComponent implements OnInit, AfterViewInit,OnDestroy {
       });    
     }
 
+    // MultiForm
+    addMulti(index,indexData){
+      const i = this.raw.findIndex(x=>x===indexData);
+      this.openExtendFormData = this.raw[i];
+      // this.openAdditionalForm = !this.openAdditionalForm;
+      
+      this.multiform[index].hidden = !this.multiform[index].hidden;
+      console.log("number button", index,indexData,this.openExtendFormData);
+    }
+
+    extendSubmit(extend,data,index){
+      const i = this.raw.findIndex(x=>x===data);
+      console.log("KELUAR GA",extend,data,i,index);
+      console.log("FIND NAMA",this.multiform[index].name);
+      let nameExtend = this.multiform[index].name;
+
+      if(this.raw[i].hasOwnProperty(nameExtend)){
+        console.log('sudah ada');
+        this.raw[i][nameExtend].push(extend);
+        // this.length = this.raw[i][nameExtend].length;
+        console.log("check array",this.raw[i][nameExtend].length);
+        console.log("check array diff",this.raw[i][this.multiform[index].name].length);
+
+
+      } else{
+        console.log('belum ada');
+        this.raw[i][nameExtend] = [];
+        this.raw[i][nameExtend].push(extend);
+         console.log("check array",this.raw[i][this.multiform[index].name].length);
+        
+        
+      }
+      console.log("Masuk ga ya",this.raw[i]);
+
+    }
+
+    // Multiform End
+
+    // Checkbox Component Handle
+
+    checkboxData=[
+    {c_id:"A", c:'Pak Andi' , name:["andi",'banu','chandra']},
+    {c_id:"B", c:'Pak Andi2', name:["andi2",'banu2','chandra2']},
+    {c_id:"C", c:'Pak Andi3', name:["andi3",'banu3','chandra3']},
+    {c_id:"D", c:'Pak Andi4',name:["andi4",'banu4','chandra4']},
+    {c_id:"E", c:'Pak Andi5',name:["andi5",'banu5','chandra5']}
+    ];
+    xyz=false;
+
+    
+
+   
+
+    // Checkbox Component Handle End
+
+
     ngOnDestroy(): void {
-  if (this.dataSourceRaw) { this.dataSourceRaw.disconnect(); }
-}
+      if (this.dataSourceRaw) { this.dataSourceRaw.disconnect(); }
+    }
 
 }
 

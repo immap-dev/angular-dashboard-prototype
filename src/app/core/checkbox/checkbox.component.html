@@ -1,10 +1,41 @@
-<mat-card >
+<!-- <mat-card >
 	<div *ngFor="let x of checkbox" >
 	  <mat-checkbox color="warn" [(ngModel)]="x.checked">{{x.name}}</mat-checkbox>
 	<p>{{x.checked}}</p>
 	</div>
+</mat-card> -->
 
-
+<!-- Coba Checkbox -->
+<mat-card class="result">
+  <mat-card-content class="check-padding">
+    <h2 class="example-h2">Result</h2>
+		<div *ngFor="let c of controls; let i = index " [formGroup]="form" >
+			<ng-container *ngIf="c.type==='checkbox'">
+				<mat-checkbox [formControlName]="c.name" [value]="c.name" color="primary" [checked]="check">
+					{{c.name}}
+				</mat-checkbox>
+			</ng-container>
+		
+			<ng-container *ngIf="c.type==='multi-checkbox'">
+				<div class="checkbox-wrapper">
+					<mat-checkbox color="primary" class="example-margin" (change)="hideme[i] = !hideme[i]" (change)="checkboxChange($event)"
+					[checked]="check">		
+						{{c.name}}
+					</mat-checkbox>
+			
+					<div [hidden]="!hideme[i]">		
+						<ng-container *ngFor="let name of c.data">
+							<div>
+								<mat-checkbox color="primary" [value]="name.name" (change)="onCheckChange($event,c.name)" [checked]="check">
+									{{name.name}}
+								</mat-checkbox>
+							</div>
+						</ng-container>					
+					</div>
+				</div>
+			</ng-container>
+		</div>
+	</mat-card-content>
 </mat-card>
 
   

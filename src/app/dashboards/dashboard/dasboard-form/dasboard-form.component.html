@@ -3,7 +3,6 @@
     <button mat-raised-button color="primary" (click)="onAllowEdit()" [hidden]="!allowEdit"> {{ !allowEdit ? "Edit Form" : "Close"}}</button>
     <!-- <button mat-raised-button color="warn" (click)="onAllowEdit()" [hidden]="allowEdit"> X </button> -->
   </mat-card-actions>
-  
   <div [hidden]="!allowEdit">
     <form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="submitForm(form, formDirective)" class="dynamic-form">
     <!-- <form  [formGroup]="form" (ngSubmit)="submitForm()"  class="dynamic-form" > -->
@@ -59,9 +58,12 @@
             <input matInput type= "text" min="0" [formControlName]="c.name" [placeholder]="c.name" >
           </ng-container>
         </mat-form-field>
-        <ng-container *ngIf="c.type==='date'">
+
+
+
+        <!-- <ng-container *ngIf="c.type==='date'">
           <app-date-picker [form]="form" [control]="c" ></app-date-picker>    
-        </ng-container>
+        </ng-container> -->
              
       </ng-container>
 
@@ -80,7 +82,79 @@
   
   </div>
 
-  
+  <!-- <div [hidden]="!allowEdit" >
+    <div *ngFor="let c of controls; let i = index " [formGroup]="form">
+          <ng-container *ngIf="c.type==='checkbox'">
+            <mat-checkbox   [formControlName] = "c.name" [value]="c.name"  color="primary" >          
+              {{c.name}}
+            </mat-checkbox>
+          </ng-container>
+
+          <ng-container *ngIf="c.type==='multi-checkbox'">
+            
+            <mat-checkbox color="primary" [formControlName]="c.name" 
+                class="example-margin"                      
+                    (change) = "hideme[i] = !hideme[i]"  (change)="checkboxChange($event)"> 
+                        
+                    {{c.name}}              
+            </mat-checkbox>
+
+            <div [hidden]="!hideme[i]" >
+              <ng-container *ngFor="let name of c.data">
+                <div>
+                  <mat-checkbox color="primary" [value]="name.name"  (change)="childcheckboxChange($event,c)" >          
+                    {{name.name}}
+                  </mat-checkbox>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+    </div>
+  </div> -->
+
+  <div [hidden]="!allowEdit" >
+    <!-- <div *ngFor="let c of controls; let i = index " [formGroup]="form">
+          <ng-container *ngIf="c.type==='checkbox'">
+            <mat-checkbox   [formControlName] = "c.name" [value]="c.name"  color="primary" [checked]="check">          
+              {{c.name}}
+            </mat-checkbox>
+          </ng-container>
+
+          <ng-container *ngIf="c.type==='multi-checkbox'"> -->
+            <!-- [formControlName]="c.name" -->
+            <!-- <mat-checkbox color="primary"  
+                class="example-margin"                      
+                    (change) = "hideme[i] = !hideme[i]"  (change)="checkboxChange($event)" [checked]="check"> 
+                        
+                    {{c.name}}              
+            </mat-checkbox>
+
+            <div [hidden]="!hideme[i]" >
+              
+              <ng-container *ngFor="let name of c.data">
+                <div>
+                  <mat-checkbox color="primary" [value]="name.name"  (change)="onCheckChange($event,c.name)" [checked]="check">          
+                    {{name.name}}
+                  </mat-checkbox>
+                </div>
+              </ng-container>
+              
+            </div>
+          </ng-container>
+        </div> -->
+                    <!-- <ng-container *ngFor="let name of this.form.controls[c.name].controls;let i = index "> -->
+                    <!-- <ng-container *ngFor="let name of this.form.get(c.name).controls"> -->
+                      <!-- <div>
+                        <mat-checkbox color="primary" [formControl]="name" [value]="c.data[i].name" checked="false" (change)="onCheckChange($event,c.name)" >           
+                          {{c.data[i].name}}
+                        </mat-checkbox>
+                      </div>
+                    </ng-container> -->
+      <app-checkbox [controls]="controls" [form]="form" [check]="check" [submitSuccess]="notif"></app-checkbox>
+  </div>
+
+
+
 
  <!--  <div class="example-container mat-elevation-z8">  
   <mat-table #table [dataSource]="dataSource" >
@@ -110,12 +184,12 @@
   </mat-paginator>
 </div> -->
 
-<!-- <app-checkbox></app-checkbox> -->
+
 
 <!-- coba -->
 
 <!-- DISPLAY table -->
-<div class="example-container mat-elevation-z8" *ngIf="display =='table'">
+<div class="example-container mat-elevation-z8" *ngIf=" display =='table' && raw.length > 0 ">
 
   <mat-table #table [dataSource]="dataSourceRaw" >
     <ng-container *ngFor="let col of columnTwo " matColumnDef="{{col}}" >
@@ -154,8 +228,8 @@
 </div>
 
 <!-- DISPLAY Comma -->
-<div *ngIf="display =='comma'"> 
   <!-- <ng-container  *ngFor="let data of raw; let i = index "> -->
+<!-- <div *ngIf="display =='comma'"> 
   <div  *ngFor="let data of obs | async">
     
       <div class="comma">
@@ -171,14 +245,127 @@
            <button mat-mini-fab color="warn"  >
             <mat-icon aria-label="Example icon-button with a heart icon"  (click)= "onDelete(data,i)" >close</mat-icon>
            </button>         
-         </div>        
+         </div>    
         </ng-container>
+
       </div>
       
+          
+        
+        
     
   </div>
   <mat-paginator #paginator
-                 [pageSize]="pageOptions[2]" [pageSizeOptions]="pageOptions"  >
+                 [pageSize]="pageOptions[1]" [pageSizeOptions]="pageOptions"  >
   </mat-paginator>
-</div>
+</div> -->
 
+
+<!-- FOR MULTIFORM DISPLAY -->
+<div *ngIf= "display == 'comma'">
+ <div class="display-comma">
+    <div  *ngFor="let data of obs | async;let i= index " >
+      
+        <div class="comma">
+            <mat-icon class="icon" color="primary">location_on</mat-icon>
+
+            <p *ngFor="let key of columnTwo" class="space mat-color-primary" color="primary">
+              <span class="tablet-label">{{key}}:</span>{{data[key]}},
+            </p>
+
+            <div class="right" [hidden]="allowEdit">
+            <ng-container *ngFor="let itemMulti of multiform;let indexmulti= index ">
+              {{itemMulti.name}}
+              <button mat-button  >
+                {{data[this.multiform[indexmulti].name]? data[this.multiform[indexmulti].name].length:0}}
+              </button>
+              <button mat-button >
+                <mat-icon>people</mat-icon>
+              </button>
+            </ng-container>           
+              <!-- <button mat-button  >
+                {{data[this.multiform[0].name]? data[this.multiform[0].name].length:0}}
+              </button>
+              <button mat-button >
+                <mat-icon>people</mat-icon>
+              </button> -->
+              
+            </div>
+             
+            <ng-container *ngIf="allowEdit">
+             <div class="right">
+               <button mat-mini-fab color="primary">
+                <mat-icon (click)="openDialog(data)">mode_edit</mat-icon>
+              </button>
+               <button mat-mini-fab color="warn"  >
+                <mat-icon aria-label="Example icon-button with a heart icon"  (click)= "onDelete(data,i)" >close</mat-icon>
+               </button>         
+             </div>        
+            </ng-container>
+
+        </div>
+        
+      
+          <ng-container *ngFor="let item of multiform;let index= index ">
+            <div class="multi-form-button" >        
+              <button color="primary" mat-raised-button (click)="addMulti(index,data)">
+                {{item.name}} (+) {{index}}
+              </button>
+            </div>
+         
+              <!-- <div [hidden]="item.hidden"> -->
+              <div *ngIf="data === openExtendFormData  && !item.hidden "  >
+
+
+            
+              <app-extended-form [childForm]="item.configChildform" (extendSubmit) = "extendSubmit($event,data,index)"></app-extended-form>
+                
+              </div>
+            
+          </ng-container>
+          <div class="divider"></div> 
+    </div>
+
+  </div>
+  <mat-paginator #paginator
+                 [pageSize]="pageOptions[1]" [pageSizeOptions]="pageOptions"  >
+  </mat-paginator>
+  
+</div>
+<!-- FOR MULTIFORM DISPLAY END -->
+
+<!-- Coba Checkbox -->
+<!-- <mat-card class="result">
+  <mat-card-content>
+    <h2 class="example-h2">Result</h2>
+
+    <section class="example-section">
+      <mat-checkbox color="primary"
+          class="example-margin"
+          *ngFor="let a  of checkboxData; let indexCheck = index "       
+             (change)="checkboxChange($event)" [value]="a" (change) = "hideme[indexCheck] = !hideme[indexCheck]" >
+              {{a.c}}     
+              
+        
+      </mat-checkbox>
+      
+        
+    </section>
+    
+  </mat-card-content>
+
+
+  <div *ngFor="let a of checkboxData;let x = index ">
+    <div [hidden]="!hideme[x]" >
+
+      <ng-container *ngFor="let name of a.name">
+        <mat-checkbox color="primary" [value]="name" (change)="childcheckboxChange($event)">          
+          {{name}}
+        </mat-checkbox>
+      </ng-container>
+    </div>
+    
+  </div>
+</mat-card> -->
+
+<!-- Coba Checkbox-end -->

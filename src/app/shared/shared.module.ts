@@ -7,6 +7,7 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DownlodButtonComponent } from './downlod-button/downlod-button.component';
 import { DashboardService } from '../dashboards/dashboards.service';
+import { ExtendedFormComponent } from './extended-form/extended-form.component';
 // export { HeaderComponent};
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DashboardService } from '../dashboards/dashboards.service';
 	declarations:[
 		HeaderComponent,
 		DatePickerComponent,
-		DownlodButtonComponent
+		DownlodButtonComponent,
+		ExtendedFormComponent
 	],	
 
     exports: [
@@ -27,7 +29,8 @@ import { DashboardService } from '../dashboards/dashboards.service';
         MaterialModule,
         HeaderComponent,
         DatePickerComponent,
-        DownlodButtonComponent
+        DownlodButtonComponent,
+        ExtendedFormComponent
     ],
     // providers:[HeaderComponent]
     providers:[DashboardService]

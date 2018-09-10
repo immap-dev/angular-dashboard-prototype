@@ -45,9 +45,35 @@ export class DashboardModel{
             cascade?: {}[];
             field?: string;           
             inputType?:string;
+            checked?:boolean;
+            data?:{}[];
+
+            
+
 
         }[];
-        // list?:{}[];       
+        // list?:{}[];
+        //coba
+        childForm?:{
+                name:string;
+                hidden:boolean;                
+                configChildform:{
+                    disabled?: boolean ;
+                    label?: string ;
+                    name: string ;
+                    options?: string[] ;
+                    placeholder?: string;
+                    type: string;
+                    validation?: string[],                
+                    value?: any;
+                    cols?: number;
+                    rows?: number;
+                    cascade?: {}[];
+                    field?: string;           
+                    inputType?:string;}[]
+
+        }[];
+        //coba-end        
         dataraw?:{}[];
         cascadeRef?:{}[];
         list?:{
@@ -154,10 +180,10 @@ export class BoardFakeDB {
                     type: 'form',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 6 //2
+                            cols: 4, rows: 7 //2
                         },
                     display:'table',
-                    // display:'comma',
+                     // display:'comma',
                     },
                     config:
                         [
@@ -388,11 +414,45 @@ export class BoardFakeDB {
                                 // for input we need to spesific the input or not??? like numbe or text
                             },
                             {
+                                type:'checkbox',
+                                label:'tes',
+                                name:'tes',
+                                // value:'tes',
+                                checked: false,
+                            },
+                            {
+                                type:'multi-checkbox',
+                                label:'tes',
+                                name:'tesmulti',
+                                // value:'tes',
+                                checked: false,
+                                validation:['required'],
+                                data:[
+                                {name:'Orgnisasi A'},
+                                {name:'Orgnisasi B'},
+                                {name:'Orgnisasi C'},
+                                {name:'Orgnisasi D'},
+                                ]
+                            },
+                            {
+                                type:'multi-checkbox',
+                                label:'tes',
+                                name:'tesmulti2',
+                                // value:'tes',
+                                checked: false,
+                                data:[
+                                {name:'Orgnisasi E'},
+                                {name:'Orgnisasi F'},
+                                {name:'Orgnisasi G'},
+                                {name:'Orgnisasi H'},
+                                ]
+                            },                                                
+                            {
                                 label: 'Save',
                                 name: 'submit',
                                 type: 'button',
                             },
-                        ],
+                        ],                        
                         dataraw: [
                                         {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   , place:'City A', star:4, number:5,people:100},
                                         {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" , place:'City A', star:4, number:5,people:100},
@@ -544,7 +604,7 @@ export class BoardFakeDB {
                     type: 'list',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 4
+                            cols: 4, rows: 2
                         },
                     },
                     // list: [
@@ -629,7 +689,7 @@ export class BoardFakeDB {
                     type: 'title',
                     style: {
                         gridtile: {
-                            cols: 2, rows: 1
+                            cols: 2, rows: 2
                         }
                     }
                 },
@@ -637,7 +697,7 @@ export class BoardFakeDB {
                     type: 'stat',
                     style: {
                         gridtile: {
-                            cols: 2, rows: 1
+                            cols: 2, rows: 2
                         }
                     }
                 },               
@@ -645,8 +705,9 @@ export class BoardFakeDB {
                     type: 'form',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 10
-                        }
+                            cols: 4, rows: 4
+                        },
+                        display:'comma',
                     },
                     config:
                         [
@@ -751,8 +812,49 @@ export class BoardFakeDB {
                                 type: 'button',
                             },
                         ],
+                        childForm:[
+                                {
+                                    name:'beneficiary',
+                                    hidden:true,                                   
+                                    configChildform:[
+                                        {
+                                            type: 'input',
+                                            label: 'people',
+                                            name: 'people',                                
+                                            inputType: 'text',
+                                            placeholder: 'Enter people',
+                                            validation: ['required'],
+                                             value: 0,
+                                        },
+                                    ]
+                                },
+                                // {
+                                //     name:'beneficiary2',
+                                //     hidden:true,    
+                                //     configChildform:[
+                                //         {
+                                //             type: 'input',
+                                //             label: 'people',
+                                //             name: 'people',                                
+                                //             inputType: 'text',
+                                //             placeholder: 'Enter people',
+                                //             validation: ['required'],
+                                //              value: 0,
+                                //         },
+                                //         {
+                                //             type: 'input',
+                                //             label: 'people2',
+                                //             name: 'people2',                                
+                                //             inputType: 'number',
+                                //             placeholder: 'Enter people',
+                                //             validation: ['required'],
+                                //              value: 0,
+                                //         },
+                                //     ]
+                                // }
+                        ],
                         dataraw: [
-                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   , place:'City A', star:4, number:5},
+                                        {  location: 'city A',facility: 'SmallWidget1', food:"Apple"   , place:'City A', star:4, number:5, start: new Date()},
                                         {  location: 'city A',facility: 'SmallWidget2', food:"Biscuit" , place:'City A', star:4, number:5},
                                         {  location: 'city A',facility: 'SmallWidget3', food:"Candy"   , place:'City A', star:4, number:5},
                                         {  location: 'city A',facility: 'SmallWidget4', food:"Eel"     , place:'City A', star:4, number:5},
@@ -790,7 +892,7 @@ export class BoardFakeDB {
                     type: 'table',
                     style: {
                         gridtile: {
-                            cols: 4, rows: 8
+                            cols: 4, rows: 4
                         },
                     },
                     table:{

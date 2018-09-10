@@ -1,10 +1,17 @@
-.mat-card {
-    min-width: 100px;
-    /*max-width: 300px;*/
-    width: auto;    
+.auth{
     display: flex;
-    flex-flow: column;
-    
+    flex-direction: row;
+    justify-content: center;
+     margin: -40px 5px 10px;
+}
+
+.mat-card {
+    /* min-width: 100px; */
+    /* max-width: 300px; */
+    width: 500px;
+    /* width: auto;     */
+    display: flex;
+    flex-flow: column;    
     /*justify-content: center;*/
     margin:0 10px 0 10px;
    
@@ -17,7 +24,8 @@
 	/*width: 300px;*/
     width: auto;
 	margin-top: 25px;
-	margin-bottom: 25px !important;	
+    margin-bottom: 25px !important;	
+    justify-content: center;
 
 }
 
@@ -33,5 +41,15 @@
 
 .mat-form-field{
     margin-left: 10px;
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.mat-card-avatar{
+    height: 60px;
+    width: 60px;
+    margin: auto;
 }
 

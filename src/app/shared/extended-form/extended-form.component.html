@@ -1,0 +1,21 @@
+<div>
+  <form [formGroup] ="extendForm" #formDirective ="ngForm" (ngSubmit)="extendedSubmitForm(extendedForm, formDirective)" class="dynamic-form">
+    <div class="wrapper">
+  	<ng-container *ngFor="let control of controls">
+  		<mat-form-field  *ngIf="control.type==='input'" class="full-width" >
+            <!-- <input matInput type="number" min="0" [formControlName]="c.name" [placeholder]="c.name"> -->
+            <ng-container *ngIf="control.inputType === 'number'">
+              <input matInput type= "number" min="0" [formControlName]="control.name" [placeholder]="control.name" >
+            </ng-container>
+            
+            <ng-container *ngIf="control.inputType !== 'number'">
+              <input matInput type= "text" min="0" [formControlName]="control.name" [placeholder]="control.name" >
+            </ng-container>
+          </mat-form-field>
+  		
+  	</ng-container>
+  	<div> <button  mat-raised-button color="primary" type="submit" class="btn btn-primary"><mat-icon >add</mat-icon> </button>
+    </div>
+    </div>
+  </form>
+</div>

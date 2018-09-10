@@ -1,25 +1,25 @@
 <div class="header mat-bg-primary">
-  <div class=" title">
-    {{title|uppercase}}
-  </div>
-  <div class=" subtitle">
-    This place for subtitle
-  </div>
+	<div class=" title">
+		{{title|uppercase}}
+	</div>
+	<div class=" subtitle">
+		This place for subtitle
+	</div>
 
-  <ng-container *ngIf="back">
-  	<div class="row">
-  		<button mat-button (click)="goBack()" class=" left">
-		   <mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon> BACK TO PROJECT
-		  </button>
-		<span class="example-spacer"></span>
-		<!-- <button mat-icon-button (click)="goBack()" class=" right">
+	<ng-container *ngIf="back">
+		<div class="row">
+			<button mat-button (click)="goBack()" class=" left">
+				<mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon> BACK TO PROJECT
+			</button>
+			<span class="example-spacer"></span>
+			<!-- <button mat-icon-button (click)="goBack()" class=" right">
 		   <mat-icon aria-label="Example icon-button with a heart icon">arrow_back</mat-icon> BACK TO PROJECT
 		</button> -->
-		<p class="right">Latest Update: {{date | date}} @{{date | date:'shortTime'}} </p>
-  	</div>
-  	
- 
-  </ng-container>
-  
-   
- </div>
+			<p class="right">Latest Update: {{date | date}} @{{date | date:'shortTime'}} </p>
+		</div>
+
+
+	</ng-container>
+
+
+</div>

@@ -55,7 +55,7 @@ body{
 	color: #ffffff;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 5px;
 }
 
@@ -75,4 +75,4 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
 }
-
+*/

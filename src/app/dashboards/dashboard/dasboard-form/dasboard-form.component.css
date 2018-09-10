@@ -58,6 +58,10 @@ margin:0 10px 0 10px;
   display: none;
 }
 
+.divider{
+  display: none;
+}
+
 .comma{
   display: flex;
   flex-flow: row;
@@ -84,6 +88,12 @@ margin:0 10px 0 10px;
 
 }
 
+.multi-form-button{
+  
+    margin-top: 10px;
+    margin-left: 150px;
+    margin-bottom: 10px;
+}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {  
@@ -103,6 +113,13 @@ margin:0 10px 0 10px;
     width: 80px;
     display: inline-block;
         font-weight: bold;
+  }
+
+  .divider{
+    width: 100%;
+    border-bottom: 2px solid #959595;
+    display: block;
+    margin-bottom: 10px;
   }
 
   .mat-header-row {
@@ -125,8 +142,35 @@ margin:0 10px 0 10px;
 
   .mat-table {
     overflow: auto;
-    height: 500px; 
+    height: 450px; 
   }
+
+.comma{
+  display: flex;
+  flex-flow: column;
+  /*justify-content: center;*/
+  justify-content: flex-start;
+  align-items: start;
+  /*text-transform: uppercase;*/
+
+}
+
+.display-comma{
+  overflow: auto;
+  height: 500px;
+}
+
+.multi-form-button{
+  margin-left: 0;
+}
+
+.right{
+  margin-left: 10px;
+}
+
+
+
+
 
 
 

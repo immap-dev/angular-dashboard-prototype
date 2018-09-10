@@ -112,6 +112,10 @@
           </ng-container>
       </mat-form-field>
 
+      <ng-container *ngIf="c.type==='date'">
+          <app-date-picker [form]="form" [control]="c" ></app-date-picker>    
+        </ng-container>
+
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button type="submit">Save</button>

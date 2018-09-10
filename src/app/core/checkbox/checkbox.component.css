@@ -1,3 +1,18 @@
 mat-card{
 	 width: calc(100% - 70px);
 }
+
+.result{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.checkbox-wrapper{
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.check-padding{
+	padding: 0 40px 0 40px;
+}

@@ -1,18 +1,18 @@
-<div class="navbar-header mat-bg-primary" >
+<div class="navbar-header mat-bg-primary">
 
-    <div class="logo">
-        <img class="logo-icon" src="assets/proto.png">
-        <span class="logo-text mat-h2">Report Hub 2.0</span>
-    </div>
-    
-    <div class="user">
-      <p>testwhowas</p>
-    </div>
-    <div class="main-menu">
-      <button mat-fab class="mat-bg-primary" (click)="onMenu()">
-        <mat-icon aria-label="icon" >add</mat-icon>
-      </button>
-    </div>
+  <div class="logo">
+    <img class="logo-icon" src="assets/proto.png">
+    <span class="logo-text mat-h2">Report Hub 2.0</span>
+  </div>
+
+  <div class="user">
+    <p>testwhowas</p>
+  </div>
+  <div class="main-menu">
+    <button mat-fab class="mat-bg-primary" (click)="onMenu()">
+      <mat-icon aria-label="icon">add</mat-icon>
+    </button>
+  </div>
 
 </div>
 
@@ -20,7 +20,7 @@
 <ng-container *ngIf="showMenu">
   <mat-list role="list" class="main-list-menu">
     <mat-list-item class="shadow" role="listitem" routerLink="/home" routerLinkActive="matListActive">
-      <mat-icon>bubble_chart</mat-icon>HOME      
+      <mat-icon>bubble_chart</mat-icon>HOME
     </mat-list-item>
     <mat-list-item class="shadow" role="listitem">
       <mat-icon>lock_open</mat-icon>LOG OUT
@@ -50,15 +50,13 @@
 </ng-container>
 
 
-<div class=" listing" >
+<div class=" listing">
   <ng-container *ngFor="let link of navigationModel;let i = index ">
     <ng-container *ngIf="link.list">
       <mat-accordion [class.full-width]="!link.hide">
         <mat-expansion-panel [hideToggle]=true>
-          <mat-expansion-panel-header 
-            style="background-color:#2491eb;
-            color:#fff;"
-             (click)="onExpand(i)">
+          <mat-expansion-panel-header style="background-color:#2491eb;
+            color:#fff;" (click)="onExpand(i)">
             <mat-panel-title style="color:#fff;">
               <div class="align">
                 <mat-icon>{{link.icon}}</mat-icon> {{ link.title | uppercase }}
@@ -66,13 +64,13 @@
             </mat-panel-title>
 
           </mat-expansion-panel-header>
-          <mat-list role="list" >
+          <mat-list role="list">
             <ng-container *ngFor="let a of link.list">
-              <mat-list-item  role="listitem" (click)="select(a)">{{a}}</mat-list-item>
-            </ng-container>                 
+              <mat-list-item role="listitem" (click)="select(a)">{{a}}</mat-list-item>
+            </ng-container>
           </mat-list>
         </mat-expansion-panel>
-      </mat-accordion>  
+      </mat-accordion>
     </ng-container>
   </ng-container>
 </div>
@@ -118,7 +116,3 @@
       </mat-accordion>
   </ng-container>
 </mat-nav-list> -->
-
-
-
-

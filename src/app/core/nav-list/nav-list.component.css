@@ -51,7 +51,8 @@ a.mat-line{
 
 .main-list-menu{
   width: 100%; 
-  background-color: #26a69a;
+  /* background-color: #4dabf5#26a69a; */
+  background-color: #4dabf5;
   z-index: 1;
   position: absolute;
   top:150px;

@@ -1,61 +1,72 @@
- <mat-card>
- 	<div class="primary-text">
- 		<h2>{{title}}</h2>
-
- 	</div>
-
-	<form class="login" name="loginForm" [formGroup]="loginForm"  (ngSubmit)="onSubmit()" novalidate>
-
-				<mat-form-field class="example-full-width" *ngIf="authType == 'register'" >
-	                <input matInput formControlName="username" placeholder="Username" type="text" >
-	                
-	            </mat-form-field>
-	            <div class="line-input">
-	            	<mat-form-field class="example-full-width" *ngIf="authType == 'register'" >	                
-		                <input matInput formControlName="firstname" placeholder="Firstname" type="text" >		                
-		            </mat-form-field>
-		            <mat-form-field class="example-full-width" *ngIf="authType == 'register'" >		                
-		                <input matInput formControlName="lastname" placeholder="Lastname" type="text" >
-		            </mat-form-field>
-	            </div>
-
-	            <ng-container *ngIf="authType == 'register'" >
-	            	<mat-form-field class="example-full-width" *ngFor="let item of loginForm.get('alias').controls; let i = index " >
-
-	                	<div formArrayName="alias" class="line-input">
-
-						  <div [formGroupName]="i">
-						    <input matInput formControlName="name" placeholder="alias{{i+1}}">
-						  </div>
-						 <div><button mat-icon-button (click)="deleteItem(i)" type="button"><mat-icon>clear</mat-icon></button></div>
-						</div> 					  
-	                	
-	            	</mat-form-field>
-	            	<button  type="button" mat-raised-button (click)="addItem()"> <mat-icon>add</mat-icon></button>	
-	            </ng-container>
-
-	            		
-	           
-				<mat-form-field class="example-full-width">
-					<input matInput placeholder="Email" formControlName="email">
-					<mat-error *ngIf="loginFormErrors.email.required">
-		                        Email is required
-		            </mat-error>
-		            <mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">
-		                        Please enter a valid email address
-		            </mat-error>
-
-				</mat-form-field>
-				<mat-form-field class="example-full-width" >
-					<input matInput placeholder="Password" formControlName="password" type="password">
-
-				</mat-form-field>
+ <div class="auth">
+	<mat-card>
+		<div class="primary-text">
+			<!-- <h2>{{title}}</h2> -->
 	
-				<button mat-raised-button color="primary" [disabled]="loginForm.invalid" type="submit">
-					{{title}}
+		</div>
+		<div mat-card-avatar class="example-header-image"></div>
+		<form class="login" name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+	
+			<mat-form-field class="example-full-width" *ngIf="authType == 'register'">
+				<input matInput formControlName="username" placeholder="Username" type="text">
+	
+			</mat-form-field>
+			<div class="line-input">
+				<mat-form-field class="example-full-width" *ngIf="authType == 'register'">
+					<input matInput formControlName="firstname" placeholder="Firstname" type="text">
+				</mat-form-field>
+				<mat-form-field class="example-full-width" *ngIf="authType == 'register'">
+					<input matInput formControlName="lastname" placeholder="Lastname" type="text">
+				</mat-form-field>
+			</div>
+	
+			<ng-container *ngIf="authType == 'register'">
+				<mat-form-field class="example-full-width" *ngFor="let item of loginForm.get('alias').controls; let i = index ">
+	
+					<div formArrayName="alias" class="line-input">
+	
+						<div [formGroupName]="i">
+							<input matInput formControlName="name" placeholder="alias{{i+1}}">
+						</div>
+						<div>
+							<button mat-icon-button (click)="deleteItem(i)" type="button">
+								<mat-icon>clear</mat-icon>
+							</button>
+						</div>
+					</div>
+	
+				</mat-form-field>
+				<button type="button" mat-raised-button (click)="addItem()">
+					<mat-icon>add</mat-icon>
 				</button>
-		
-	</form>
- </mat-card>
+			</ng-container>
+	
+	
+	
+			<mat-form-field class="example-full-width">
+				
+				<input matInput placeholder="Email" formControlName="email">
+				
+				<mat-error *ngIf="loginFormErrors.email.required">
+					Email is required
+				</mat-error>
+				<mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">
+					Please enter a valid email address
+				</mat-error>
+	
+			</mat-form-field>
+			<mat-form-field class="example-full-width">
+				<input matInput placeholder="Password" formControlName="password" type="password">
+	
+			</mat-form-field>
+	
+			<button mat-raised-button color="primary" [disabled]="loginForm.invalid" type="submit">
+				{{title}}
+			</button>
+	
+		</form>
+	</mat-card>
+ </div>
+ 
  
 

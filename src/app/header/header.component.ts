@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit,OnChanges{
     // console.log('filtera',this.title);
 
     // to check in dahbord page or not
-    if(this.title == 'dashboard' || this.title === 'home'){
+    if(this.title == 'dashboard' || this.title === 'home' || this.title === 'login' || this.title === 'register' ){
       this.back = false;
     }
     else {
